@@ -1,10 +1,12 @@
 {
-  "generated_at_utc": "2026-10-09T07:30:19.596971+00:00",
-  "source_sha": "815135b66b993e1750d9b4a235a351eaa853f435",
-  "workflow_run_id": "37899300091",
+  "generated_at_utc": "2026-10-09T07:36:10.959761+00:00",
+  "source_sha": "aefe9d5f880cee4d88a0983fe24a11e355471a01",
+  "workflow_run_id": "37899869610",
   "source_tests": "success",
   "laya_build": "success",
   "browser_qa": "failure",
-  "screenshots": [],
+  "screenshots": [
+    "desktop.png"
+  ],
   "notes": "Screenshots come from automated desktop Chromium and mobile-emulated Chromium; not physical device evidence."
 }
