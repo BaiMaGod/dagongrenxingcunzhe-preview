@@ -1,0 +1,24 @@
+name: Public Free Runner Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/free-runner-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-public-runner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify free public-hosted runner
+        shell: bash
+        run: |
+          set -euxo pipefail
+          echo "RUNNER=$RUNNER_OS"
+          echo "NODE=$(node --version)"
+          echo "PYTHON=$(python3 --version)"
+          echo "Public GitHub Actions runner is available"
