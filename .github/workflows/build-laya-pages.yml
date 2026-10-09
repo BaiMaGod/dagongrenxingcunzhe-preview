@@ -110,6 +110,16 @@ jobs:
           mkdir -p "$RUNNER_TEMP/game-web/config"
           cp assets/config/mvp-balance.v0.3.json "$RUNNER_TEMP/game-web/config/"
           test -s "$RUNNER_TEMP/game-web/config/mvp-balance.v0.3.json"
+          # Asset bytes are packaged only after their actual Git upload.
+          # Source PNG/design docs never get copied into public runtime output.
+          if [ -s assets/art/actors-atlas.webp ]; then
+            mkdir -p "$RUNNER_TEMP/game-web/art"
+            cp assets/art/actors-atlas.webp "$RUNNER_TEMP/game-web/art/actors-atlas.webp"
+            test -s "$RUNNER_TEMP/game-web/art/actors-atlas.webp"
+            echo "Real actor texture atlas included" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Actor atlas absent; view must retain explicitly marked prototype art" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Manifest and public artifact hygiene checks
         shell: bash
