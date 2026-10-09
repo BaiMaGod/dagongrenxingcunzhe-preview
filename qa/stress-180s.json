@@ -5,43 +5,43 @@
   "steps": 10800,
   "targetHz": 60,
   "runner": "Node.js in GitHub Actions runner; no browser GPU and no physical phone",
-  "scenario": "425 ordinary rice enemies + 1 Boss + Boss adds up to 24, non-lethal high HP, no leveling stops",
+  "scenario": "Sustained 450 entities: 425 rice + 1 Boss + 24 Boss adds for 180 virtual seconds, no player offense or leveling interruptions",
   "realtimeDeviceFpsMeasured": false,
   "cpuPerStepMs": {
-    "mean": 0.058,
-    "p50": 0.046,
-    "p95": 0.116,
-    "p99": 0.227,
-    "max": 2.402
+    "mean": 0.063,
+    "p50": 0.053,
+    "p95": 0.111,
+    "p99": 0.17,
+    "max": 2.375
   },
   "observed": {
-    "maxEnemies": 426,
+    "maxEnemies": 450,
     "maxOrdinary": 425,
     "maxBossAdds": 24,
     "maxProjectiles": 0,
     "maxEnemyProjectiles": 0,
-    "maxVisualEvents": 64
+    "maxVisualEvents": 0
   },
   "checkpoints": [
     {
       "gameSeconds": 60,
-      "enemies": 385,
-      "sampleP95LogicMs": 0.154
+      "enemies": 450,
+      "sampleP95LogicMs": 0.122
     },
     {
       "gameSeconds": 120,
-      "enemies": 332,
-      "sampleP95LogicMs": 0.103
+      "enemies": 450,
+      "sampleP95LogicMs": 0.11
     },
     {
       "gameSeconds": 180,
-      "enemies": 332,
-      "sampleP95LogicMs": 0.097
+      "enemies": 450,
+      "sampleP95LogicMs": 0.107
     }
   ],
   "final": {
     "tick": 10800,
-    "kills": 123,
+    "kills": 0,
     "hp": 9997851,
     "bossDefeated": false
   },

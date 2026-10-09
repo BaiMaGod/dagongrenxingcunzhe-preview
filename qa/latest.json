@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-10-09T08:53:14.864951+00:00",
-  "source_sha": "5f754fbb2a7c92713f65903edd129998d1387862",
-  "workflow_run_id": "37907560947",
+  "generated_at_utc": "2026-10-09T08:56:11.310203+00:00",
+  "source_sha": "30e366b5da37ad33793aaa02eabeb8a7a3bf4e52",
+  "workflow_run_id": "37907889179",
   "source_tests": "success",
   "laya_build": "success",
   "browser_qa": "success",
