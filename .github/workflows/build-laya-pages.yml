@@ -93,6 +93,10 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/official-laya-project"
           layaair --version=3.4.0 create Dagongren -t "2D empty project" -p "$RUNNER_TEMP/official-laya-project"
+          echo "=== OFFICIAL 2D TEMPLATE FILES ==="
+          find "$RUNNER_TEMP/official-laya-project" -maxdepth 4 -type f | sort | head -130
+          echo "=== COMPILER/STARTUP CANDIDATES ==="
+          find "$RUNNER_TEMP/official-laya-project" -type f \( -name '*Compiler*' -o -name '*Main*' -o -name '*.laya' \) | sort
           python3 tools/prepare_laya_project.py --repo "$PWD" --project "$RUNNER_TEMP/official-laya-project"
           layaair --version=3.4.0 build web -p "$RUNNER_TEMP/official-laya-project" -o "$RUNNER_TEMP/game-web"
           test -s "$RUNNER_TEMP/game-web/index.html"
