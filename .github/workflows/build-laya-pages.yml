@@ -177,9 +177,9 @@ jobs:
                         return {laya:!!l,stage:!!stage,stageW:stage?.width??null,stageH:stage?.height??null,stageChildren:stage?.numChildren??null,texts};
                       }""")
                       print(name,"game stage snapshot",stage)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
                       assert stage["stageW"] is not None and abs(stage["stageW"]-size["width"])<=3,(name,"stage width not viewport responsive",stage,size)
                       assert stage["stageH"] is not None and abs(stage["stageH"]-size["height"])<=3,(name,"stage height not viewport responsive",stage,size)
-                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
                       assert not errors,(name,errors)
                       assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
                       print(name,"actual game home verified",canvas)
