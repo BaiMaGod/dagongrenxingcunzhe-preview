@@ -408,7 +408,7 @@ jobs:
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
               "stress_report":"stress-180s.json" if (out/"stress-180s.json").is_file() else None,
               "screenshots":saved,
-              "notes":"Screenshots come from automated desktop Chromium and mobile-emulated Chromium; not physical device evidence."
+              "notes":"Chromium desktop/mobile-emulation screenshots and a separate accelerated 180-second logic CPU stress. Neither measures physical Android/iOS FPS."
           }
           (out/"latest.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print("Public QA evidence:",result)
