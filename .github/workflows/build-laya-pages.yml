@@ -1,0 +1,206 @@
+name: LayaAir 3.4 免费构建与 Pages 发布
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "通过全部构建/浏览器烟测后部署 GitHub Pages"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: dagongren-laya-pages
+  cancel-in-progress: false
+
+jobs:
+  build-test-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Require read-only token for private source
+        shell: bash
+        env:
+          READ_TOKEN: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+        run: |
+          if [ -z "$READ_TOKEN" ]; then
+            echo "::error::Set DAGONGREN_SOURCE_READ_TOKEN with Contents:Read on private source repo in this public preview repo."
+            exit 1
+          fi
+
+      - name: Checkout private source without persisting token
+        uses: actions/checkout@v4
+        with:
+          repository: BaiMaGod/dagongrenxingcunzhe
+          ref: dev/m9-laya-build
+          path: private-game
+          token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+          persist-credentials: false
+
+      - name: Record exact private-source commit
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          SHA="$(git -C private-game rev-parse HEAD)"
+          test "${#SHA}" -eq 40
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "Building private game commit $SHA" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Typecheck, game regression and source/template bridge tests
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund
+          npm run check
+          python3 tools/test_laya_prepare.py
+
+      - name: Install official LayaAir CLI 3.4.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location https://raw.githubusercontent.com/layabox/layaair-cli/master/install.sh -o "$RUNNER_TEMP/install-layaair.sh"
+          LAYAAIR_INSTALL_DIR="$RUNNER_TEMP/layaair" bash "$RUNNER_TEMP/install-layaair.sh"
+          echo "$RUNNER_TEMP/layaair" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/layaair/layaair" install 3.4.0
+          "$RUNNER_TEMP/layaair/layaair" --version=3.4.0 create --list-templates | grep -F "2D empty project"
+
+      - name: Create original 2D template, bind game and compile genuine Web build
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/official-laya-project"
+          layaair --version=3.4.0 create Dagongren -t "2D empty project" -p "$RUNNER_TEMP/official-laya-project"
+          python3 tools/prepare_laya_project.py --repo "$PWD" --project "$RUNNER_TEMP/official-laya-project"
+          layaair --version=3.4.0 build web -p "$RUNNER_TEMP/official-laya-project" -o "$RUNNER_TEMP/game-web"
+          test -s "$RUNNER_TEMP/game-web/index.html"
+          test -n "$(find "$RUNNER_TEMP/game-web" -type f -name '*.js' -size +0c -print -quit)"
+          mkdir -p "$RUNNER_TEMP/game-web/config"
+          cp assets/config/mvp-balance.v0.3.json "$RUNNER_TEMP/game-web/config/"
+          test -s "$RUNNER_TEMP/game-web/config/mvp-balance.v0.3.json"
+
+      - name: Manifest and public artifact hygiene checks
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib
+          output=pathlib.Path(os.environ["RUNNER_TEMP"])/"game-web"
+          forbidden=["src","docs","tools",".git","node_modules","private-game"]
+          for item in forbidden:
+              if (output/item).exists(): raise SystemExit("Private path in Web artifact: "+item)
+          manifest={"schemaVersion":1,"commitSha":os.environ["SOURCE_SHA"],"engineVersion":"3.4.0","target":"web"}
+          (output/"build-manifest.json").write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
+          assert len(manifest["commitSha"])==40
+          print("Staged only Laya Web build from:",manifest["commitSha"])
+          PY
+
+      - name: Install Chromium for actual browser smoke
+        shell: bash
+        run: |
+          python3 -m pip install 'playwright==1.55.0'
+          python3 -m playwright install --with-deps chromium
+
+      - name: Desktop and mobile portrait smoke and screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/qa"
+          python3 -m http.server 4173 --directory "$RUNNER_TEMP/game-web" > "$RUNNER_TEMP/qa/http.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" || true' EXIT
+          for i in {1..40}; do
+            if curl -fsS http://127.0.0.1:4173/index.html >/dev/null; then break; fi
+            sleep 0.5
+          done
+          curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
+          python3 - <<'PY'
+          import asyncio,os,pathlib
+          from playwright.async_api import async_playwright
+
+          async def main():
+              async with async_playwright() as p:
+                  browser=await p.chromium.launch()
+                  for name,size,mobile in [
+                      ("desktop",{"width":1280,"height":800},False),
+                      ("mobile-portrait",{"width":390,"height":844},True)]:
+                      ctx=await browser.new_context(viewport=size,device_scale_factor=1,is_mobile=mobile,has_touch=mobile)
+                      page=await ctx.new_page()
+                      errors=[]
+                      page.on("pageerror",lambda error:errors.append(str(error)))
+                      response=await page.goto("http://127.0.0.1:4173/",wait_until="domcontentloaded")
+                      assert response and response.status==200
+                      await page.wait_for_selector("canvas",timeout=30000)
+                      await page.wait_for_timeout(3500)
+                      canvas=await page.locator("canvas").first.evaluate("(el)=>({w:el.width,h:el.height})")
+                      assert canvas["w"]>0 and canvas["h"]>0,(name,canvas)
+                      assert not errors,(name,errors)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
+                      print(name,"startup canvas smoke passed",canvas)
+                      await ctx.close()
+                  await browser.close()
+          asyncio.run(main())
+          PY
+
+      - name: Upload non-source browser QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dagongren-laya-browser-qa
+          path: ${{ runner.temp }}/qa
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Configure Pages
+        if: ${{ success() && inputs.publish == true }}
+        uses: actions/configure-pages@v5
+
+      - name: Upload only verified compiled Web to Pages
+        if: ${{ success() && inputs.publish == true }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/game-web
+
+      - name: Deploy GitHub Pages
+        if: ${{ success() && inputs.publish == true }}
+        uses: actions/deploy-pages@v4
+        id: deploy
+
+      - name: Verify live Pages serves current source commit
+        if: ${{ success() && inputs.publish == true }}
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+          PAGE_URL: ${{ steps.deploy.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          MANIFEST_URL="${PAGE_URL%/}/build-manifest.json"
+          for i in {1..30}; do
+            if curl -fsSL "$MANIFEST_URL" -o "$RUNNER_TEMP/live-manifest.json" && python3 -c 'import json,os,sys; m=json.load(open(sys.argv[1])); sys.exit(0 if m.get("commitSha")==os.environ["SOURCE_SHA"] else 1)' "$RUNNER_TEMP/live-manifest.json"; then
+              echo "Published SHA verified: $SOURCE_SHA" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::Live Pages manifest does not match source commit $SOURCE_SHA"
+          exit 1
