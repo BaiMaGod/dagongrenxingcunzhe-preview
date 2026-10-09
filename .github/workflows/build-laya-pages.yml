@@ -89,10 +89,10 @@ jobs:
           python3 tools/generate_combat_sfx.py
           test -s assets/art/combat-atlas.webp
           test -s assets/art/city-floor.webp
-          for cue in kill hurt salary boss boss_down upgrade shot; do
+          for cue in hit kill hurt salary boss boss_down upgrade shot; do
             test -s "assets/audio/$cue.wav"
           done
-          echo "Combat atlas, city floor and seven sound effects generated" >> "$GITHUB_STEP_SUMMARY"
+          echo "Combat atlas, city floor and eight event sounds generated" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Install official LayaAir CLI 3.4.0
         shell: bash
@@ -188,7 +188,7 @@ jobs:
           curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-atlas.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
-          for cue in kill hurt salary boss boss_down upgrade shot; do
+          for cue in hit kill hurt salary boss boss_down upgrade shot; do
             curl -fsS "http://127.0.0.1:4173/audio/$cue.wav" > /dev/null
           done
           python3 - <<'PY'
