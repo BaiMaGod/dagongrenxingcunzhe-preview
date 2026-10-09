@@ -171,9 +171,11 @@ jobs:
                           if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(n,100);i++)walk(node.getChildAt(i),depth+1);
                         };
                         walk(stage,0);
-                        return {laya:!!l,stage:!!stage,stageChildren:stage?.numChildren??null,texts};
+                        return {laya:!!l,stage:!!stage,stageW:stage?.width??null,stageH:stage?.height??null,stageChildren:stage?.numChildren??null,texts};
                       }""")
                       print(name,"game stage snapshot",stage)
+                      assert stage["stageW"] is not None and abs(stage["stageW"]-size["width"])<=3,(name,"stage width not viewport responsive",stage,size)
+                      assert stage["stageH"] is not None and abs(stage["stageH"]-size["height"])<=3,(name,"stage height not viewport responsive",stage,size)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
                       assert not errors,(name,errors)
                       assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
