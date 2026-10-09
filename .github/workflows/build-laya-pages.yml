@@ -78,6 +78,22 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
+      - name: Rasterize illustrated combat atlas and synthesize event WAV
+        id: game-assets
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --no-cache-dir 'cairosvg==2.7.1' 'Pillow==11.3.0'
+          python3 tools/render_combat_art.py
+          python3 tools/generate_combat_sfx.py
+          test -s assets/art/combat-atlas.webp
+          test -s assets/art/city-floor.webp
+          for cue in kill hurt salary boss boss_down upgrade shot; do
+            test -s "assets/audio/$cue.wav"
+          done
+          echo "Combat atlas, city floor and seven sound effects generated" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Install official LayaAir CLI 3.4.0
         shell: bash
         run: |
@@ -121,6 +137,16 @@ jobs:
           else
             echo "Actor atlas absent; view must retain explicitly marked prototype art" >> "$GITHUB_STEP_SUMMARY"
           fi
+          # Real combat art/sound assets: generated above from private source assets.
+          test -s assets/art/combat-atlas.webp
+          test -s assets/art/city-floor.webp
+          mkdir -p "$RUNNER_TEMP/game-web/art" "$RUNNER_TEMP/game-web/audio"
+          cp assets/art/combat-atlas.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/audio/*.wav "$RUNNER_TEMP/game-web/audio/"
+          test -s "$RUNNER_TEMP/game-web/art/combat-atlas.webp"
+          test -s "$RUNNER_TEMP/game-web/art/city-floor.webp"
+          test -s "$RUNNER_TEMP/game-web/audio/kill.wav"
 
       - name: Manifest and public artifact hygiene checks
         shell: bash
@@ -160,6 +186,9 @@ jobs:
             sleep 0.5
           done
           curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/combat-atlas.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/audio/salary.wav > /dev/null
           python3 - <<'PY'
           import asyncio,os,pathlib
           from playwright.async_api import async_playwright
@@ -205,6 +234,17 @@ jobs:
                       print(name,"real actor asset",actor_atlas)
                       assert actor_atlas["exists"] and actor_atlas["width"]>=352 and actor_atlas["height"]>=176,(name,"worker/monster atlas missing at runtime",actor_atlas,info_logs)
                       assert any("[art] High-quality character atlas loaded" in m for m in info_logs),(name,"atlas art mapping did not successfully preload",info_logs)
+                      combat_asset=await page.evaluate("""() => {
+                        const loader=window.Laya?.loader;
+                        const t=loader?.getRes("art/combat-atlas.webp");
+                        const f=loader?.getRes("art/city-floor.webp");
+                        return {combat:!!t,combatWidth:Number(t?.width)||0,combatHeight:Number(t?.height)||0,
+                          floor:!!f,floorWidth:Number(f?.width)||0,floorHeight:Number(f?.height)||0};
+                      }""")
+                      print(name,"illustrated combat and floor textures",combat_asset)
+                      assert combat_asset["combat"] and combat_asset["combatWidth"]==512 and combat_asset["combatHeight"]==512,(name,"combat atlas missing",combat_asset)
+                      assert combat_asset["floor"] and combat_asset["floorWidth"]==256 and combat_asset["floorHeight"]==256,(name,"floor texture missing",combat_asset)
+                      assert any("[art] Battle combat sprites and city floor loaded" in m for m in info_logs),(name,"combat atlas mapping did not preload",info_logs)
 
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
                       assert stage["stageW"] is not None and stage["stageH"] is not None,(name,"Laya Stage dimensions absent",stage)
