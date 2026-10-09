@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-10-09T08:56:11.310203+00:00",
-  "source_sha": "30e366b5da37ad33793aaa02eabeb8a7a3bf4e52",
-  "workflow_run_id": "37907889179",
+  "generated_at_utc": "2026-10-09T10:21:03.596906+00:00",
+  "source_sha": "9fb30e189ccb6f6fe3c1d112fe1a06c97bf10050",
+  "workflow_run_id": "37916860241",
   "source_tests": "success",
   "laya_build": "success",
   "browser_qa": "success",
@@ -13,7 +13,11 @@
     "desktop-paused.png",
     "mobile-portrait.png",
     "mobile-portrait-playing.png",
-    "mobile-portrait-paused.png"
+    "mobile-portrait-paused.png",
+    "boss-desktop.png",
+    "boss-desktop-charge.png",
+    "boss-mobile-portrait.png",
+    "boss-mobile-portrait-charge.png"
   ],
   "notes": "Chromium desktop/mobile-emulation screenshots and a separate accelerated 180-second logic CPU stress. Neither measures physical Android/iOS FPS."
 }
