@@ -14,7 +14,7 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -68,6 +68,7 @@ jobs:
           python-version: "3.11"
 
       - name: Typecheck, game regression and source/template bridge tests
+        id: source-tests
         working-directory: private-game
         shell: bash
         run: |
@@ -87,6 +88,7 @@ jobs:
           "$RUNNER_TEMP/layaair/layaair" --version=3.4.0 create --list-templates | grep -F "2D empty project"
 
       - name: Create original 2D template, bind game and compile genuine Web build
+        id: laya-build
         working-directory: private-game
         shell: bash
         run: |
@@ -130,6 +132,7 @@ jobs:
           python3 -m playwright install --with-deps chromium
 
       - name: Desktop and mobile portrait smoke and screenshots
+        id: browser-qa
         shell: bash
         run: |
           set -euo pipefail
@@ -264,6 +267,75 @@ jobs:
           path: ${{ runner.temp }}/qa
           if-no-files-found: ignore
           retention-days: 7
+
+      - name: Record public, non-source QA evidence
+        if: always()
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+          SOURCE_TEST_OUTCOME: ${{ steps.source-tests.outcome }}
+          LAYA_BUILD_OUTCOME: ${{ steps.laya-build.outcome }}
+          BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/qa-public"
+          python3 - <<'PY'
+          import json,os,pathlib,shutil
+          from datetime import datetime,timezone
+          qa=pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"
+          out=pathlib.Path(os.environ["RUNNER_TEMP"])/"qa-public"
+          names=["desktop.png","desktop-playing.png","desktop-paused.png",
+                 "mobile-portrait.png","mobile-portrait-playing.png","mobile-portrait-paused.png"]
+          saved=[]
+          for name in names:
+              p=qa/name
+              if p.is_file() and p.stat().st_size>1000 and p.read_bytes()[:8]==b"\x89PNG\r\n\x1a\n":
+                  shutil.copy2(p,out/name)
+                  saved.append(name)
+          result={
+              "generated_at_utc":datetime.now(timezone.utc).isoformat(),
+              "source_sha":os.environ.get("SOURCE_SHA",""),
+              "workflow_run_id":os.environ.get("GITHUB_RUN_ID",""),
+              "source_tests":os.environ["SOURCE_TEST_OUTCOME"],
+              "laya_build":os.environ["LAYA_BUILD_OUTCOME"],
+              "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
+              "screenshots":saved,
+              "notes":"Screenshots come from automated desktop Chromium and mobile-emulated Chromium; not physical device evidence."
+          }
+          (out/"latest.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print("Public QA evidence:",result)
+          PY
+          echo "## QA evidence" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/qa-public/latest.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Checkout public preview evidence branch
+        if: always()
+        uses: actions/checkout@v4
+        with:
+          repository: BaiMaGod/dagongrenxingcunzhe-preview
+          ref: main
+          path: preview-evidence
+          persist-credentials: true
+
+      - name: Publish sanitized QA report and screenshots into preview repository
+        if: always()
+        shell: bash
+        working-directory: preview-evidence
+        run: |
+          set -euo pipefail
+          mkdir -p qa
+          cp "$RUNNER_TEMP/qa-public/latest.json" qa/latest.json
+          for name in desktop.png desktop-playing.png desktop-paused.png \
+            mobile-portrait.png mobile-portrait-playing.png mobile-portrait-paused.png; do
+              if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa
+          if ! git diff --cached --quiet; then
+            git commit -m "qa: record verified Chromium screenshots and current run status [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Configure Pages
         if: ${{ success() && (github.event_name == 'push' || inputs.publish == true) }}
