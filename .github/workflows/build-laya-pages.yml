@@ -542,7 +542,7 @@ jobs:
               "full_month_report":"full-month.json" if (out/"full-month.json").is_file() else None,
               "stress_report":"stress-180s.json" if (out/"stress-180s.json").is_file() else None,
               "screenshots":saved,
-              "notes":"Chromium desktop/mobile-emulation screenshots and a separate accelerated 180-second logic CPU stress. Neither measures physical Android/iOS FPS."
+              "notes":"Desktop/mobile Chromium screenshots include an isolated no-payout accelerated 480-second calendar UI QA. The Node 180-second synthetic stress is CPU logic-only. Neither measures real physical-device FPS or live difficulty."
           }
           (out/"latest.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
           print("Public QA evidence:",result)
