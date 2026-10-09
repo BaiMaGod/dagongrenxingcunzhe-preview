@@ -226,7 +226,8 @@ jobs:
                           assert rect and rect["width"]>0,(name,"canvas bounding box missing")
                           x=rect["x"]+point["x"]*rect["width"]/point["stageW"]
                           y=rect["y"]+point["y"]*rect["height"]/point["stageH"]
-                          print(name,"click",label,{"stage":point,"client":{"x":x,"y":y}})
+                          top=await page.evaluate("([x,y])=>{const e=document.elementFromPoint(x,y);return e?{tag:e.tagName,id:e.id,cls:e.className,rect:[e.getBoundingClientRect().x,e.getBoundingClientRect().y,e.getBoundingClientRect().width,e.getBoundingClientRect().height]}:null}",[x,y])
+                          print(name,"click",label,{"stage":point,"client":{"x":x,"y":y},"topDOM":top})
                           if mobile:await page.touchscreen.tap(x,y)
                           else:await page.mouse.click(x,y)
 
