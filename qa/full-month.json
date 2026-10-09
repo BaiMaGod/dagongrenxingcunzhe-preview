@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "kind": "full-month-calendar-and-settlement-logic",
+  "configFile": "assets/config/mvp-balance.v0.3.json",
+  "gameSeconds": 480,
+  "ticks": 28800,
+  "hz": 60,
+  "wage": {
+    "day": 10,
+    "paid": 3000,
+    "remaining": 2500,
+    "spent": 500
+  },
+  "shops": [
+    {
+      "day": 10,
+      "item": "profession_weapon",
+      "price": 200,
+      "cash": 2800
+    },
+    {
+      "day": 20,
+      "item": "shoes",
+      "price": 300,
+      "cash": 2500
+    }
+  ],
+  "boss": {
+    "day": 27,
+    "spawnTick": 24960,
+    "defeatTick": 25124
+  },
+  "end": {
+    "tick": 28800,
+    "outcome": "win"
+  },
+  "settlement": {
+    "winCredit": 2500,
+    "winBalance": 2500,
+    "retryBalance": 2500,
+    "timeoutCredit": 0
+  },
+  "timestamps": [
+    {
+      "type": "salary",
+      "day": 10,
+      "tick": 8640,
+      "cash": 3000
+    },
+    {
+      "type": "shop",
+      "day": 10,
+      "tick": 8640,
+      "cash": 3000
+    },
+    {
+      "type": "shop",
+      "day": 20,
+      "tick": 18240,
+      "cash": 2800
+    },
+    {
+      "type": "boss",
+      "day": 27,
+      "tick": 24960,
+      "cash": 2500
+    },
+    {
+      "type": "end",
+      "tick": 28800,
+      "cash": 2500
+    }
+  ],
+  "autoUpgrades": 0,
+  "notes": "Accelerated Node.js QA with real shipped calendar/prices/collision/settlement; spawn rate zero and Boss HP reduced to 24 ONLY in test scenario, not representative of live game difficulty or real-time graphics."
+}
