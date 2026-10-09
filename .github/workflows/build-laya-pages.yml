@@ -91,7 +91,8 @@ jobs:
           r=json.loads(p.read_text())
           assert r["kind"]=="logic-only-synthetic-stress",r
           assert r["gameSeconds"]==180 and r["steps"]==10800,r
-          assert r["capsPassed"] and r["observed"]["maxEnemies"]<=450,r
+          assert r["capsPassed"] and r["observed"]["maxEnemies"]==450,r
+          assert r["final"]["kills"]==0 and all(p["enemies"]==450 for p in r["checkpoints"]),r
           assert r["realtimeDeviceFpsMeasured"] is False,r
           print("180 virtual seconds / 10800 ticks checked:",r["cpuPerStepMs"],r["observed"])
           PY
