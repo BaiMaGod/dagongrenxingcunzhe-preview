@@ -1,6 +1,10 @@
 name: LayaAir 3.4 免费构建与 Pages 发布
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/build-laya-pages.yml'
   workflow_dispatch:
     inputs:
       publish:
