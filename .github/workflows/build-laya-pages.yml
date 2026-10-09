@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # Ordinary-month pacing release candidate: stable Boss HUD locator plus telegraph warning; build latest source.
+          # Ordinary-month pacing release candidate: exact Boss HUD automation substring restored; build latest source.
           ref: dev/m9-laya-build
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
