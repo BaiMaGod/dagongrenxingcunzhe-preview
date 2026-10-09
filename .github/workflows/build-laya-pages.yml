@@ -216,9 +216,9 @@ jobs:
                             };
                             walk(stage,0);
                             if(!found)return null;
-                            const sprite=found.parent;
-                            const bounds=sprite.getBounds();
-                            const p=sprite.localToGlobal(new window.Laya.Point(bounds.x+bounds.width/2,bounds.y+bounds.height/2));
+                            const width=Math.max(20,Number(found.width)||Number(found.textWidth)||80);
+                            const height=Math.max(18,Number(found.height)||Number(found.textHeight)||28);
+                            const p=found.localToGlobal(new window.Laya.Point(width/2,height/2));
                             return {x:p.x,y:p.y,stageW:stage.width,stageH:stage.height};
                           }""",label)
                           assert point,(name,"click label missing",label)
