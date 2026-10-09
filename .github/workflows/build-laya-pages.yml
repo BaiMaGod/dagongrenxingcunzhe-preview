@@ -188,7 +188,9 @@ jobs:
           curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-atlas.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
-          curl -fsS http://127.0.0.1:4173/audio/salary.wav > /dev/null
+          for cue in kill hurt salary boss boss_down upgrade shot; do
+            curl -fsS "http://127.0.0.1:4173/audio/$cue.wav" > /dev/null
+          done
           python3 - <<'PY'
           import asyncio,os,pathlib
           from playwright.async_api import async_playwright
