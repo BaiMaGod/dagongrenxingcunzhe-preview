@@ -304,8 +304,13 @@ jobs:
                           await page.wait_for_timeout(200)
                           if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
                       else:raise AssertionError((name,"profession start did not enter battle",await read_laya_texts()))
+                      # Initial monsters have a short spawn telegraph. Capture after activation,
+                      # otherwise the screenshot can misleadingly depict only the telegraph art.
+                      await page.wait_for_timeout(1650)
+                      active_texts=await read_laya_texts()
+                      assert any("480 秒" in t and "HP " in t for t in active_texts),(name,"game exited unexpectedly",active_texts)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-playing.png")),full_page=True)
-                      print(name,"real mode + profession + gameplay HUD verified")
+                      print(name,"live 1.65s combat render captured after spawn telegraph")
 
                       # Verify pause freezes game time and resume removes the menu; record both layouts.
                       def battle_clock(texts):
