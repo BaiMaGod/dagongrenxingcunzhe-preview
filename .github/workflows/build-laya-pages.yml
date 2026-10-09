@@ -178,6 +178,54 @@ jobs:
                       assert not errors,(name,errors)
                       assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
                       print(name,"actual game home verified",canvas)
+                      async def click_laya_label(label):
+                          point=await page.evaluate("""(targetText) => {
+                            const stage=window.Laya.stage;
+                            let found=null;
+                            const walk=(node,depth)=>{
+                              if(found||!node||depth>15)return;
+                              if(typeof node.text==="string"&&node.text===targetText){found=node;return;}
+                              const n=Number(node.numChildren)||0;
+                              if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(n,100);i++)walk(node.getChildAt(i),depth+1);
+                            };
+                            walk(stage,0);
+                            if(!found)return null;
+                            const sprite=found.parent;
+                            const bounds=sprite.getBounds();
+                            const p=sprite.localToGlobal(new window.Laya.Point(bounds.x+bounds.width/2,bounds.y+bounds.height/2));
+                            return {x:p.x,y:p.y,stageW:stage.width,stageH:stage.height};
+                          }""",label)
+                          assert point,(name,"click label missing",label)
+                          rect=await page.locator("canvas").first.bounding_box()
+                          assert rect and rect["width"]>0,(name,"canvas bounding box missing")
+                          x=rect["x"]+point["x"]*rect["width"]/point["stageW"]
+                          y=rect["y"]+point["y"]*rect["height"]/point["stageH"]
+                          print(name,"click",label,{"stage":point,"client":{"x":x,"y":y}})
+                          if mobile:await page.touchscreen.tap(x,y)
+                          else:await page.mouse.click(x,y)
+
+                      async def read_laya_texts():
+                          return await page.evaluate("""() => {
+                            const out=[],walk=(node,depth)=>{
+                              if(!node||depth>15||out.length>150)return;
+                              if(typeof node.text==="string"&&node.text.trim())out.push(node.text.slice(0,200));
+                              if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(node.numChildren||0,100);i++)walk(node.getChildAt(i),depth+1);
+                            };
+                            walk(window.Laya.stage,0);return out;
+                          }""")
+
+                      await click_laya_label("普通月")
+                      for _ in range(20):
+                          await page.wait_for_timeout(200)
+                          if any("本月高发：" in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"select ordinary month did not lock risk draft",await read_laya_texts()))
+                      await click_laya_label("开工")
+                      for _ in range(30):
+                          await page.wait_for_timeout(200)
+                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"profession start did not enter battle",await read_laya_texts()))
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-playing.png")),full_page=True)
+                      print(name,"real mode + profession + gameplay HUD verified")
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
