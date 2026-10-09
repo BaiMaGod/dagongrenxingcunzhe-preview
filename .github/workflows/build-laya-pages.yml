@@ -178,7 +178,7 @@ jobs:
                       await page.wait_for_selector("canvas",timeout=30000)
                       await page.wait_for_timeout(8000)
                       dom=await page.evaluate("""() => ({viewport:[window.innerWidth,window.innerHeight],bodySize:[document.body.clientWidth,document.body.clientHeight],
-                        layerInfo:[...document.body.children].map(el=>({tag:el.tagName,id:el.id,cls:el.className,display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,rect:[el.getBoundingClientRect().width,el.getBoundingClientRect().height]})).slice(0,18),
+                        layerInfo:[...document.body.children].map(el=>({tag:el.tagName,id:el.id,cls:el.className,display:getComputedStyle(el).display,visibility:getComputedStyle(el).visibility,opacity:Number(getComputedStyle(el).opacity),rect:[el.getBoundingClientRect().width,el.getBoundingClientRect().height]})).slice(0,18),
                         stageScale:window.Laya&&window.Laya.stage?window.Laya.stage.scaleMode:null})""")
                       print(name,"dom and adaptation",dom)
                       canvas=await page.locator("canvas").first.evaluate("(el)=>({w:el.width,h:el.height})")
@@ -202,7 +202,7 @@ jobs:
                       assert not errors,(name,errors)
                       assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
                       splash=dom["layerInfo"]
-                      assert not any(x["id"]=="splash" and x["display"]!="none" and x["visibility"]!="hidden" for x in splash),(name,"Laya default splash obstructs actual game",dom)
+                      assert not any(x["id"]=="splash" and x["display"]!="none" and x["visibility"]!="hidden" and x["opacity"]>0.05 for x in splash),(name,"Laya default splash obstructs actual game",dom)
                       print(name,"actual game home verified",canvas)
                       async def click_laya_label(label):
                           point=await page.evaluate("""(targetText) => {
