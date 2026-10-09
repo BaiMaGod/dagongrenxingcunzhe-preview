@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # Ordinary-month pacing / Boss fairness release candidate; build from latest source branch.
+          # Ordinary-month pacing release candidate with regenerated JSON-driven design tables; build latest source.
           ref: dev/m9-laya-build
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
