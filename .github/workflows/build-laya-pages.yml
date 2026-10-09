@@ -226,6 +226,29 @@ jobs:
                       else:raise AssertionError((name,"profession start did not enter battle",await read_laya_texts()))
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-playing.png")),full_page=True)
                       print(name,"real mode + profession + gameplay HUD verified")
+
+                      # Verify pause freezes game time and resume removes the menu; record both layouts.
+                      def battle_clock(texts):
+                          import re
+                          for t in texts:
+                              m=re.search(r"(\d+(?:\.\d+)?)/480 秒",t)
+                              if m:return float(m.group(1))
+                          return None
+                      await click_laya_label("暂停")
+                      for _ in range(15):
+                          await page.wait_for_timeout(150)
+                          if "已暂停" in await read_laya_texts():break
+                      else:raise AssertionError((name,"pause UI missing",await read_laya_texts()))
+                      paused_clock=battle_clock(await read_laya_texts())
+                      await page.wait_for_timeout(600)
+                      assert paused_clock is not None and battle_clock(await read_laya_texts())==paused_clock,(name,"logic clock advanced while manually paused")
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-paused.png")),full_page=True)
+                      await click_laya_label("继续上班")
+                      for _ in range(15):
+                          await page.wait_for_timeout(150)
+                          if "已暂停" not in await read_laya_texts():break
+                      else:raise AssertionError((name,"resume UI still visible"))
+                      print(name,"manual pause / frozen game clock / resume verified")
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
@@ -241,22 +264,22 @@ jobs:
           retention-days: 7
 
       - name: Configure Pages
-        if: ${{ success() && inputs.publish == true }}
+        if: ${{ success() && (github.event_name == 'push' || inputs.publish == true) }}
         uses: actions/configure-pages@v5
 
       - name: Upload only verified compiled Web to Pages
-        if: ${{ success() && inputs.publish == true }}
+        if: ${{ success() && (github.event_name == 'push' || inputs.publish == true) }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/game-web
 
       - name: Deploy GitHub Pages
-        if: ${{ success() && inputs.publish == true }}
+        if: ${{ success() && (github.event_name == 'push' || inputs.publish == true) }}
         uses: actions/deploy-pages@v4
         id: deploy
 
       - name: Verify live Pages serves current source commit
-        if: ${{ success() && inputs.publish == true }}
+        if: ${{ success() && (github.event_name == 'push' || inputs.publish == true) }}
         shell: bash
         env:
           SOURCE_SHA: ${{ steps.source.outputs.sha }}
