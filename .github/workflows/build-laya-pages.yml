@@ -162,9 +162,22 @@ jobs:
                       await page.wait_for_timeout(3500)
                       canvas=await page.locator("canvas").first.evaluate("(el)=>({w:el.width,h:el.height})")
                       assert canvas["w"]>0 and canvas["h"]>0,(name,canvas)
-                      assert not errors,(name,errors)
+                      stage=await page.evaluate("""() => {
+                        const l=window.Laya,stage=l&&l.stage,texts=[];
+                        const walk=(node,depth)=>{
+                          if(!node||depth>15||texts.length>150)return;
+                          if(typeof node.text==="string"&&node.text.trim())texts.push(node.text.slice(0,180));
+                          const n=Number(node.numChildren)||0;
+                          if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(n,100);i++)walk(node.getChildAt(i),depth+1);
+                        };
+                        walk(stage,0);
+                        return {laya:!!l,stage:!!stage,stageChildren:stage?.numChildren??null,texts};
+                      }""")
+                      print(name,"game stage snapshot",stage)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
-                      print(name,"startup canvas smoke passed",canvas)
+                      assert not errors,(name,errors)
+                      assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
+                      print(name,"actual game home verified",canvas)
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
