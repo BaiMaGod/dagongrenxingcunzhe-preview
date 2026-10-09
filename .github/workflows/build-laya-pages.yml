@@ -67,6 +67,7 @@ jobs:
         with:
           python-version: "3.11"
 
+      # Includes the four-corner LayaAir 3.4 drawRoundRect rendering contract guard.
       - name: Typecheck, game regression and source/template bridge tests
         id: source-tests
         working-directory: private-game
