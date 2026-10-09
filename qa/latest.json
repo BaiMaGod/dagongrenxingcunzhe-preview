@@ -1,12 +1,19 @@
 {
-  "generated_at_utc": "2026-10-09T08:50:34.715303+00:00",
-  "source_sha": "daec105868fbb8dd7003d22760a5707e78dca50d",
-  "workflow_run_id": "37907438177",
-  "source_tests": "failure",
-  "laya_build": "skipped",
-  "browser_qa": "skipped",
-  "logic_stress": "skipped",
-  "stress_report": null,
-  "screenshots": [],
-  "notes": "Screenshots come from automated desktop Chromium and mobile-emulated Chromium; not physical device evidence."
+  "generated_at_utc": "2026-10-09T08:53:14.864951+00:00",
+  "source_sha": "5f754fbb2a7c92713f65903edd129998d1387862",
+  "workflow_run_id": "37907560947",
+  "source_tests": "success",
+  "laya_build": "success",
+  "browser_qa": "success",
+  "logic_stress": "success",
+  "stress_report": "stress-180s.json",
+  "screenshots": [
+    "desktop.png",
+    "desktop-playing.png",
+    "desktop-paused.png",
+    "mobile-portrait.png",
+    "mobile-portrait-playing.png",
+    "mobile-portrait-paused.png"
+  ],
+  "notes": "Chromium desktop/mobile-emulation screenshots and a separate accelerated 180-second logic CPU stress. Neither measures physical Android/iOS FPS."
 }
