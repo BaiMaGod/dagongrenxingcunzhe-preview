@@ -99,6 +99,26 @@ jobs:
           echo "### Logic-only synthetic 180-second battle stress" >> "$GITHUB_STEP_SUMMARY"
           cat "$RUNNER_TEMP/stress-180s.json" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Full 480-second month salary/shop/Boss/settlement regression
+        id: month-logic
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          node .test-dist/tests/full_month_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/full-month.json"
+          python3 - <<'PY'
+          import json,os,pathlib
+          r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"full-month.json").read_text())
+          assert r["kind"]=="full-month-calendar-and-settlement-logic" and r["ticks"]==28800,r
+          assert r["end"]["outcome"]=="win" and r["settlement"]["timeoutCredit"]==0,r
+          assert [x["day"] for x in r["shops"]]==[10,20],r
+          assert r["boss"]["spawnTick"]==24960 and 24960<r["boss"]["defeatTick"]<28800,r
+          assert r["settlement"]["winCredit"]==r["wage"]["remaining"],r
+          print("Full 480 second real-config calendar/settlement verified",r["wage"],r["boss"])
+          PY
+          echo "### Full month contract (accelerated, QA-only fixture)" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/full-month.json" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Rasterize illustrated combat atlas and synthesize event WAV
         id: game-assets
         working-directory: private-game
@@ -411,6 +431,52 @@ jobs:
                       assert any("房租催缴 · HP" in t for t in await read_laya_texts()),(name,"Boss died/disappeared in charge QA")
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("boss-"+name+"-charge.png")),full_page=True)
                       print(name,"Boss actual scene + warning/charge screenshots, no-payout practice verified")
+
+                      # The new month route is ALWAYS practice, never reads player
+                      # persistence. It executes actual simulation ticks under a
+                      # deterministic no-random-enemies fixture and verifies actual UI.
+                      res=await page.goto("http://127.0.0.1:4173/?qa_scenario=month",wait_until="domcontentloaded")
+                      assert res and res.status==200
+                      await page.wait_for_timeout(4100)
+                      assert any("本月开工准备" in t for t in await read_laya_texts()),(name,"month QA home not rendered")
+                      await click_laya_label("普通月")
+                      for _ in range(20):
+                          await page.wait_for_timeout(200)
+                          if any("本月高发：" in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"month QA ordinary risk not selected"))
+                      await click_laya_label("开工")
+                      for _ in range(30):
+                          await page.wait_for_timeout(200)
+                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"month QA battle not started"))
+                      async def fastforward(tick):
+                          return await page.evaluate("""tick => {
+                            if(!window.__DG_MONTH_QA__?.advanceTo)throw Error("Practice-only calendar controller missing");
+                            return window.__DG_MONTH_QA__.advanceTo(tick);
+                          }""",tick)
+                      day10=await fastforward(8640)
+                      assert day10["tick"]==8640 and day10["shopDay"]==10,(name,"Day10 salary+shop failed",day10)
+                      assert day10["salaryPaid"] and day10["cash"]==3000,(name,"Day10 wage incorrect",day10)
+                      texts=await read_laya_texts()
+                      assert any("工资商城" in t for t in texts),(name,"real salary shop screen missing",texts)
+                      assert any("练习模式 · 不发奖" in t for t in texts),(name,"month QA was not practice",texts)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("month-"+name+"-shop.png")),full_page=True)
+                      await click_laya_label("离开商城")
+                      day20=await fastforward(18240)
+                      assert day20["tick"]==18240 and day20["shopDay"]==20,(name,"Day20 shop event failed",day20)
+                      await click_laya_label("离开商城")
+                      day27=await fastforward(24960)
+                      assert day27["tick"]==24960 and day27["bossSpawned"],(name,"Day27 boss failed",day27)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("month-"+name+"-boss.png")),full_page=True)
+                      final=await fastforward(28800)
+                      assert final["ended"] and final["outcome"]=="win" and final["tick"]==28800,(name,"Month end win failed",final)
+                      assert final["bossDefeated"] and final["salaryPaid"],(name,"Month milestones not completed",final)
+                      texts=await read_laya_texts()
+                      assert any("月底结算：撑过去了" in t for t in texts),(name,"Month actual win screen missing",texts)
+                      assert any("练习模式 · 不存档、不发放局外收益" in t for t in texts),(name,"Month payout isolation missing",texts)
+                      assert not errors,(name,"browser errors during full-month QA",errors)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("month-"+name+"-end.png")),full_page=True)
+                      print(name,"Day10/Day20 shops, Day27 Boss, end at 28800 and no-payout win UI verified",day10,day20,day27,final)
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
@@ -434,6 +500,7 @@ jobs:
           LAYA_BUILD_OUTCOME: ${{ steps.laya-build.outcome }}
           BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
           STRESS_OUTCOME: ${{ steps.logic-stress.outcome }}
+          MONTH_OUTCOME: ${{ steps.month-logic.outcome }}
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/qa-public"
@@ -444,13 +511,20 @@ jobs:
           out=pathlib.Path(os.environ["RUNNER_TEMP"])/"qa-public"
           names=["desktop.png","desktop-playing.png","desktop-paused.png",
                  "mobile-portrait.png","mobile-portrait-playing.png","mobile-portrait-paused.png",
-                 "boss-desktop.png","boss-desktop-charge.png","boss-mobile-portrait.png","boss-mobile-portrait-charge.png"]
+                 "boss-desktop.png","boss-desktop-charge.png","boss-mobile-portrait.png","boss-mobile-portrait-charge.png",
+                 "month-desktop-shop.png","month-desktop-boss.png","month-desktop-end.png",
+                 "month-mobile-portrait-shop.png","month-mobile-portrait-boss.png","month-mobile-portrait-end.png"]
           saved=[]
           for name in names:
               p=qa/name
               if p.is_file() and p.stat().st_size>1000 and p.read_bytes()[:8]==b"\x89PNG\r\n\x1a\n":
                   shutil.copy2(p,out/name)
                   saved.append(name)
+          month=pathlib.Path(os.environ["RUNNER_TEMP"])/"full-month.json"
+          if month.is_file():
+              payload=json.loads(month.read_text())
+              if payload.get("kind")=="full-month-calendar-and-settlement-logic" and payload.get("ticks")==28800:
+                  shutil.copy2(month,out/"full-month.json")
           stress=pathlib.Path(os.environ["RUNNER_TEMP"])/"stress-180s.json"
           if stress.is_file():
               payload=json.loads(stress.read_text())
@@ -464,6 +538,8 @@ jobs:
               "laya_build":os.environ["LAYA_BUILD_OUTCOME"],
               "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
+              "full_month_qa":os.environ.get("MONTH_OUTCOME","skipped"),
+              "full_month_report":"full-month.json" if (out/"full-month.json").is_file() else None,
               "stress_report":"stress-180s.json" if (out/"stress-180s.json").is_file() else None,
               "screenshots":saved,
               "notes":"Chromium desktop/mobile-emulation screenshots and a separate accelerated 180-second logic CPU stress. Neither measures physical Android/iOS FPS."
@@ -492,9 +568,12 @@ jobs:
           mkdir -p qa
           cp "$RUNNER_TEMP/qa-public/latest.json" qa/latest.json
           if [ -s "$RUNNER_TEMP/qa-public/stress-180s.json" ]; then cp "$RUNNER_TEMP/qa-public/stress-180s.json" qa/stress-180s.json; fi
+          if [ -s "$RUNNER_TEMP/qa-public/full-month.json" ]; then cp "$RUNNER_TEMP/qa-public/full-month.json" qa/full-month.json; fi
           for name in desktop.png desktop-playing.png desktop-paused.png \
             mobile-portrait.png mobile-portrait-playing.png mobile-portrait-paused.png \
-            boss-desktop.png boss-desktop-charge.png boss-mobile-portrait.png boss-mobile-portrait-charge.png; do
+            boss-desktop.png boss-desktop-charge.png boss-mobile-portrait.png boss-mobile-portrait-charge.png \
+            month-desktop-shop.png month-desktop-boss.png month-desktop-end.png \
+            month-mobile-portrait-shop.png month-mobile-portrait-boss.png month-mobile-portrait-end.png; do
               if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
           done
           git config user.name "github-actions[bot]"
