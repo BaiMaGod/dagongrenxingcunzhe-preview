@@ -1,10 +1,17 @@
 {
-  "generated_at_utc": "2026-10-09T07:56:04.150114+00:00",
-  "source_sha": "122222b89cac476fa7fdd1b440c3fa603cdc727c",
-  "workflow_run_id": "37901854028",
-  "source_tests": "failure",
-  "laya_build": "skipped",
-  "browser_qa": "skipped",
-  "screenshots": [],
+  "generated_at_utc": "2026-10-09T07:58:53.553965+00:00",
+  "source_sha": "2bccbd8d7f41fa19440cdd47d64869bc470e56a4",
+  "workflow_run_id": "37901999375",
+  "source_tests": "success",
+  "laya_build": "success",
+  "browser_qa": "success",
+  "screenshots": [
+    "desktop.png",
+    "desktop-playing.png",
+    "desktop-paused.png",
+    "mobile-portrait.png",
+    "mobile-portrait-playing.png",
+    "mobile-portrait-paused.png"
+  ],
   "notes": "Screenshots come from automated desktop Chromium and mobile-emulated Chromium; not physical device evidence."
 }
