@@ -107,13 +107,16 @@ jobs:
           set -euo pipefail
           python3 -m pip install --no-cache-dir 'cairosvg==2.7.1' 'Pillow==11.3.0'
           python3 tools/render_combat_art.py
+          python3 tools/generate_anim_atlas.py
           python3 tools/generate_combat_sfx.py
           test -s assets/art/combat-atlas.webp
+          test -s assets/art/actors-motion.webp
+          test -s assets/art/combat-motion.webp
           test -s assets/art/city-floor.webp
           for cue in hit kill hurt salary boss boss_down upgrade shot; do
             test -s "assets/audio/$cue.wav"
           done
-          echo "Combat atlas, city floor and eight event sounds generated" >> "$GITHUB_STEP_SUMMARY"
+          echo "Combat atlas, 96 cropped pre-rendered pose frames, city floor and eight event sounds generated" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Install official LayaAir CLI 3.4.0
         shell: bash
@@ -163,9 +166,13 @@ jobs:
           test -s assets/art/city-floor.webp
           mkdir -p "$RUNNER_TEMP/game-web/art" "$RUNNER_TEMP/game-web/audio"
           cp assets/art/combat-atlas.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/actors-motion.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/combat-motion.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/audio/*.wav "$RUNNER_TEMP/game-web/audio/"
           test -s "$RUNNER_TEMP/game-web/art/combat-atlas.webp"
+          test -s "$RUNNER_TEMP/game-web/art/actors-motion.webp"
+          test -s "$RUNNER_TEMP/game-web/art/combat-motion.webp"
           test -s "$RUNNER_TEMP/game-web/art/city-floor.webp"
           test -s "$RUNNER_TEMP/game-web/audio/kill.wav"
 
@@ -208,6 +215,8 @@ jobs:
           done
           curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-atlas.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/actors-motion.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/combat-motion.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
           for cue in hit kill hurt salary boss boss_down upgrade shot; do
             curl -fsS "http://127.0.0.1:4173/audio/$cue.wav" > /dev/null
@@ -261,13 +270,19 @@ jobs:
                         const loader=window.Laya?.loader;
                         const t=loader?.getRes("art/combat-atlas.webp");
                         const f=loader?.getRes("art/city-floor.webp");
+                        const am=loader?.getRes("art/actors-motion.webp");
+                        const cm=loader?.getRes("art/combat-motion.webp");
                         return {combat:!!t,combatWidth:Number(t?.width)||0,combatHeight:Number(t?.height)||0,
-                          floor:!!f,floorWidth:Number(f?.width)||0,floorHeight:Number(f?.height)||0};
+                          floor:!!f,floorWidth:Number(f?.width)||0,floorHeight:Number(f?.height)||0,
+                          actorsMotion:!!am,actorsMotionSize:[Number(am?.width)||0,Number(am?.height)||0],
+                          combatMotion:!!cm,combatMotionSize:[Number(cm?.width)||0,Number(cm?.height)||0]};
                       }""")
                       print(name,"illustrated combat and floor textures",combat_asset)
                       assert combat_asset["combat"] and combat_asset["combatWidth"]==512 and combat_asset["combatHeight"]==512,(name,"combat atlas missing",combat_asset)
                       assert combat_asset["floor"] and combat_asset["floorWidth"]==256 and combat_asset["floorHeight"]==256,(name,"floor texture missing",combat_asset)
-                      assert any("[art] Battle combat sprites and city floor loaded" in m for m in info_logs),(name,"combat atlas mapping did not preload",info_logs)
+                      assert combat_asset["actorsMotion"] and combat_asset["actorsMotionSize"]==[352,704],(name,"32 actor motion frames missing",combat_asset)
+                      assert combat_asset["combatMotion"] and combat_asset["combatMotionSize"]==[512,2048],(name,"64 combat motion frames missing",combat_asset)
+                      assert any("[art] Battle combat sprites, four-frame animation atlases" in m for m in info_logs),(name,"four-frame animation atlas did not preload",info_logs)
 
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+".png")),full_page=True)
                       assert stage["stageW"] is not None and stage["stageH"] is not None,(name,"Laya Stage dimensions absent",stage)
@@ -355,6 +370,47 @@ jobs:
                           if "已暂停" not in await read_laya_texts():break
                       else:raise AssertionError((name,"resume UI still visible"))
                       print(name,"manual pause / frozen game clock / resume verified")
+
+                      # In a SEPARATE practice-only browser scenario, render the actual
+                      # Boss and a later charge. This never starts a formal or paying run.
+                      response=await page.goto("http://127.0.0.1:4173/?qa_scenario=boss",wait_until="domcontentloaded")
+                      assert response and response.status==200
+                      await page.wait_for_selector("canvas",timeout=30000)
+                      await page.wait_for_timeout(3600)
+                      qa_initial=await read_laya_texts()
+                      assert any("本月开工准备" in t for t in qa_initial),(name,"Boss QA initial screen missing",qa_initial)
+                      assert any("[QA] Boss preview: isolated practice mode" in m for m in info_logs),(name,"Boss mode not isolated",info_logs)
+                      await click_laya_label("普通月")
+                      for _ in range(20):
+                          await page.wait_for_timeout(200)
+                          if any("本月高发：" in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"Boss scenario setup did not select risk"))
+                      await click_laya_label("开工")
+                      for _ in range(30):
+                          await page.wait_for_timeout(200)
+                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"Boss practice did not start",await read_laya_texts()))
+                      await page.wait_for_timeout(1700)
+                      practice_texts=await read_laya_texts()
+                      assert any("练习模式 · 不发奖" in t for t in practice_texts),(name,"QA must never grant formal payouts",practice_texts)
+                      assert any("房租催缴 · HP" in t for t in practice_texts),(name,"Boss HUD text missing",practice_texts)
+                      banner_visible=await page.evaluate("""() => {
+                        let found=null;
+                        const visit=n=>{
+                          if(!n||found)return;
+                          if(typeof n.text==="string"&&n.text.includes("房租催缴 · HP")){found=n;return;}
+                          for(let i=0;i<Math.min(n.numChildren||0,100);i++)visit(n.getChildAt(i));
+                        };
+                        visit(window.Laya.stage);
+                        return !!found && found.parent?.visible === true && found.parent?.parent?.visible !== false;
+                      }""")
+                      assert banner_visible,(name,"Boss HP panel not visible")
+                      assert not errors,(name,"errors in Boss practice",errors)
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("boss-"+name+".png")),full_page=True)
+                      await page.wait_for_timeout(1050)
+                      assert any("房租催缴 · HP" in t for t in await read_laya_texts()),(name,"Boss died/disappeared in charge QA")
+                      await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("boss-"+name+"-charge.png")),full_page=True)
+                      print(name,"Boss actual scene + warning/charge screenshots, no-payout practice verified")
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
@@ -387,7 +443,8 @@ jobs:
           qa=pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"
           out=pathlib.Path(os.environ["RUNNER_TEMP"])/"qa-public"
           names=["desktop.png","desktop-playing.png","desktop-paused.png",
-                 "mobile-portrait.png","mobile-portrait-playing.png","mobile-portrait-paused.png"]
+                 "mobile-portrait.png","mobile-portrait-playing.png","mobile-portrait-paused.png",
+                 "boss-desktop.png","boss-desktop-charge.png","boss-mobile-portrait.png","boss-mobile-portrait-charge.png"]
           saved=[]
           for name in names:
               p=qa/name
@@ -436,7 +493,8 @@ jobs:
           cp "$RUNNER_TEMP/qa-public/latest.json" qa/latest.json
           if [ -s "$RUNNER_TEMP/qa-public/stress-180s.json" ]; then cp "$RUNNER_TEMP/qa-public/stress-180s.json" qa/stress-180s.json; fi
           for name in desktop.png desktop-playing.png desktop-paused.png \
-            mobile-portrait.png mobile-portrait-playing.png mobile-portrait-paused.png; do
+            mobile-portrait.png mobile-portrait-playing.png mobile-portrait-paused.png \
+            boss-desktop.png boss-desktop-charge.png boss-mobile-portrait.png boss-mobile-portrait-charge.png; do
               if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
           done
           git config user.name "github-actions[bot]"
