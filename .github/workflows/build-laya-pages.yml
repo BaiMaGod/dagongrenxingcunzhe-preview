@@ -99,6 +99,8 @@ jobs:
           find "$RUNNER_TEMP/official-laya-project" -maxdepth 4 -type f | sort | head -130
           echo "=== PLAYER SETTINGS ==="
           cat "$RUNNER_TEMP/official-laya-project/settings/PlayerSettings.json"
+          echo "=== PROJECT INIT SETTINGS ==="
+          cat "$RUNNER_TEMP/official-laya-project/Dagongren.laya"
           echo "=== COMPILER/STARTUP CANDIDATES ==="
           find "$RUNNER_TEMP/official-laya-project" -type f \( -name '*Compiler*' -o -name '*Main*' -o -name '*.laya' \) | sort
           python3 tools/prepare_laya_project.py --repo "$PWD" --project "$RUNNER_TEMP/official-laya-project"
@@ -189,6 +191,8 @@ jobs:
                           print(name,"STAGE DIMENSIONS NEED REVIEW: ",stage["stageW"],stage["stageH"],"vs",size)
                       assert not errors,(name,errors)
                       assert any("本月开工准备" in t for t in stage["texts"]),(name,"Game home UI missing",stage)
+                      splash=dom["layerInfo"]
+                      assert not any(x["id"]=="splash" and x["display"]!="none" and x["visibility"]!="hidden" for x in splash),(name,"Laya default splash obstructs actual game",dom)
                       print(name,"actual game home verified",canvas)
                       async def click_laya_label(label):
                           point=await page.evaluate("""(targetText) => {
