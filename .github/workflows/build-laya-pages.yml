@@ -100,7 +100,7 @@ jobs:
           print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
           PY
           echo "### Actual full-strength ordinary-month AI playtests (not human win rates)" >> "$GITHUB_STEP_SUMMARY"
-          python3 -c 'import json,os,pathlib; r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text());print("| Role | Plays | Wins | Boss reached | First level (s) | Final Lv | Survived (s) |\n|---|---:|---:|---:|---:|---:|---:|");[print("| {role} | {plays} | {wins} | {bossReached} | {meanFirstUpgradeSeconds} | {meanLevelAtEnd} | {meanSurvivalSeconds} |".format(**x)) for x in r["statistics"]])' >> "$GITHUB_STEP_SUMMARY"
+          python3 -c 'import json,os,pathlib; r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text());print("| Role | Plays | Wins | Boss reached | First level (s) | Final Lv | Survived (s) |\n|---|---:|---:|---:|---:|---:|---:|");[print("| {role} | {plays} | {wins} | {bossReached} | {meanFirstUpgradeSeconds} | {meanLevelAtEnd} | {meanSurvivalSeconds} |".format(**x)) for x in r["statistics"]]' >> "$GITHUB_STEP_SUMMARY"
 
       - name: 180 virtual seconds capped-swarm CPU logic stress
         id: logic-stress
