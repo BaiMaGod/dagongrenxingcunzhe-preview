@@ -13,16 +13,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 454.47,
+      "seconds": 423.37,
       "outcome": "dead",
-      "deathSecond": 454.46666666666664,
+      "deathSecond": 423.3666666666667,
       "firstLevelSecond": 12.766666666666667,
       "lastLevel": 16,
-      "kills": 1258,
+      "kills": 1052,
       "hp": 0,
       "maxHp": 155,
       "bossDefeated": false,
-      "bossHpLeft": 1888,
+      "bossHpLeft": 3028,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
@@ -40,7 +40,7 @@
         "power_bank",
         "focused_reading",
         "page_turning",
-        "base_damage",
+        "page_turning",
         "page_turning",
         "base_hp"
       ],
@@ -106,54 +106,49 @@
           "sec": 320,
           "hp": 125,
           "maxHp": 145,
-          "level": 13,
-          "kills": 749,
-          "enemies": 120,
-          "collectedXp": 115,
+          "level": 14,
+          "kills": 702,
+          "enemies": 162,
+          "collectedXp": 36,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 104,
+          "hp": 73,
           "maxHp": 155,
           "level": 16,
-          "kills": 1063,
-          "enemies": 240,
-          "collectedXp": 56,
+          "kills": 1034,
+          "enemies": 241,
+          "collectedXp": 63,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 18,
-          "maxHp": 155,
-          "level": 16,
-          "kills": 1225,
-          "enemies": 218,
-          "collectedXp": 99,
-          "bossHp": 2326
         }
       ],
-      "maxEnemies": 244,
-      "maxProjectiles": 159,
-      "damageSpikes": [],
+      "maxEnemies": 247,
+      "maxProjectiles": 142,
+      "damageSpikes": [
+        {
+          "sec": 423,
+          "lost": 52
+        }
+      ],
       "bossCombat": {
-        "activeSeconds": 36.47,
-        "rangePct": 93.5,
+        "activeSeconds": 5.37,
+        "rangePct": 81.7,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 37,
-        "damage": 1312,
+        "hits": 5,
+        "damage": 172,
         "hitsBySource": {
-          "profession": 25,
-          "power_bank": 12
+          "power_bank": 1,
+          "profession": 4
         },
         "damageBySource": {
-          "profession": 1000,
-          "power_bank": 312
+          "power_bank": 24,
+          "profession": 148
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -161,20 +156,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 473.65,
+      "seconds": 434.93,
       "outcome": "dead",
-      "deathSecond": 473.65,
+      "deathSecond": 434.93333333333334,
       "firstLevelSecond": 12.333333333333334,
-      "lastLevel": 19,
-      "kills": 1452,
+      "lastLevel": 18,
+      "kills": 1212,
       "hp": 0,
       "maxHp": 140,
       "bossDefeated": false,
-      "bossHpLeft": 970,
+      "bossHpLeft": 1412,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -192,8 +187,7 @@
         "page_turning",
         "badge",
         "kneepad",
-        "backpack",
-        "base_defense"
+        "backpack"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -247,65 +241,55 @@
           "hp": 107,
           "maxHp": 115,
           "level": 13,
-          "kills": 532,
-          "enemies": 17,
-          "collectedXp": 49,
+          "kills": 512,
+          "enemies": 28,
+          "collectedXp": 62,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 87,
+          "hp": 85,
           "maxHp": 125,
-          "level": 16,
-          "kills": 788,
-          "enemies": 54,
-          "collectedXp": 6,
+          "level": 15,
+          "kills": 783,
+          "enemies": 45,
+          "collectedXp": 181,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 65,
-          "maxHp": 140,
-          "level": 18,
-          "kills": 1207,
-          "enemies": 102,
-          "collectedXp": 123,
+          "hp": 59,
+          "maxHp": 125,
+          "level": 17,
+          "kills": 1156,
+          "enemies": 145,
+          "collectedXp": 225,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 21,
-          "maxHp": 140,
-          "level": 18,
-          "kills": 1285,
-          "enemies": 143,
-          "collectedXp": 233,
-          "bossHp": 3126
         }
       ],
-      "maxEnemies": 145,
-      "maxProjectiles": 89,
+      "maxEnemies": 167,
+      "maxProjectiles": 84,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 55.65,
-        "rangePct": 46.5,
+        "activeSeconds": 16.93,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 70,
-        "damage": 2230,
+        "hits": 57,
+        "damage": 1788,
         "hitsBySource": {
-          "profession": 41,
-          "power_bank": 12,
-          "badge": 17
+          "power_bank": 9,
+          "badge": 17,
+          "profession": 31
         },
         "damageBySource": {
-          "profession": 1517,
-          "power_bank": 288,
-          "badge": 425
+          "power_bank": 216,
+          "badge": 425,
+          "profession": 1147
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -313,16 +297,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 433.37,
+      "outcome": "dead",
+      "deathSecond": 433.3666666666667,
       "firstLevelSecond": 10.533333333333333,
       "lastLevel": 18,
-      "kills": 1445,
-      "hp": 72,
+      "kills": 1194,
+      "hp": 0,
       "maxHp": 125,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 1312,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
@@ -422,51 +406,31 @@
           "enemies": 111,
           "collectedXp": 3,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 72,
-          "maxHp": 125,
-          "level": 18,
-          "kills": 1275,
-          "enemies": 108,
-          "collectedXp": 29,
-          "bossHp": 1348
-        },
-        {
-          "sec": 480,
-          "hp": 72,
-          "maxHp": 125,
-          "level": 18,
-          "kills": 1445,
-          "enemies": 77,
-          "collectedXp": 140,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 124,
+      "maxEnemies": 121,
       "maxProjectiles": 71,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 59.1,
-        "rangePct": 64.1,
+        "activeSeconds": 15.37,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 95,
-        "damage": 3200,
+        "hits": 56,
+        "damage": 1888,
         "hitsBySource": {
-          "profession": 63,
-          "power_bank": 15,
-          "badge": 17
+          "profession": 32,
+          "power_bank": 8,
+          "badge": 16
         },
         "damageBySource": {
-          "profession": 2296,
-          "power_bank": 360,
-          "badge": 544
+          "profession": 1184,
+          "power_bank": 192,
+          "badge": 512
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -474,16 +438,16 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 425.65,
+      "outcome": "dead",
+      "deathSecond": 425.65,
       "firstLevelSecond": 9.916666666666666,
       "lastLevel": 18,
-      "kills": 1514,
-      "hp": 50,
+      "kills": 1291,
+      "hp": 0,
       "maxHp": 140,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 2174,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
@@ -559,75 +523,55 @@
           "hp": 107,
           "maxHp": 115,
           "level": 12,
-          "kills": 538,
+          "kills": 531,
           "enemies": 25,
-          "collectedXp": 9,
+          "collectedXp": 109,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 108,
+          "hp": 97,
           "maxHp": 125,
           "level": 14,
-          "kills": 820,
-          "enemies": 55,
-          "collectedXp": 158,
+          "kills": 772,
+          "enemies": 85,
+          "collectedXp": 155,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 110,
-          "maxHp": 140,
-          "level": 16,
-          "kills": 1099,
-          "enemies": 199,
-          "collectedXp": 108,
-          "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 74,
-          "maxHp": 140,
-          "level": 16,
-          "kills": 1281,
-          "enemies": 151,
-          "collectedXp": 140,
-          "bossHp": 564
-        },
-        {
-          "sec": 480,
-          "hp": 50,
+          "hp": 38,
           "maxHp": 140,
           "level": 18,
-          "kills": 1514,
-          "enemies": 131,
-          "collectedXp": 59,
-          "bossHp": null
+          "kills": 1254,
+          "enemies": 86,
+          "collectedXp": 12,
+          "bossHp": 3200
         }
       ],
-      "maxEnemies": 204,
-      "maxProjectiles": 118,
+      "maxEnemies": 135,
+      "maxProjectiles": 71,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 39.62,
-        "rangePct": 89.9,
+        "activeSeconds": 7.65,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 90,
-        "damage": 3200,
+        "hits": 30,
+        "damage": 1026,
         "hitsBySource": {
-          "profession": 63,
-          "power_bank": 13,
-          "badge": 14
+          "power_bank": 5,
+          "profession": 17,
+          "badge": 8
         },
         "damageBySource": {
-          "profession": 2484,
-          "power_bank": 338,
-          "badge": 378
+          "power_bank": 130,
+          "profession": 680,
+          "badge": 216
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -635,16 +579,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 447.15,
+      "seconds": 434.32,
       "outcome": "dead",
-      "deathSecond": 447.15,
+      "deathSecond": 434.31666666666666,
       "firstLevelSecond": 11.65,
       "lastLevel": 17,
-      "kills": 1209,
+      "kills": 1174,
       "hp": 0,
       "maxHp": 140,
       "bossDefeated": false,
-      "bossHpLeft": 496,
+      "bossHpLeft": 1229,
       "salary": 3000,
       "spent": 1950,
       "remaining": 1050,
@@ -745,34 +689,29 @@
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 181,
+      "maxEnemies": 174,
       "maxProjectiles": 91,
-      "damageSpikes": [
-        {
-          "sec": 426,
-          "lost": 40
-        }
-      ],
+      "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 29.15,
-        "rangePct": 91.2,
+        "activeSeconds": 16.32,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 84,
-        "damage": 2704,
+        "hits": 63,
+        "damage": 1971,
         "hitsBySource": {
-          "power_bank": 12,
-          "profession": 56,
-          "badge": 16
+          "power_bank": 10,
+          "profession": 35,
+          "badge": 18
         },
         "damageBySource": {
-          "power_bank": 312,
-          "profession": 1960,
-          "badge": 432
+          "power_bank": 260,
+          "profession": 1225,
+          "badge": 486
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -780,20 +719,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 425.98,
+      "outcome": "dead",
+      "deathSecond": 425.98333333333335,
       "firstLevelSecond": 12.483333333333333,
-      "lastLevel": 19,
-      "kills": 1468,
-      "hp": 28,
+      "lastLevel": 18,
+      "kills": 1234,
+      "hp": 0,
       "maxHp": 140,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 2325,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "focused_reading",
@@ -811,7 +750,6 @@
         "backpack",
         "shoes",
         "kneepad",
-        "base_defense",
         "backpack"
       ],
       "purchases": [
@@ -884,58 +822,38 @@
         },
         {
           "sec": 416,
-          "hp": 70,
-          "maxHp": 125,
-          "level": 17,
-          "kills": 1159,
-          "enemies": 101,
-          "collectedXp": 178,
-          "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 36,
-          "maxHp": 125,
-          "level": 18,
-          "kills": 1307,
-          "enemies": 100,
-          "collectedXp": 106,
-          "bossHp": 606
-        },
-        {
-          "sec": 480,
-          "hp": 28,
+          "hp": 89,
           "maxHp": 140,
-          "level": 19,
-          "kills": 1468,
-          "enemies": 104,
-          "collectedXp": 159,
-          "bossHp": null
+          "level": 18,
+          "kills": 1192,
+          "enemies": 64,
+          "collectedXp": 143,
+          "bossHp": 3200
         }
       ],
-      "maxEnemies": 114,
-      "maxProjectiles": 85,
+      "maxEnemies": 78,
+      "maxProjectiles": 61,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 37.2,
-        "rangePct": 94.5,
+        "activeSeconds": 7.98,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 94,
-        "damage": 3200,
+        "hits": 26,
+        "damage": 875,
         "hitsBySource": {
-          "power_bank": 14,
-          "profession": 61,
-          "badge": 19
+          "power_bank": 4,
+          "profession": 15,
+          "badge": 7
         },
         "damageBySource": {
-          "power_bank": 336,
-          "profession": 2256,
-          "badge": 608
+          "power_bank": 96,
+          "profession": 555,
+          "badge": 224
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -943,20 +861,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 442.93,
+      "seconds": 421.93,
       "outcome": "dead",
-      "deathSecond": 442.93333333333334,
+      "deathSecond": 421.93333333333334,
       "firstLevelSecond": 11.833333333333334,
-      "lastLevel": 18,
-      "kills": 1216,
+      "lastLevel": 17,
+      "kills": 1163,
       "hp": 0,
-      "maxHp": 135,
+      "maxHp": 125,
       "bossDefeated": false,
-      "bossHpLeft": 154,
+      "bossHpLeft": 2657,
       "salary": 3000,
-      "spent": 2450,
-      "remaining": 550,
-      "upgrades": 17,
+      "spent": 2500,
+      "remaining": 500,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -973,15 +891,14 @@
         "badge",
         "kneepad",
         "badge",
-        "base_hp",
-        "base_defense"
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-500",
         "10:profession_weapon:-700",
         "10:kneepad:-400",
         "10:backpack:-350",
-        "20:backpack:-500"
+        "20:kneepad:-550"
       ],
       "checkpoints": [
         {
@@ -1026,58 +943,58 @@
         },
         {
           "sec": 240,
-          "hp": 78,
+          "hp": 70,
           "maxHp": 115,
           "level": 12,
-          "kills": 504,
-          "enemies": 29,
-          "collectedXp": 110,
+          "kills": 505,
+          "enemies": 26,
+          "collectedXp": 88,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 73,
-          "maxHp": 125,
+          "hp": 43,
+          "maxHp": 115,
           "level": 15,
-          "kills": 790,
-          "enemies": 54,
-          "collectedXp": 130,
+          "kills": 795,
+          "enemies": 47,
+          "collectedXp": 76,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 55,
-          "maxHp": 135,
+          "hp": 13,
+          "maxHp": 125,
           "level": 17,
-          "kills": 1167,
-          "enemies": 112,
-          "collectedXp": 180,
+          "kills": 1129,
+          "enemies": 142,
+          "collectedXp": 67,
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 165,
-      "maxProjectiles": 88,
+      "maxEnemies": 153,
+      "maxProjectiles": 71,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 24.93,
-        "rangePct": 98,
+        "activeSeconds": 3.93,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 94,
-        "damage": 3046,
+        "hits": 17,
+        "damage": 543,
         "hitsBySource": {
-          "profession": 59,
-          "power_bank": 12,
-          "badge": 23
+          "badge": 5,
+          "profession": 10,
+          "power_bank": 2
         },
         "damageBySource": {
-          "profession": 2183,
-          "power_bank": 288,
-          "badge": 575
+          "badge": 125,
+          "profession": 370,
+          "power_bank": 48
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1085,16 +1002,16 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 442.18,
+      "outcome": "dead",
+      "deathSecond": 442.18333333333334,
       "firstLevelSecond": 13.15,
       "lastLevel": 17,
-      "kills": 1405,
-      "hp": 85,
+      "kills": 1223,
+      "hp": 0,
       "maxHp": 135,
-      "bossDefeated": false,
-      "bossHpLeft": 270,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -1195,51 +1112,36 @@
           "enemies": 122,
           "collectedXp": 13,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 90,
-          "maxHp": 135,
-          "level": 17,
-          "kills": 1250,
-          "enemies": 118,
-          "collectedXp": 49,
-          "bossHp": 3157
-        },
-        {
-          "sec": 480,
-          "hp": 85,
-          "maxHp": 135,
-          "level": 17,
-          "kills": 1405,
-          "enemies": 96,
-          "collectedXp": 135,
-          "bossHp": 270
         }
       ],
       "maxEnemies": 166,
-      "maxProjectiles": 95,
-      "damageSpikes": [],
+      "maxProjectiles": 99,
+      "damageSpikes": [
+        {
+          "sec": 435,
+          "lost": 40
+        }
+      ],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 51,
+        "activeSeconds": 23.85,
+        "rangePct": 99.1,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 74,
-        "damage": 2930,
+        "hits": 82,
+        "damage": 3200,
         "hitsBySource": {
-          "profession": 50,
+          "profession": 48,
           "power_bank": 12,
-          "badge": 12
+          "badge": 22
         },
         "damageBySource": {
-          "profession": 2150,
+          "profession": 2064,
           "power_bank": 336,
-          "badge": 444
+          "badge": 800
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1247,20 +1149,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 360.82,
+      "seconds": 438.7,
       "outcome": "dead",
-      "deathSecond": 360.81666666666666,
+      "deathSecond": 438.7,
       "firstLevelSecond": 11.5,
-      "lastLevel": 16,
-      "kills": 921,
+      "lastLevel": 18,
+      "kills": 1229,
       "hp": 0,
-      "maxHp": 125,
+      "maxHp": 145,
       "bossDefeated": false,
-      "bossHpLeft": null,
+      "bossHpLeft": 609,
       "salary": 3000,
       "spent": 2300,
       "remaining": 700,
-      "upgrades": 15,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "badge",
@@ -1276,7 +1178,9 @@
         "focused_reading",
         "focused_reading",
         "power_bank",
-        "backpack"
+        "backpack",
+        "base_hp",
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-700",
@@ -1327,40 +1231,58 @@
         },
         {
           "sec": 240,
-          "hp": 72,
+          "hp": 76,
           "maxHp": 115,
           "level": 13,
-          "kills": 514,
-          "enemies": 31,
-          "collectedXp": 85.96,
+          "kills": 518,
+          "enemies": 33,
+          "collectedXp": 84.88,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 64,
+          "hp": 58,
           "maxHp": 115,
           "level": 15,
-          "kills": 773,
-          "enemies": 62,
-          "collectedXp": 85.08,
+          "kills": 791,
+          "enemies": 50,
+          "collectedXp": 115.32,
           "bossHp": null
+        },
+        {
+          "sec": 416,
+          "hp": 78,
+          "maxHp": 145,
+          "level": 18,
+          "kills": 1147,
+          "enemies": 154,
+          "collectedXp": 164.08,
+          "bossHp": 3200
         }
       ],
-      "maxEnemies": 93,
-      "maxProjectiles": 48,
+      "maxEnemies": 169,
+      "maxProjectiles": 78,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 0,
-        "rangePct": 0,
+        "activeSeconds": 20.7,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 0,
-        "damage": 0,
-        "hitsBySource": {},
-        "damageBySource": {}
+        "hits": 77,
+        "damage": 2591,
+        "hitsBySource": {
+          "profession": 43,
+          "badge": 23,
+          "power_bank": 11
+        },
+        "damageBySource": {
+          "profession": 1591,
+          "badge": 736,
+          "power_bank": 264
+        }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1368,20 +1290,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 416.83,
+      "seconds": 419.52,
       "outcome": "dead",
-      "deathSecond": 416.8333333333333,
+      "deathSecond": 419.51666666666665,
       "firstLevelSecond": 9.55,
-      "lastLevel": 15,
-      "kills": 973,
+      "lastLevel": 16,
+      "kills": 996,
       "hp": 0,
-      "maxHp": 125,
+      "maxHp": 135,
       "bossDefeated": false,
-      "bossHpLeft": 3200,
+      "bossHpLeft": 3089,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
-      "upgrades": 14,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -1396,7 +1318,8 @@
         "page_turning",
         "power_bank",
         "power_bank",
-        "umbrella"
+        "umbrella",
+        "backpack"
       ],
       "purchases": [
         "10:profession_weapon:-350",
@@ -1468,30 +1391,34 @@
         },
         {
           "sec": 416,
-          "hp": 3,
-          "maxHp": 125,
-          "level": 15,
-          "kills": 971,
-          "enemies": 287,
-          "collectedXp": 184.76,
+          "hp": 29,
+          "maxHp": 135,
+          "level": 16,
+          "kills": 990,
+          "enemies": 302,
+          "collectedXp": 73.28,
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 290,
+      "maxEnemies": 304,
       "maxProjectiles": 164,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 0,
-        "rangePct": 0,
+        "activeSeconds": 1.52,
+        "rangePct": 73.6,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 0,
-        "damage": 0,
-        "hitsBySource": {},
-        "damageBySource": {}
+        "hits": 3,
+        "damage": 111,
+        "hitsBySource": {
+          "profession": 3
+        },
+        "damageBySource": {
+          "profession": 111
+        }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1499,20 +1426,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 280,
+      "outcome": "dead",
+      "deathSecond": 280,
       "firstLevelSecond": 15.183333333333334,
-      "lastLevel": 17,
-      "kills": 971,
-      "hp": 38,
-      "maxHp": 221,
+      "lastLevel": 10,
+      "kills": 328,
+      "hp": 0,
+      "maxHp": 150,
       "bossDefeated": false,
-      "bossHpLeft": 2360,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2200,
       "remaining": 800,
-      "upgrades": 16,
+      "upgrades": 9,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -1522,14 +1449,7 @@
         "steady_cups",
         "power_bank",
         "power_bank",
-        "base_defense",
-        "base_hp",
-        "base_hp",
-        "base_defense",
-        "backpack",
-        "paced_steps",
-        "base_hp",
-        "backpack"
+        "base_defense"
       ],
       "purchases": [
         "10:profession_weapon:-1000",
@@ -1587,67 +1507,23 @@
           "enemies": 231,
           "collectedXp": 22,
           "bossHp": null
-        },
-        {
-          "sec": 320,
-          "hp": 31,
-          "maxHp": 163,
-          "level": 11,
-          "kills": 377,
-          "enemies": 316,
-          "collectedXp": 46,
-          "bossHp": null
-        },
-        {
-          "sec": 416,
-          "hp": 29,
-          "maxHp": 189,
-          "level": 15,
-          "kills": 778,
-          "enemies": 265,
-          "collectedXp": 28,
-          "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 34,
-          "maxHp": 202,
-          "level": 16,
-          "kills": 877,
-          "enemies": 287,
-          "collectedXp": 100,
-          "bossHp": 2792
-        },
-        {
-          "sec": 480,
-          "hp": 38,
-          "maxHp": 221,
-          "level": 17,
-          "kills": 971,
-          "enemies": 303,
-          "collectedXp": 1,
-          "bossHp": 2360
         }
       ],
-      "maxEnemies": 358,
+      "maxEnemies": 300,
       "maxProjectiles": 160,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
+        "activeSeconds": 0,
         "rangePct": 0,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 35,
-        "damage": 840,
-        "hitsBySource": {
-          "power_bank": 35
-        },
-        "damageBySource": {
-          "power_bank": 840
-        }
+        "hits": 0,
+        "damage": 0,
+        "hitsBySource": {},
+        "damageBySource": {}
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1655,20 +1531,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 425.18,
+      "outcome": "dead",
+      "deathSecond": 425.18333333333334,
       "firstLevelSecond": 15.533333333333333,
-      "lastLevel": 18,
-      "kills": 1320,
-      "hp": 58,
-      "maxHp": 182,
+      "lastLevel": 16,
+      "kills": 1068,
+      "hp": 0,
+      "maxHp": 163,
       "bossDefeated": false,
-      "bossHpLeft": 2242,
+      "bossHpLeft": 306,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 17,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -1684,9 +1560,7 @@
         "paced_steps",
         "badge",
         "kneepad",
-        "badge",
-        "backpack",
-        "shoes"
+        "badge"
       ],
       "purchases": [
         "10:power_bank:-750",
@@ -1758,56 +1632,38 @@
         },
         {
           "sec": 416,
-          "hp": 89,
-          "maxHp": 182,
-          "level": 17,
-          "kills": 1033,
-          "enemies": 163,
-          "collectedXp": 91,
+          "hp": 85,
+          "maxHp": 163,
+          "level": 16,
+          "kills": 1039,
+          "enemies": 144,
+          "collectedXp": 101,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 68,
-          "maxHp": 182,
-          "level": 17,
-          "kills": 1220,
-          "enemies": 97,
-          "collectedXp": 122,
-          "bossHp": 2956
-        },
-        {
-          "sec": 480,
-          "hp": 58,
-          "maxHp": 182,
-          "level": 18,
-          "kills": 1320,
-          "enemies": 135,
-          "collectedXp": 162,
-          "bossHp": 2242
         }
       ],
       "maxEnemies": 316,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
-        "orbitContactPct": 0,
+        "activeSeconds": 7.18,
+        "rangePct": 69.6,
+        "orbitContactPct": 69.6,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 39,
-        "damage": 958,
+        "hits": 101,
+        "damage": 2894,
         "hitsBySource": {
-          "power_bank": 17,
-          "badge": 22
+          "power_bank": 3,
+          "orbit_cup": 93,
+          "badge": 5
         },
         "damageBySource": {
-          "power_bank": 408,
-          "badge": 550
+          "power_bank": 72,
+          "orbit_cup": 2697,
+          "badge": 125
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1819,16 +1675,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 17,
-      "lastLevel": 17,
-      "kills": 1379,
-      "hp": 13,
-      "maxHp": 182,
+      "lastLevel": 19,
+      "kills": 1438,
+      "hp": 22,
+      "maxHp": 195,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
-      "upgrades": 16,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -1842,10 +1698,12 @@
         "power_bank",
         "badge",
         "paced_steps",
+        "badge",
+        "paced_steps",
         "backpack",
-        "steady_cups",
+        "ergonomic_chair",
         "kneepad",
-        "badge"
+        "base_hp"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -1886,88 +1744,88 @@
         },
         {
           "sec": 144,
-          "hp": 94,
+          "hp": 98,
           "maxHp": 130,
-          "level": 9,
-          "kills": 246,
-          "enemies": 16,
-          "collectedXp": 45,
+          "level": 8,
+          "kills": 201,
+          "enemies": 49,
+          "collectedXp": 1,
           "bossHp": null
         },
         {
           "sec": 240,
-          "hp": 89,
+          "hp": 112,
           "maxHp": 150,
-          "level": 11,
-          "kills": 473,
-          "enemies": 71,
-          "collectedXp": 62,
+          "level": 12,
+          "kills": 513,
+          "enemies": 38,
+          "collectedXp": 94,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 117,
-          "maxHp": 182,
-          "level": 14,
-          "kills": 672,
-          "enemies": 163,
-          "collectedXp": 103,
+          "hp": 113,
+          "maxHp": 163,
+          "level": 15,
+          "kills": 779,
+          "enemies": 53,
+          "collectedXp": 122,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 68,
+          "hp": 113,
           "maxHp": 182,
-          "level": 16,
-          "kills": 958,
-          "enemies": 266,
-          "collectedXp": 41,
+          "level": 18,
+          "kills": 1184,
+          "enemies": 78,
+          "collectedXp": 174,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 25,
-          "maxHp": 182,
-          "level": 16,
-          "kills": 1149,
-          "enemies": 258,
-          "collectedXp": 72,
-          "bossHp": 760
+          "hp": 22,
+          "maxHp": 195,
+          "level": 19,
+          "kills": 1318,
+          "enemies": 100,
+          "collectedXp": 193,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 13,
-          "maxHp": 182,
-          "level": 17,
-          "kills": 1379,
-          "enemies": 173,
-          "collectedXp": 164,
+          "hp": 22,
+          "maxHp": 195,
+          "level": 19,
+          "kills": 1438,
+          "enemies": 149,
+          "collectedXp": 268,
           "bossHp": null
         }
       ],
-      "maxEnemies": 313,
-      "maxProjectiles": 162,
+      "maxEnemies": 157,
+      "maxProjectiles": 100,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 48.85,
-        "rangePct": 6,
-        "orbitContactPct": 6,
+        "activeSeconds": 11.15,
+        "rangePct": 67.3,
+        "orbitContactPct": 67.4,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 121,
+        "hits": 126,
         "damage": 3200,
         "hitsBySource": {
-          "power_bank": 23,
-          "orbit_cup": 59,
-          "badge": 39
+          "power_bank": 5,
+          "badge": 10,
+          "orbit_cup": 111
         },
         "damageBySource": {
-          "power_bank": 545,
-          "orbit_cup": 1652,
-          "badge": 1003
+          "power_bank": 120,
+          "badge": 320,
+          "orbit_cup": 2760
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1976,19 +1834,19 @@
       "riskTag": "service",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 15.716666666666667,
-      "lastLevel": 16,
-      "kills": 902,
-      "hp": 105,
+      "lastLevel": 18,
+      "kills": 1206,
+      "hp": 62,
       "maxHp": 208,
-      "bossDefeated": false,
-      "bossHpLeft": 2394,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 15,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -2004,7 +1862,9 @@
         "fitness",
         "paced_steps",
         "shoes",
-        "backpack"
+        "backpack",
+        "paced_steps",
+        "badge"
       ],
       "purchases": [
         "10:power_bank:-600",
@@ -2086,44 +1946,46 @@
         },
         {
           "sec": 448,
-          "hp": 94,
-          "maxHp": 189,
-          "level": 15,
-          "kills": 838,
-          "enemies": 350,
-          "collectedXp": 184.4,
-          "bossHp": 2836
+          "hp": 83,
+          "maxHp": 208,
+          "level": 17,
+          "kills": 1000,
+          "enemies": 255,
+          "collectedXp": 95.96,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 105,
+          "hp": 62,
           "maxHp": 208,
-          "level": 16,
-          "kills": 902,
-          "enemies": 348,
-          "collectedXp": 88.04,
-          "bossHp": 2394
+          "level": 18,
+          "kills": 1206,
+          "enemies": 228,
+          "collectedXp": 101.4,
+          "bossHp": null
         }
       ],
       "maxEnemies": 372,
-      "maxProjectiles": 160,
+      "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
-        "orbitContactPct": 0,
+        "activeSeconds": 7.17,
+        "rangePct": 75.6,
+        "orbitContactPct": 75.3,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 31,
-        "damage": 806,
+        "hits": 111,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 31
+          "power_bank": 3,
+          "orbit_cup": 108
         },
         "damageBySource": {
-          "power_bank": 806
+          "power_bank": 78,
+          "orbit_cup": 3122
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2131,20 +1993,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 461.97,
+      "seconds": 444.1,
       "outcome": "dead",
-      "deathSecond": 461.96666666666664,
+      "deathSecond": 444.1,
       "firstLevelSecond": 16.2,
-      "lastLevel": 17,
-      "kills": 1246,
+      "lastLevel": 19,
+      "kills": 1219,
       "hp": 0,
-      "maxHp": 176,
+      "maxHp": 189,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
-      "upgrades": 16,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -2157,11 +2019,13 @@
         "power_bank",
         "base_hp",
         "power_bank",
-        "base_defense",
+        "kneepad",
         "badge",
         "badge",
         "base_defense",
-        "steady_cups"
+        "steady_cups",
+        "steady_cups",
+        "base_hp"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -2202,78 +2066,68 @@
         },
         {
           "sec": 144,
-          "hp": 84,
+          "hp": 91,
           "maxHp": 130,
           "level": 7,
-          "kills": 174,
-          "enemies": 74,
-          "collectedXp": 47,
+          "kills": 173,
+          "enemies": 77,
+          "collectedXp": 43,
           "bossHp": null
         },
         {
           "sec": 240,
-          "hp": 62,
+          "hp": 68,
           "maxHp": 150,
           "level": 10,
-          "kills": 354,
-          "enemies": 180,
-          "collectedXp": 80,
+          "kills": 334,
+          "enemies": 173,
+          "collectedXp": 87,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 44,
+          "hp": 62,
           "maxHp": 176,
-          "level": 12,
+          "level": 13,
           "kills": 509,
-          "enemies": 300,
-          "collectedXp": 81,
+          "enemies": 301,
+          "collectedXp": 2,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 25,
+          "hp": 37,
           "maxHp": 176,
           "level": 17,
-          "kills": 1024,
-          "enemies": 198,
-          "collectedXp": 73,
+          "kills": 1127,
+          "enemies": 75,
+          "collectedXp": 226,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 13,
-          "maxHp": 176,
-          "level": 17,
-          "kills": 1121,
-          "enemies": 229,
-          "collectedXp": 98,
-          "bossHp": 290
         }
       ],
-      "maxEnemies": 312,
+      "maxEnemies": 313,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 43.73,
-        "rangePct": 12.3,
-        "orbitContactPct": 12.4,
+        "activeSeconds": 6.93,
+        "rangePct": 73.1,
+        "orbitContactPct": 73.1,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 114,
+        "hits": 108,
         "damage": 3200,
         "hitsBySource": {
-          "power_bank": 18,
-          "orbit_cup": 71,
-          "badge": 25
+          "badge": 9,
+          "power_bank": 3,
+          "orbit_cup": 96
         },
         "damageBySource": {
-          "power_bank": 466,
-          "orbit_cup": 2059,
-          "badge": 675
+          "badge": 243,
+          "power_bank": 78,
+          "orbit_cup": 2879
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2281,20 +2135,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 364.53,
+      "seconds": 424,
       "outcome": "dead",
-      "deathSecond": 364.53333333333336,
+      "deathSecond": 424,
       "firstLevelSecond": 15.533333333333333,
-      "lastLevel": 16,
-      "kills": 882,
+      "lastLevel": 17,
+      "kills": 1034,
       "hp": 0,
       "maxHp": 163,
       "bossDefeated": false,
-      "bossHpLeft": null,
+      "bossHpLeft": 622,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
-      "upgrades": 15,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "steady_cups",
@@ -2310,7 +2164,8 @@
         "steady_cups",
         "power_bank",
         "backpack",
-        "shoes"
+        "shoes",
+        "kneepad"
       ],
       "purchases": [
         "10:profession_weapon:-700",
@@ -2361,40 +2216,58 @@
         },
         {
           "sec": 240,
-          "hp": 47,
+          "hp": 66,
           "maxHp": 150,
           "level": 12,
-          "kills": 506,
-          "enemies": 48,
-          "collectedXp": 38,
+          "kills": 500,
+          "enemies": 52,
+          "collectedXp": 95,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 18,
+          "hp": 64,
           "maxHp": 163,
           "level": 15,
-          "kills": 761,
-          "enemies": 97,
-          "collectedXp": 78,
+          "kills": 791,
+          "enemies": 67,
+          "collectedXp": 149,
           "bossHp": null
+        },
+        {
+          "sec": 416,
+          "hp": 21,
+          "maxHp": 163,
+          "level": 17,
+          "kills": 1018,
+          "enemies": 247,
+          "collectedXp": 175,
+          "bossHp": 3200
         }
       ],
-      "maxEnemies": 171,
-      "maxProjectiles": 100,
+      "maxEnemies": 259,
+      "maxProjectiles": 156,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 0,
-        "rangePct": 0,
-        "orbitContactPct": 0,
+        "activeSeconds": 6,
+        "rangePct": 73.6,
+        "orbitContactPct": 73.6,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 0,
-        "damage": 0,
-        "hitsBySource": {},
-        "damageBySource": {}
+        "hits": 89,
+        "damage": 2578,
+        "hitsBySource": {
+          "orbit_cup": 82,
+          "power_bank": 3,
+          "badge": 4
+        },
+        "damageBySource": {
+          "orbit_cup": 2378,
+          "power_bank": 72,
+          "badge": 128
+        }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2402,20 +2275,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 474.7,
+      "outcome": "dead",
+      "deathSecond": 474.7,
       "firstLevelSecond": 14.983333333333333,
-      "lastLevel": 15,
-      "kills": 1306,
-      "hp": 39,
+      "lastLevel": 19,
+      "kills": 1352,
+      "hp": 0,
       "maxHp": 175,
-      "bossDefeated": false,
-      "bossHpLeft": 1658,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
-      "upgrades": 14,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -2430,6 +2303,10 @@
         "paced_steps",
         "paced_steps",
         "badge",
+        "kneepad",
+        "base_defense",
+        "steady_cups",
+        "base_defense",
         "kneepad"
       ],
       "purchases": [
@@ -2511,48 +2388,38 @@
         },
         {
           "sec": 448,
-          "hp": 63,
+          "hp": 8,
           "maxHp": 175,
-          "level": 15,
-          "kills": 1215,
-          "enemies": 74,
-          "collectedXp": 42,
-          "bossHp": 2842
-        },
-        {
-          "sec": 480,
-          "hp": 39,
-          "maxHp": 175,
-          "level": 15,
-          "kills": 1306,
-          "enemies": 115,
-          "collectedXp": 110,
-          "bossHp": 1658
+          "level": 16,
+          "kills": 1236,
+          "enemies": 86,
+          "collectedXp": 144,
+          "bossHp": null
         }
       ],
       "maxEnemies": 340,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 2.3,
-        "orbitContactPct": 2.4,
+        "activeSeconds": 9.78,
+        "rangePct": 63.4,
+        "orbitContactPct": 63.5,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 69,
-        "damage": 1542,
+        "hits": 118,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 20,
-          "badge": 31,
-          "orbit_cup": 18
+          "badge": 7,
+          "orbit_cup": 107,
+          "power_bank": 4
         },
         "damageBySource": {
-          "power_bank": 480,
-          "badge": 558,
-          "orbit_cup": 504
+          "badge": 126,
+          "orbit_cup": 2978,
+          "power_bank": 96
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2560,20 +2427,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 425.28,
+      "seconds": 421.27,
       "outcome": "dead",
-      "deathSecond": 425.28333333333336,
+      "deathSecond": 421.26666666666665,
       "firstLevelSecond": 14.783333333333333,
-      "lastLevel": 16,
-      "kills": 1070,
+      "lastLevel": 17,
+      "kills": 1036,
       "hp": 0,
-      "maxHp": 156,
+      "maxHp": 169,
       "bossDefeated": false,
-      "bossHpLeft": 2833,
+      "bossHpLeft": 2968,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 15,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "base_move",
@@ -2589,7 +2456,8 @@
         "base_defense",
         "kneepad",
         "steady_cups",
-        "kneepad"
+        "kneepad",
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-450",
@@ -2660,36 +2528,34 @@
         },
         {
           "sec": 416,
-          "hp": 11,
-          "maxHp": 156,
-          "level": 16,
-          "kills": 960,
-          "enemies": 303,
-          "collectedXp": 75,
+          "hp": 17,
+          "maxHp": 169,
+          "level": 17,
+          "kills": 993,
+          "enemies": 281,
+          "collectedXp": 41,
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 305,
+      "maxEnemies": 302,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 7.28,
-        "rangePct": 0.9,
-        "orbitContactPct": 1.8,
+        "activeSeconds": 3.27,
+        "rangePct": 15.8,
+        "orbitContactPct": 15.8,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 11,
-        "damage": 367,
+        "hits": 8,
+        "damage": 232,
         "hitsBySource": {
-          "badge": 8,
-          "orbit_cup": 3
+          "orbit_cup": 8
         },
         "damageBySource": {
-          "badge": 280,
-          "orbit_cup": 87
+          "orbit_cup": 232
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2697,20 +2563,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 463.6,
+      "outcome": "dead",
+      "deathSecond": 463.6,
       "firstLevelSecond": 14.8,
-      "lastLevel": 18,
-      "kills": 1491,
-      "hp": 116,
-      "maxHp": 221,
-      "bossDefeated": false,
-      "bossHpLeft": 744,
+      "lastLevel": 19,
+      "kills": 1340,
+      "hp": 0,
+      "maxHp": 195,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
-      "spent": 2500,
-      "remaining": 500,
-      "upgrades": 17,
+      "spent": 2300,
+      "remaining": 700,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "badge",
@@ -2724,17 +2590,18 @@
         "badge",
         "badge",
         "steady_cups",
-        "fitness",
-        "backpack",
         "paced_steps",
+        "power_bank",
         "backpack",
-        "base_hp"
+        "backpack",
+        "base_hp",
+        "paced_steps"
       ],
       "purchases": [
         "10:profession_weapon:-1000",
         "10:kneepad:-400",
         "10:backpack:-350",
-        "20:power_bank:-750"
+        "20:kneepad:-550"
       ],
       "checkpoints": [
         {
@@ -2779,78 +2646,68 @@
         },
         {
           "sec": 240,
-          "hp": 125,
+          "hp": 133,
           "maxHp": 150,
-          "level": 11,
-          "kills": 485,
-          "enemies": 71,
-          "collectedXp": 46.16,
+          "level": 12,
+          "kills": 497,
+          "enemies": 55,
+          "collectedXp": 50.8,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 121,
-          "maxHp": 150,
-          "level": 13,
-          "kills": 674,
-          "enemies": 168,
-          "collectedXp": 112.96,
+          "hp": 94,
+          "maxHp": 163,
+          "level": 16,
+          "kills": 815,
+          "enemies": 45,
+          "collectedXp": 0.6,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 167,
-          "maxHp": 208,
-          "level": 17,
-          "kills": 1125,
-          "enemies": 148,
-          "collectedXp": 117.6,
+          "hp": 82,
+          "maxHp": 195,
+          "level": 18,
+          "kills": 1216,
+          "enemies": 76,
+          "collectedXp": 249.4,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 135,
-          "maxHp": 208,
-          "level": 17,
-          "kills": 1267,
+          "hp": 15,
+          "maxHp": 195,
+          "level": 19,
+          "kills": 1284,
           "enemies": 150,
-          "collectedXp": 191.04,
-          "bossHp": 1696
-        },
-        {
-          "sec": 480,
-          "hp": 116,
-          "maxHp": 221,
-          "level": 18,
-          "kills": 1491,
-          "enemies": 68,
-          "collectedXp": 74.44,
-          "bossHp": 744
+          "collectedXp": 228.68,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 221,
-      "maxProjectiles": 139,
+      "maxEnemies": 189,
+      "maxProjectiles": 106,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 2.4,
-        "orbitContactPct": 2.5,
+        "activeSeconds": 7.28,
+        "rangePct": 84.7,
+        "orbitContactPct": 84.7,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 85,
-        "damage": 2456,
+        "hits": 111,
+        "damage": 3200,
         "hitsBySource": {
-          "badge": 37,
-          "orbit_cup": 24,
-          "power_bank": 24
+          "orbit_cup": 99,
+          "badge": 8,
+          "power_bank": 4
         },
         "damageBySource": {
-          "badge": 1184,
-          "orbit_cup": 696,
-          "power_bank": 576
+          "orbit_cup": 2848,
+          "badge": 256,
+          "power_bank": 96
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2859,19 +2716,19 @@
       "riskTag": "service",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 16.583333333333332,
-      "lastLevel": 15,
-      "kills": 738,
-      "hp": 49,
-      "maxHp": 202,
-      "bossDefeated": false,
-      "bossHpLeft": 534,
+      "lastLevel": 16,
+      "kills": 785,
+      "hp": 52,
+      "maxHp": 215,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2500,
       "remaining": 500,
-      "upgrades": 14,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -2886,7 +2743,8 @@
         "backpack",
         "base_hp",
         "power_bank",
-        "power_bank"
+        "power_bank",
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-450",
@@ -2967,46 +2825,46 @@
         },
         {
           "sec": 448,
-          "hp": 49,
+          "hp": 39,
           "maxHp": 202,
           "level": 15,
-          "kills": 691,
-          "enemies": 345,
-          "collectedXp": 100.44,
-          "bossHp": 966
+          "kills": 722,
+          "enemies": 348,
+          "collectedXp": 152.28,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 49,
-          "maxHp": 202,
-          "level": 15,
-          "kills": 738,
-          "enemies": 356,
-          "collectedXp": 166.32,
-          "bossHp": 534
+          "hp": 52,
+          "maxHp": 215,
+          "level": 16,
+          "kills": 785,
+          "enemies": 377,
+          "collectedXp": 84,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 356,
+      "maxEnemies": 382,
       "maxProjectiles": 160,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 7.6,
-        "orbitContactPct": 7.6,
+        "activeSeconds": 6.45,
+        "rangePct": 93,
+        "orbitContactPct": 93,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 108,
-        "damage": 2666,
+        "hits": 129,
+        "damage": 3200,
         "hitsBySource": {
-          "orbit_cup": 74,
-          "power_bank": 34
+          "orbit_cup": 126,
+          "power_bank": 3
         },
         "damageBySource": {
-          "orbit_cup": 1850,
-          "power_bank": 816
+          "orbit_cup": 3128,
+          "power_bank": 72
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3014,20 +2872,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 439.3,
+      "outcome": "dead",
+      "deathSecond": 439.3,
       "firstLevelSecond": 13.15,
-      "lastLevel": 19,
-      "kills": 1421,
-      "hp": 43,
-      "maxHp": 279,
+      "lastLevel": 16,
+      "kills": 1017,
+      "hp": 0,
+      "maxHp": 297,
       "bossDefeated": false,
-      "bossHpLeft": 210,
+      "bossHpLeft": 797,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 18,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -3040,13 +2898,10 @@
         "baton_training",
         "base_hp",
         "base_hp",
-        "badge",
-        "badge",
-        "badge",
         "hold_position",
-        "kneepad",
         "backpack",
-        "hold_position"
+        "hold_position",
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-800",
@@ -3098,78 +2953,56 @@
         },
         {
           "sec": 240,
-          "hp": 163,
+          "hp": 137,
           "maxHp": 207,
-          "level": 9,
-          "kills": 259,
-          "enemies": 230,
-          "collectedXp": 30,
+          "level": 8,
+          "kills": 255,
+          "enemies": 227,
+          "collectedXp": 31,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 109,
-          "maxHp": 243,
-          "level": 13,
-          "kills": 714,
-          "enemies": 131,
-          "collectedXp": 38,
+          "hp": 116,
+          "maxHp": 207,
+          "level": 10,
+          "kills": 437,
+          "enemies": 285,
+          "collectedXp": 65,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 103,
-          "maxHp": 270,
-          "level": 18,
-          "kills": 1093,
-          "enemies": 159,
-          "collectedXp": 71,
-          "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 49,
-          "maxHp": 270,
-          "level": 18,
-          "kills": 1242,
-          "enemies": 150,
-          "collectedXp": 143,
-          "bossHp": 1546
-        },
-        {
-          "sec": 480,
-          "hp": 43,
+          "hp": 121,
           "maxHp": 279,
-          "level": 19,
-          "kills": 1421,
-          "enemies": 92,
-          "collectedXp": 137,
-          "bossHp": 210
+          "level": 15,
+          "kills": 876,
+          "enemies": 272,
+          "collectedXp": 138,
+          "bossHp": 3200
         }
       ],
-      "maxEnemies": 283,
-      "maxProjectiles": 162,
+      "maxEnemies": 341,
+      "maxProjectiles": 160,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 7.7,
+        "activeSeconds": 21.3,
+        "rangePct": 86,
         "orbitContactPct": 0,
-        "batonSwingCount": 60,
-        "batonHitPct": 10,
-        "hits": 90,
-        "damage": 2990,
+        "batonSwingCount": 27,
+        "batonHitPct": 85.2,
+        "hits": 34,
+        "damage": 2403,
         "hitsBySource": {
-          "badge": 52,
-          "power_bank": 32,
-          "baton": 6
+          "power_bank": 11,
+          "baton": 23
         },
         "damageBySource": {
-          "badge": 1664,
-          "power_bank": 768,
-          "baton": 558
+          "power_bank": 264,
+          "baton": 2139
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3178,19 +3011,19 @@
       "riskTag": "service",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 12.533333333333333,
-      "lastLevel": 19,
-      "kills": 1524,
-      "hp": 126,
-      "maxHp": 270,
-      "bossDefeated": false,
-      "bossHpLeft": 854,
+      "lastLevel": 20,
+      "kills": 1448,
+      "hp": 64,
+      "maxHp": 297,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 18,
+      "upgrades": 19,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -3209,7 +3042,8 @@
         "hold_position",
         "kneepad",
         "base_hp",
-        "shoes"
+        "shoes",
+        "backpack"
       ],
       "purchases": [
         "10:power_bank:-750",
@@ -3291,48 +3125,48 @@
         },
         {
           "sec": 448,
-          "hp": 143,
+          "hp": 37,
           "maxHp": 270,
-          "level": 18,
-          "kills": 1346,
-          "enemies": 116,
-          "collectedXp": 225,
-          "bossHp": 2086
+          "level": 19,
+          "kills": 1362,
+          "enemies": 106,
+          "collectedXp": 78,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 126,
-          "maxHp": 270,
-          "level": 19,
-          "kills": 1524,
-          "enemies": 68,
-          "collectedXp": 209,
-          "bossHp": 854
+          "hp": 64,
+          "maxHp": 297,
+          "level": 20,
+          "kills": 1448,
+          "enemies": 191,
+          "collectedXp": 117,
+          "bossHp": null
         }
       ],
       "maxEnemies": 232,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 1.8,
+        "activeSeconds": 23.55,
+        "rangePct": 87.5,
         "orbitContactPct": 0,
-        "batonSwingCount": 59,
-        "batonHitPct": 3.4,
-        "hits": 76,
-        "damage": 2346,
+        "batonSwingCount": 26,
+        "batonHitPct": 96.2,
+        "hits": 56,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 26,
-          "badge": 48,
-          "baton": 2
+          "power_bank": 11,
+          "baton": 25,
+          "badge": 20
         },
         "damageBySource": {
-          "power_bank": 624,
-          "badge": 1536,
-          "baton": 186
+          "power_bank": 264,
+          "baton": 2296,
+          "badge": 640
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3340,20 +3174,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 431.05,
+      "outcome": "dead",
+      "deathSecond": 431.05,
       "firstLevelSecond": 12.366666666666667,
-      "lastLevel": 19,
-      "kills": 1453,
-      "hp": 28,
+      "lastLevel": 18,
+      "kills": 1302,
+      "hp": 0,
       "maxHp": 252,
       "bossDefeated": false,
-      "bossHpLeft": 840,
+      "bossHpLeft": 1681,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -3371,8 +3205,7 @@
         "hold_position",
         "base_defense",
         "kneepad",
-        "hold_position",
-        "shoes"
+        "hold_position"
       ],
       "purchases": [
         "10:profession_weapon:-800",
@@ -3451,49 +3284,31 @@
           "enemies": 60,
           "collectedXp": 181,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 70,
-          "maxHp": 252,
-          "level": 18,
-          "kills": 1345,
-          "enemies": 62,
-          "collectedXp": 48,
-          "bossHp": 2216
-        },
-        {
-          "sec": 480,
-          "hp": 28,
-          "maxHp": 252,
-          "level": 19,
-          "kills": 1453,
-          "enemies": 68,
-          "collectedXp": 102,
-          "bossHp": 840
         }
       ],
       "maxEnemies": 117,
-      "maxProjectiles": 67,
+      "maxProjectiles": 62,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
+        "activeSeconds": 13.05,
+        "rangePct": 81.1,
         "orbitContactPct": 0,
-        "batonSwingCount": 59,
-        "batonHitPct": 0,
-        "hits": 81,
-        "damage": 2360,
+        "batonSwingCount": 15,
+        "batonHitPct": 73.3,
+        "hits": 28,
+        "damage": 1519,
         "hitsBySource": {
-          "power_bank": 29,
-          "badge": 52
+          "power_bank": 6,
+          "badge": 11,
+          "baton": 11
         },
         "damageBySource": {
-          "power_bank": 696,
-          "badge": 1664
+          "power_bank": 144,
+          "badge": 352,
+          "baton": 1023
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3502,19 +3317,19 @@
       "riskTag": "service",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 10.3,
-      "lastLevel": 17,
-      "kills": 1448,
-      "hp": 122,
-      "maxHp": 243,
-      "bossDefeated": false,
-      "bossHpLeft": 1325,
+      "lastLevel": 19,
+      "kills": 1475,
+      "hp": 66,
+      "maxHp": 270,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2150,
       "remaining": 850,
-      "upgrades": 16,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -3531,7 +3346,9 @@
         "badge",
         "backpack",
         "badge",
-        "hold_position"
+        "hold_position",
+        "backpack",
+        "base_defense"
       ],
       "purchases": [
         "10:profession_weapon:-800",
@@ -3602,56 +3419,58 @@
         },
         {
           "sec": 416,
-          "hp": 140,
+          "hp": 143,
           "maxHp": 234,
           "level": 16,
-          "kills": 977,
-          "enemies": 256,
-          "collectedXp": 92,
+          "kills": 962,
+          "enemies": 277,
+          "collectedXp": 69,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 113,
+          "hp": 74,
           "maxHp": 234,
           "level": 16,
-          "kills": 1317,
-          "enemies": 73,
-          "collectedXp": 153,
-          "bossHp": 2511
+          "kills": 1313,
+          "enemies": 105,
+          "collectedXp": 127,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 122,
-          "maxHp": 243,
-          "level": 17,
-          "kills": 1448,
-          "enemies": 66,
-          "collectedXp": 96,
-          "bossHp": 1325
+          "hp": 66,
+          "maxHp": 270,
+          "level": 19,
+          "kills": 1475,
+          "enemies": 107,
+          "collectedXp": 123,
+          "bossHp": null
         }
       ],
       "maxEnemies": 312,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
+        "activeSeconds": 20.1,
+        "rangePct": 89,
         "orbitContactPct": 0,
-        "batonSwingCount": 60,
-        "batonHitPct": 0,
-        "hits": 60,
-        "damage": 1875,
+        "batonSwingCount": 25,
+        "batonHitPct": 92,
+        "hits": 53,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 25,
-          "badge": 35
+          "power_bank": 11,
+          "baton": 23,
+          "badge": 19
         },
         "damageBySource": {
-          "power_bank": 650,
-          "badge": 1225
+          "power_bank": 286,
+          "baton": 2249,
+          "badge": 665
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3660,19 +3479,19 @@
       "riskTag": "sedentary",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 13.05,
-      "lastLevel": 19,
-      "kills": 1451,
-      "hp": 115,
-      "maxHp": 297,
-      "bossDefeated": false,
-      "bossHpLeft": 1308,
+      "lastLevel": 16,
+      "kills": 1199,
+      "hp": 25,
+      "maxHp": 252,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
-      "upgrades": 18,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -3683,15 +3502,12 @@
         "baton_training",
         "power_bank",
         "power_bank",
-        "base_hp",
+        "baton_training",
         "backpack",
         "kneepad",
         "badge",
         "badge",
-        "base_defense",
-        "baton_training",
-        "hold_position",
-        "base_hp"
+        "base_defense"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -3743,76 +3559,78 @@
         },
         {
           "sec": 240,
-          "hp": 132,
+          "hp": 137,
           "maxHp": 207,
           "level": 9,
-          "kills": 286,
-          "enemies": 214,
-          "collectedXp": 68,
+          "kills": 290,
+          "enemies": 234,
+          "collectedXp": 71,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 168,
-          "maxHp": 270,
-          "level": 12,
-          "kills": 502,
-          "enemies": 269,
-          "collectedXp": 40,
+          "hp": 144,
+          "maxHp": 225,
+          "level": 11,
+          "kills": 426,
+          "enemies": 317,
+          "collectedXp": 44,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 110,
-          "maxHp": 279,
-          "level": 18,
-          "kills": 1210,
-          "enemies": 89,
-          "collectedXp": 219,
+          "hp": 129,
+          "maxHp": 252,
+          "level": 14,
+          "kills": 839,
+          "enemies": 186,
+          "collectedXp": 31,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 115,
-          "maxHp": 297,
-          "level": 19,
-          "kills": 1366,
-          "enemies": 77,
-          "collectedXp": 1,
-          "bossHp": 2506
+          "hp": 52,
+          "maxHp": 252,
+          "level": 14,
+          "kills": 1110,
+          "enemies": 113,
+          "collectedXp": 69,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 115,
-          "maxHp": 297,
-          "level": 19,
-          "kills": 1451,
-          "enemies": 123,
-          "collectedXp": 23,
-          "bossHp": 1308
+          "hp": 25,
+          "maxHp": 252,
+          "level": 16,
+          "kills": 1199,
+          "enemies": 198,
+          "collectedXp": 44,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 294,
+      "maxEnemies": 351,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
+        "activeSeconds": 20.63,
+        "rangePct": 93.8,
         "orbitContactPct": 0,
-        "batonSwingCount": 44,
-        "batonHitPct": 0,
-        "hits": 71,
-        "damage": 1892,
+        "batonSwingCount": 25,
+        "batonHitPct": 100,
+        "hits": 58,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 25,
-          "badge": 46
+          "power_bank": 11,
+          "baton": 25,
+          "badge": 22
         },
         "damageBySource": {
-          "power_bank": 650,
-          "badge": 1242
+          "power_bank": 286,
+          "baton": 2500,
+          "badge": 414
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3820,19 +3638,19 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 436.8,
+      "outcome": "dead",
+      "deathSecond": 436.8,
       "firstLevelSecond": 12.95,
       "lastLevel": 17,
-      "kills": 1560,
-      "hp": 95,
-      "maxHp": 252,
+      "kills": 1237,
+      "hp": 0,
+      "maxHp": 297,
       "bossDefeated": false,
-      "bossHpLeft": 1168,
+      "bossHpLeft": 580,
       "salary": 3000,
-      "spent": 2600,
-      "remaining": 400,
+      "spent": 2350,
+      "remaining": 650,
       "upgrades": 16,
       "choices": [
         "profession_weapon",
@@ -3842,22 +3660,21 @@
         "badge",
         "power_bank",
         "baton_training",
-        "baton_training",
         "badge",
         "power_bank",
-        "power_bank",
-        "base_defense",
-        "kneepad",
+        "baton_training",
+        "fitness",
+        "earphones",
+        "hold_position",
         "backpack",
-        "shoes",
-        "kneepad"
+        "backpack",
+        "backpack"
       ],
       "purchases": [
         "10:profession_weapon:-550",
+        "10:power_bank:-600",
         "10:profession_weapon:-800",
-        "10:kneepad:-400",
-        "10:backpack:-350",
-        "20:backpack:-500"
+        "10:kneepad:-400"
       ],
       "checkpoints": [
         {
@@ -3892,86 +3709,68 @@
         },
         {
           "sec": 144,
-          "hp": 155,
+          "hp": 144,
           "maxHp": 180,
-          "level": 7,
-          "kills": 239,
-          "enemies": 17,
-          "collectedXp": 30,
+          "level": 9,
+          "kills": 223,
+          "enemies": 27,
+          "collectedXp": 4,
           "bossHp": null
         },
         {
           "sec": 240,
-          "hp": 172,
-          "maxHp": 207,
+          "hp": 130,
+          "maxHp": 180,
           "level": 11,
-          "kills": 482,
-          "enemies": 58,
-          "collectedXp": 63,
+          "kills": 517,
+          "enemies": 39,
+          "collectedXp": 92,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 109,
-          "maxHp": 225,
-          "level": 13,
-          "kills": 717,
-          "enemies": 140,
-          "collectedXp": 12,
+          "hp": 181,
+          "maxHp": 252,
+          "level": 15,
+          "kills": 761,
+          "enemies": 82,
+          "collectedXp": 66,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 107,
-          "maxHp": 252,
+          "hp": 191,
+          "maxHp": 297,
           "level": 17,
-          "kills": 1242,
-          "enemies": 122,
-          "collectedXp": 13,
+          "kills": 1037,
+          "enemies": 209,
+          "collectedXp": 31,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 95,
-          "maxHp": 252,
-          "level": 17,
-          "kills": 1359,
-          "enemies": 141,
-          "collectedXp": 47,
-          "bossHp": 2472
-        },
-        {
-          "sec": 480,
-          "hp": 95,
-          "maxHp": 252,
-          "level": 17,
-          "kills": 1560,
-          "enemies": 81,
-          "collectedXp": 94,
-          "bossHp": 1168
         }
       ],
-      "maxEnemies": 185,
-      "maxProjectiles": 125,
+      "maxEnemies": 216,
+      "maxProjectiles": 141,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
+        "activeSeconds": 18.8,
+        "rangePct": 92.4,
         "orbitContactPct": 0,
-        "batonSwingCount": 56,
-        "batonHitPct": 0,
-        "hits": 70,
-        "damage": 2032,
+        "batonSwingCount": 21,
+        "batonHitPct": 95.2,
+        "hits": 46,
+        "damage": 2620,
         "hitsBySource": {
-          "power_bank": 26,
-          "badge": 44
+          "baton": 20,
+          "power_bank": 9,
+          "badge": 17
         },
         "damageBySource": {
-          "power_bank": 624,
-          "badge": 1408
+          "baton": 1860,
+          "power_bank": 216,
+          "badge": 544
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3979,20 +3778,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 432.63,
+      "outcome": "dead",
+      "deathSecond": 432.6333333333333,
       "firstLevelSecond": 13.15,
-      "lastLevel": 19,
-      "kills": 1482,
-      "hp": 6,
-      "maxHp": 243,
+      "lastLevel": 18,
+      "kills": 1256,
+      "hp": 0,
+      "maxHp": 261,
       "bossDefeated": false,
-      "bossHpLeft": 1401,
+      "bossHpLeft": 1003,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4002,15 +3801,14 @@
         "base_defense",
         "baton_training",
         "baton_training",
+        "base_hp",
         "baton_training",
         "badge",
         "badge",
-        "kneepad",
         "badge",
         "hold_position",
-        "kneepad",
-        "hold_position",
         "base_defense",
+        "hold_position",
         "base_defense"
       ],
       "purchases": [
@@ -4053,88 +3851,68 @@
         },
         {
           "sec": 144,
-          "hp": 145,
+          "hp": 115,
           "maxHp": 180,
           "level": 7,
-          "kills": 206,
-          "enemies": 56,
-          "collectedXp": 23,
+          "kills": 210,
+          "enemies": 52,
+          "collectedXp": 31,
           "bossHp": null
         },
         {
           "sec": 240,
-          "hp": 150,
-          "maxHp": 207,
+          "hp": 93,
+          "maxHp": 225,
           "level": 10,
-          "kills": 337,
-          "enemies": 190,
-          "collectedXp": 3,
+          "kills": 395,
+          "enemies": 154,
+          "collectedXp": 65,
           "bossHp": null
         },
         {
           "sec": 320,
-          "hp": 154,
-          "maxHp": 225,
-          "level": 12,
-          "kills": 800,
+          "hp": 77,
+          "maxHp": 243,
+          "level": 13,
+          "kills": 823,
           "enemies": 66,
-          "collectedXp": 75,
+          "collectedXp": 44,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 60,
-          "maxHp": 243,
+          "hp": 61,
+          "maxHp": 261,
           "level": 18,
-          "kills": 1160,
-          "enemies": 143,
-          "collectedXp": 84,
+          "kills": 1236,
+          "enemies": 109,
+          "collectedXp": 118,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 33,
-          "maxHp": 243,
-          "level": 18,
-          "kills": 1278,
-          "enemies": 158,
-          "collectedXp": 157,
-          "bossHp": 2121
-        },
-        {
-          "sec": 480,
-          "hp": 6,
-          "maxHp": 243,
-          "level": 19,
-          "kills": 1482,
-          "enemies": 77,
-          "collectedXp": 189,
-          "bossHp": 1401
         }
       ],
-      "maxEnemies": 242,
+      "maxEnemies": 237,
       "maxProjectiles": 162,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 4.1,
+        "activeSeconds": 14.63,
+        "rangePct": 97.8,
         "orbitContactPct": 0,
-        "batonSwingCount": 45,
-        "batonHitPct": 6.7,
-        "hits": 57,
-        "damage": 1799,
+        "batonSwingCount": 17,
+        "batonHitPct": 100,
+        "hits": 38,
+        "damage": 2197,
         "hitsBySource": {
-          "baton": 3,
-          "badge": 28,
-          "power_bank": 26
+          "baton": 17,
+          "power_bank": 7,
+          "badge": 14
         },
         "damageBySource": {
-          "baton": 279,
-          "badge": 896,
-          "power_bank": 624
+          "baton": 1581,
+          "power_bank": 168,
+          "badge": 448
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -4142,20 +3920,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 428.78,
+      "outcome": "dead",
+      "deathSecond": 428.78333333333336,
       "firstLevelSecond": 14.75,
-      "lastLevel": 17,
-      "kills": 1492,
-      "hp": 99,
-      "maxHp": 261,
+      "lastLevel": 16,
+      "kills": 1224,
+      "hp": 0,
+      "maxHp": 243,
       "bossDefeated": false,
-      "bossHpLeft": 216,
+      "bossHpLeft": 1453,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
-      "upgrades": 16,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "base_move",
@@ -4168,11 +3946,10 @@
         "power_bank",
         "profession_weapon",
         "power_bank",
-        "baton_training",
+        "base_defense",
         "kneepad",
         "base_hp",
-        "badge",
-        "base_hp"
+        "badge"
       ],
       "purchases": [
         "10:profession_weapon:-350",
@@ -4235,68 +4012,48 @@
         },
         {
           "sec": 320,
-          "hp": 126,
+          "hp": 104,
           "maxHp": 225,
-          "level": 12,
-          "kills": 690,
-          "enemies": 158,
-          "collectedXp": 124,
+          "level": 13,
+          "kills": 802,
+          "enemies": 72,
+          "collectedXp": 123,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 123,
-          "maxHp": 261,
-          "level": 17,
-          "kills": 1238,
-          "enemies": 69,
-          "collectedXp": 23,
+          "hp": 94,
+          "maxHp": 243,
+          "level": 16,
+          "kills": 1121,
+          "enemies": 170,
+          "collectedXp": 166,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 110,
-          "maxHp": 261,
-          "level": 17,
-          "kills": 1315,
-          "enemies": 118,
-          "collectedXp": 75,
-          "bossHp": 1385
-        },
-        {
-          "sec": 480,
-          "hp": 99,
-          "maxHp": 261,
-          "level": 17,
-          "kills": 1492,
-          "enemies": 75,
-          "collectedXp": 118,
-          "bossHp": 216
         }
       ],
-      "maxEnemies": 230,
-      "maxProjectiles": 161,
+      "maxEnemies": 179,
+      "maxProjectiles": 103,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 5.7,
+        "activeSeconds": 10.78,
+        "rangePct": 90.1,
         "orbitContactPct": 0,
-        "batonSwingCount": 47,
-        "batonHitPct": 10.6,
-        "hits": 78,
-        "damage": 2984,
+        "batonSwingCount": 12,
+        "batonHitPct": 100,
+        "hits": 28,
+        "damage": 1747,
         "hitsBySource": {
-          "badge": 45,
-          "power_bank": 28,
-          "baton": 5
+          "baton": 12,
+          "power_bank": 5,
+          "badge": 11
         },
         "damageBySource": {
-          "badge": 1665,
-          "power_bank": 784,
-          "baton": 535
+          "baton": 1200,
+          "power_bank": 140,
+          "badge": 407
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -4309,8 +4066,8 @@
       "deathSecond": null,
       "firstLevelSecond": 12.8,
       "lastLevel": 17,
-      "kills": 1442,
-      "hp": 116,
+      "kills": 1488,
+      "hp": 107,
       "maxHp": 270,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -4415,48 +4172,48 @@
         },
         {
           "sec": 448,
-          "hp": 122,
+          "hp": 117,
           "maxHp": 270,
           "level": 17,
-          "kills": 1255,
-          "enemies": 170,
-          "collectedXp": 23.72,
-          "bossHp": 1017
+          "kills": 1333,
+          "enemies": 115,
+          "collectedXp": 2.12,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 116,
+          "hp": 107,
           "maxHp": 270,
           "level": 17,
-          "kills": 1442,
-          "enemies": 111,
-          "collectedXp": 152.24,
+          "kills": 1488,
+          "enemies": 132,
+          "collectedXp": 195.44,
           "bossHp": null
         }
       ],
-      "maxEnemies": 254,
-      "maxProjectiles": 161,
+      "maxEnemies": 232,
+      "maxProjectiles": 156,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 58.05,
-        "rangePct": 11.8,
+        "activeSeconds": 19.68,
+        "rangePct": 94.8,
         "orbitContactPct": 0,
-        "batonSwingCount": 56,
-        "batonHitPct": 19.6,
-        "hits": 87,
+        "batonSwingCount": 26,
+        "batonHitPct": 92.3,
+        "hits": 57,
         "damage": 3200,
         "hitsBySource": {
-          "baton": 11,
-          "power_bank": 31,
-          "badge": 45
+          "baton": 24,
+          "power_bank": 11,
+          "badge": 22
         },
         "damageBySource": {
-          "baton": 1023,
-          "power_bank": 737,
-          "badge": 1440
+          "baton": 2232,
+          "power_bank": 264,
+          "badge": 704
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -4464,20 +4221,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 446.9,
+      "outcome": "dead",
+      "deathSecond": 446.9,
       "firstLevelSecond": 13.833333333333334,
-      "lastLevel": 16,
-      "kills": 1088,
-      "hp": 59,
-      "maxHp": 306,
-      "bossDefeated": false,
-      "bossHpLeft": 2479,
+      "lastLevel": 15,
+      "kills": 936,
+      "hp": 0,
+      "maxHp": 279,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2500,
       "remaining": 500,
-      "upgrades": 15,
+      "upgrades": 14,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -4492,8 +4249,7 @@
         "backpack",
         "base_hp",
         "power_bank",
-        "power_bank",
-        "backpack"
+        "power_bank"
       ],
       "purchases": [
         "10:profession_weapon:-350",
@@ -4565,54 +4321,36 @@
         },
         {
           "sec": 416,
-          "hp": 45,
+          "hp": 87,
           "maxHp": 279,
           "level": 14,
-          "kills": 863,
-          "enemies": 267,
-          "collectedXp": 25.6,
+          "kills": 819,
+          "enemies": 260,
+          "collectedXp": 2.92,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 32,
-          "maxHp": 279,
-          "level": 14,
-          "kills": 971,
-          "enemies": 304,
-          "collectedXp": 151.96,
-          "bossHp": 2877
-        },
-        {
-          "sec": 480,
-          "hp": 59,
-          "maxHp": 306,
-          "level": 16,
-          "kills": 1088,
-          "enemies": 318,
-          "collectedXp": 99.12,
-          "bossHp": 2479
         }
       ],
-      "maxEnemies": 386,
+      "maxEnemies": 379,
       "maxProjectiles": 160,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 62,
-        "rangePct": 0,
+        "activeSeconds": 25.32,
+        "rangePct": 97.4,
         "orbitContactPct": 0,
-        "batonSwingCount": 71,
-        "batonHitPct": 0,
-        "hits": 34,
-        "damage": 721,
+        "batonSwingCount": 34,
+        "batonHitPct": 100,
+        "hits": 48,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 34
+          "baton": 34,
+          "power_bank": 14
         },
         "damageBySource": {
-          "power_bank": 721
+          "baton": 2864,
+          "power_bank": 336
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4624,16 +4362,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 11.466666666666667,
-      "lastLevel": 16,
-      "kills": 1435,
-      "hp": 2,
+      "lastLevel": 17,
+      "kills": 1367,
+      "hp": 25,
       "maxHp": 196,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 3000,
       "remaining": 1000,
-      "upgrades": 15,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4649,7 +4387,8 @@
         "badge",
         "badge",
         "badge",
-        "target_management"
+        "target_management",
+        "kneepad"
       ],
       "purchases": [
         "10:profession_weapon:-1100",
@@ -4714,65 +4453,65 @@
           "hp": 131,
           "maxHp": 196,
           "level": 15,
-          "kills": 779,
+          "kills": 777,
           "enemies": 54,
-          "collectedXp": 10,
+          "collectedXp": 9,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 86,
+          "hp": 115,
           "maxHp": 196,
-          "level": 16,
-          "kills": 1106,
-          "enemies": 138,
-          "collectedXp": 10,
+          "level": 17,
+          "kills": 1133,
+          "enemies": 116,
+          "collectedXp": 16,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 71,
+          "hp": 61,
           "maxHp": 196,
-          "level": 16,
-          "kills": 1328,
-          "enemies": 61,
-          "collectedXp": 94,
-          "bossHp": 2562
+          "level": 17,
+          "kills": 1285,
+          "enemies": 121,
+          "collectedXp": 104,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 2,
+          "hp": 25,
           "maxHp": 196,
-          "level": 16,
-          "kills": 1435,
-          "enemies": 82,
-          "collectedXp": 135,
+          "level": 17,
+          "kills": 1367,
+          "enemies": 201,
+          "collectedXp": 172,
           "bossHp": null
         }
       ],
-      "maxEnemies": 181,
-      "maxProjectiles": 122,
+      "maxEnemies": 201,
+      "maxProjectiles": 113,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 53.22,
-        "rangePct": 83.2,
+        "activeSeconds": 21.85,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 228,
+        "hits": 195,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 196,
-          "power_bank": 14,
-          "badge": 18
+          "screw_gun": 158,
+          "badge": 25,
+          "power_bank": 12
         },
         "damageBySource": {
-          "screw_gun": 2288,
-          "power_bank": 336,
-          "badge": 576
+          "screw_gun": 2112,
+          "badge": 800,
+          "power_bank": 288
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4784,16 +4523,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 11.166666666666666,
-      "lastLevel": 18,
-      "kills": 1468,
-      "hp": 56,
-      "maxHp": 169,
+      "lastLevel": 19,
+      "kills": 1436,
+      "hp": 53,
+      "maxHp": 182,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 17,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4811,7 +4550,8 @@
         "target_management",
         "badge",
         "kneepad",
-        "target_management"
+        "base_hp",
+        "shoes"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -4887,53 +4627,53 @@
           "level": 17,
           "kills": 1261,
           "enemies": 82,
-          "collectedXp": 167,
+          "collectedXp": 168,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 97,
-          "maxHp": 169,
+          "hp": 60,
+          "maxHp": 182,
           "level": 18,
-          "kills": 1400,
-          "enemies": 63,
-          "collectedXp": 38,
-          "bossHp": 2899
+          "kills": 1362,
+          "enemies": 116,
+          "collectedXp": 72,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 56,
-          "maxHp": 169,
-          "level": 18,
-          "kills": 1468,
-          "enemies": 102,
-          "collectedXp": 164,
+          "hp": 53,
+          "maxHp": 182,
+          "level": 19,
+          "kills": 1436,
+          "enemies": 204,
+          "collectedXp": 13,
           "bossHp": null
         }
       ],
-      "maxEnemies": 195,
-      "maxProjectiles": 126,
+      "maxEnemies": 204,
+      "maxProjectiles": 145,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 59.83,
-        "rangePct": 56.8,
+        "activeSeconds": 27.4,
+        "rangePct": 98,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 226,
+        "hits": 200,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 204,
-          "power_bank": 10,
-          "badge": 12
+          "screw_gun": 159,
+          "badge": 28,
+          "power_bank": 13
         },
         "damageBySource": {
-          "screw_gun": 2576,
-          "power_bank": 240,
-          "badge": 384
+          "screw_gun": 1992,
+          "badge": 896,
+          "power_bank": 312
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4941,20 +4681,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 423.38,
+      "outcome": "dead",
+      "deathSecond": 423.3833333333333,
       "firstLevelSecond": 8.7,
-      "lastLevel": 17,
-      "kills": 1391,
-      "hp": 9,
+      "lastLevel": 16,
+      "kills": 1203,
+      "hp": 0,
       "maxHp": 169,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 2509,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 16,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4970,8 +4710,7 @@
         "steady_feed",
         "badge",
         "steady_feed",
-        "base_defense",
-        "kneepad"
+        "base_defense"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -5049,51 +4788,31 @@
           "enemies": 146,
           "collectedXp": 74,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 27,
-          "maxHp": 169,
-          "level": 16,
-          "kills": 1314,
-          "enemies": 123,
-          "collectedXp": 138,
-          "bossHp": null
-        },
-        {
-          "sec": 480,
-          "hp": 9,
-          "maxHp": 169,
-          "level": 17,
-          "kills": 1391,
-          "enemies": 200,
-          "collectedXp": 85,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 200,
-      "maxProjectiles": 107,
+      "maxEnemies": 156,
+      "maxProjectiles": 104,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 27.3,
-        "rangePct": 94.1,
+        "activeSeconds": 5.38,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 220,
-        "damage": 3200,
+        "hits": 47,
+        "damage": 691,
         "hitsBySource": {
-          "power_bank": 12,
-          "screw_gun": 195,
-          "badge": 13
+          "power_bank": 3,
+          "screw_gun": 39,
+          "badge": 5
         },
         "damageBySource": {
-          "power_bank": 273,
-          "screw_gun": 2511,
-          "badge": 416
+          "power_bank": 72,
+          "screw_gun": 459,
+          "badge": 160
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5106,8 +4825,8 @@
       "deathSecond": null,
       "firstLevelSecond": 9.083333333333334,
       "lastLevel": 17,
-      "kills": 1289,
-      "hp": 139,
+      "kills": 1180,
+      "hp": 111,
       "maxHp": 189,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -5212,48 +4931,48 @@
         },
         {
           "sec": 448,
-          "hp": 144,
+          "hp": 111,
           "maxHp": 189,
           "level": 16,
-          "kills": 1092,
-          "enemies": 299,
-          "collectedXp": 95,
+          "kills": 1105,
+          "enemies": 288,
+          "collectedXp": 90,
           "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 139,
+          "hp": 111,
           "maxHp": 189,
           "level": 17,
-          "kills": 1289,
-          "enemies": 213,
-          "collectedXp": 25,
+          "kills": 1180,
+          "enemies": 300,
+          "collectedXp": 43,
           "bossHp": null
         }
       ],
-      "maxEnemies": 317,
+      "maxEnemies": 316,
       "maxProjectiles": 169,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 18.67,
+        "activeSeconds": 19.55,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 177,
+        "hits": 179,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 147,
+          "screw_gun": 151,
           "power_bank": 10,
-          "badge": 20
+          "badge": 18
         },
         "damageBySource": {
-          "screw_gun": 2249,
+          "screw_gun": 2310,
           "power_bank": 260,
-          "badge": 691
+          "badge": 630
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5261,20 +4980,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 459.57,
-      "outcome": "dead",
-      "deathSecond": 459.56666666666666,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 10.35,
-      "lastLevel": 16,
-      "kills": 1388,
-      "hp": 0,
+      "lastLevel": 18,
+      "kills": 1489,
+      "hp": 13,
       "maxHp": 169,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 15,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -5290,7 +5009,9 @@
         "steady_feed",
         "badge",
         "badge",
-        "badge"
+        "badge",
+        "steady_feed",
+        "target_management"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -5371,38 +5092,48 @@
         },
         {
           "sec": 448,
-          "hp": 64,
+          "hp": 27,
           "maxHp": 169,
           "level": 16,
-          "kills": 1293,
-          "enemies": 121,
-          "collectedXp": 58,
+          "kills": 1328,
+          "enemies": 97,
+          "collectedXp": 91,
+          "bossHp": null
+        },
+        {
+          "sec": 480,
+          "hp": 13,
+          "maxHp": 169,
+          "level": 18,
+          "kills": 1489,
+          "enemies": 122,
+          "collectedXp": 171,
           "bossHp": null
         }
       ],
-      "maxEnemies": 172,
+      "maxEnemies": 158,
       "maxProjectiles": 101,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 21.37,
-        "rangePct": 99.9,
+        "activeSeconds": 19.33,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 188,
+        "hits": 174,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 166,
-          "badge": 14,
-          "power_bank": 8
+          "screw_gun": 142,
+          "badge": 22,
+          "power_bank": 10
         },
         "damageBySource": {
-          "screw_gun": 2502,
-          "badge": 490,
-          "power_bank": 208
+          "screw_gun": 2170,
+          "badge": 770,
+          "power_bank": 260
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5415,8 +5146,8 @@
       "deathSecond": null,
       "firstLevelSecond": 10.85,
       "lastLevel": 19,
-      "kills": 1481,
-      "hp": 121,
+      "kills": 1476,
+      "hp": 8,
       "maxHp": 216,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -5441,7 +5172,7 @@
         "backpack",
         "backpack",
         "target_management",
-        "kneepad",
+        "base_defense",
         "kneepad"
       ],
       "purchases": [
@@ -5524,48 +5255,48 @@
         },
         {
           "sec": 448,
-          "hp": 139,
+          "hp": 8,
           "maxHp": 216,
-          "level": 17,
-          "kills": 1380,
-          "enemies": 80,
-          "collectedXp": 210,
-          "bossHp": 751
+          "level": 18,
+          "kills": 1386,
+          "enemies": 73,
+          "collectedXp": 124,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 121,
+          "hp": 8,
           "maxHp": 216,
           "level": 19,
-          "kills": 1481,
-          "enemies": 141,
-          "collectedXp": 144,
+          "kills": 1476,
+          "enemies": 152,
+          "collectedXp": 140,
           "bossHp": null
         }
       ],
-      "maxEnemies": 142,
-      "maxProjectiles": 86,
+      "maxEnemies": 152,
+      "maxProjectiles": 101,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 35.52,
-        "rangePct": 80.6,
+        "activeSeconds": 25.08,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 204,
+        "hits": 195,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 169,
-          "badge": 23,
-          "power_bank": 12
+          "screw_gun": 158,
+          "power_bank": 12,
+          "badge": 25
         },
         "damageBySource": {
-          "screw_gun": 2176,
-          "badge": 736,
-          "power_bank": 288
+          "screw_gun": 2131,
+          "power_bank": 288,
+          "badge": 781
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5573,16 +5304,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 448.88,
+      "seconds": 429.5,
       "outcome": "dead",
-      "deathSecond": 448.8833333333333,
+      "deathSecond": 429.5,
       "firstLevelSecond": 10.333333333333334,
       "lastLevel": 17,
-      "kills": 1288,
+      "kills": 1292,
       "hp": 0,
       "maxHp": 155,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 1737,
       "salary": 4000,
       "spent": 3200,
       "remaining": 800,
@@ -5602,7 +5333,7 @@
         "badge",
         "badge",
         "target_management",
-        "base_defense",
+        "kneepad",
         "target_management"
       ],
       "purchases": [
@@ -5665,58 +5396,48 @@
         },
         {
           "sec": 320,
-          "hp": 99,
+          "hp": 114,
           "maxHp": 155,
           "level": 14,
-          "kills": 804,
-          "enemies": 56,
-          "collectedXp": 147,
+          "kills": 749,
+          "enemies": 106,
+          "collectedXp": 65,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 57,
+          "hp": 70,
           "maxHp": 155,
-          "level": 17,
-          "kills": 1197,
-          "enemies": 99,
-          "collectedXp": 8,
+          "level": 16,
+          "kills": 1260,
+          "enemies": 60,
+          "collectedXp": 173,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 8,
-          "maxHp": 155,
-          "level": 17,
-          "kills": 1287,
-          "enemies": 128,
-          "collectedXp": 36,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 162,
-      "maxProjectiles": 89,
+      "maxEnemies": 186,
+      "maxProjectiles": 81,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 24.72,
-        "rangePct": 98.7,
+        "activeSeconds": 11.5,
+        "rangePct": 97.1,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 211,
-        "damage": 3200,
+        "hits": 94,
+        "damage": 1463,
         "hitsBySource": {
-          "power_bank": 12,
-          "screw_gun": 182,
-          "badge": 17
+          "screw_gun": 78,
+          "power_bank": 6,
+          "badge": 10
         },
         "damageBySource": {
-          "power_bank": 288,
-          "screw_gun": 2368,
-          "badge": 544
+          "screw_gun": 999,
+          "power_bank": 144,
+          "badge": 320
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5728,16 +5449,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 10.666666666666666,
-      "lastLevel": 19,
-      "kills": 1478,
-      "hp": 115,
-      "maxHp": 223,
+      "lastLevel": 18,
+      "kills": 1323,
+      "hp": 96,
+      "maxHp": 209,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 3100,
       "remaining": 900,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "base_move",
@@ -5755,8 +5476,7 @@
         "target_management",
         "fitness",
         "base_hp",
-        "base_hp",
-        "backpack"
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-550",
@@ -5819,68 +5539,68 @@
         },
         {
           "sec": 320,
-          "hp": 119,
+          "hp": 120,
           "maxHp": 155,
-          "level": 15,
-          "kills": 732,
-          "enemies": 52,
-          "collectedXp": 106,
+          "level": 14,
+          "kills": 712,
+          "enemies": 63,
+          "collectedXp": 130,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 132,
+          "hp": 119,
           "maxHp": 196,
           "level": 17,
-          "kills": 1112,
+          "kills": 1097,
           "enemies": 141,
-          "collectedXp": 165,
+          "collectedXp": 18,
           "bossHp": 3200
         },
         {
           "sec": 448,
-          "hp": 106,
+          "hp": 83,
           "maxHp": 196,
           "level": 17,
-          "kills": 1330,
-          "enemies": 94,
-          "collectedXp": 227,
-          "bossHp": 1778
+          "kills": 1265,
+          "enemies": 135,
+          "collectedXp": 83,
+          "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 115,
-          "maxHp": 223,
-          "level": 19,
-          "kills": 1478,
-          "enemies": 86,
-          "collectedXp": 165,
+          "hp": 96,
+          "maxHp": 209,
+          "level": 18,
+          "kills": 1323,
+          "enemies": 230,
+          "collectedXp": 39,
           "bossHp": null
         }
       ],
-      "maxEnemies": 161,
-      "maxProjectiles": 86,
+      "maxEnemies": 230,
+      "maxProjectiles": 122,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 44.75,
-        "rangePct": 72.4,
+        "activeSeconds": 18.17,
+        "rangePct": 97.2,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 188,
+        "hits": 161,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 166,
-          "power_bank": 11,
-          "badge": 11
+          "screw_gun": 134,
+          "power_bank": 9,
+          "badge": 18
         },
         "damageBySource": {
-          "screw_gun": 2518,
-          "power_bank": 308,
-          "badge": 374
+          "screw_gun": 2282,
+          "power_bank": 252,
+          "badge": 666
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5888,20 +5608,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 435.27,
+      "outcome": "dead",
+      "deathSecond": 435.26666666666665,
       "firstLevelSecond": 10.516666666666667,
-      "lastLevel": 19,
-      "kills": 1510,
-      "hp": 46,
-      "maxHp": 209,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "lastLevel": 18,
+      "kills": 1258,
+      "hp": 0,
+      "maxHp": 216,
+      "bossDefeated": false,
+      "bossHpLeft": 784,
       "salary": 4000,
       "spent": 3450,
       "remaining": 550,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "badge",
@@ -5917,10 +5637,9 @@
         "steady_feed",
         "steady_feed",
         "backpack",
-        "base_damage",
-        "target_management",
+        "backpack",
         "base_hp",
-        "fitness"
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-1100",
@@ -5982,68 +5701,48 @@
         },
         {
           "sec": 320,
-          "hp": 119,
-          "maxHp": 155,
-          "level": 14,
-          "kills": 793,
-          "enemies": 60,
-          "collectedXp": 136.28,
+          "hp": 133,
+          "maxHp": 169,
+          "level": 15,
+          "kills": 788,
+          "enemies": 57,
+          "collectedXp": 126.88,
           "bossHp": null
         },
         {
           "sec": 416,
-          "hp": 91,
-          "maxHp": 169,
-          "level": 17,
-          "kills": 1089,
-          "enemies": 174,
-          "collectedXp": 13.6,
+          "hp": 75,
+          "maxHp": 216,
+          "level": 18,
+          "kills": 1230,
+          "enemies": 59,
+          "collectedXp": 78.44,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 28,
-          "maxHp": 169,
-          "level": 17,
-          "kills": 1384,
-          "enemies": 49,
-          "collectedXp": 106.48,
-          "bossHp": 246
-        },
-        {
-          "sec": 480,
-          "hp": 46,
-          "maxHp": 209,
-          "level": 19,
-          "kills": 1510,
-          "enemies": 83,
-          "collectedXp": 183,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 209,
-      "maxProjectiles": 127,
+      "maxEnemies": 104,
+      "maxProjectiles": 60,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 32.1,
-        "rangePct": 98.5,
+        "activeSeconds": 17.27,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 182,
-        "damage": 3200,
+        "hits": 150,
+        "damage": 2416,
         "hitsBySource": {
-          "screw_gun": 145,
-          "badge": 23,
-          "power_bank": 14
+          "power_bank": 9,
+          "screw_gun": 124,
+          "badge": 17
         },
         "damageBySource": {
-          "screw_gun": 2031,
-          "badge": 805,
-          "power_bank": 364
+          "power_bank": 216,
+          "screw_gun": 1656,
+          "badge": 544
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -6051,20 +5750,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 444.22,
+      "outcome": "dead",
+      "deathSecond": 444.21666666666664,
       "firstLevelSecond": 8.433333333333334,
-      "lastLevel": 18,
-      "kills": 1452,
-      "hp": 9,
+      "lastLevel": 16,
+      "kills": 1323,
+      "hp": 0,
       "maxHp": 196,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 131,
       "salary": 4000,
       "spent": 3350,
       "remaining": 650,
-      "upgrades": 17,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -6080,9 +5779,7 @@
         "power_bank",
         "power_bank",
         "backpack",
-        "base_hp",
-        "target_management",
-        "base_defense"
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-550",
@@ -6157,55 +5854,35 @@
           "hp": 92,
           "maxHp": 196,
           "level": 16,
-          "kills": 1086,
-          "enemies": 179,
-          "collectedXp": 22.52,
+          "kills": 1070,
+          "enemies": 188,
+          "collectedXp": 40.88,
           "bossHp": 3200
-        },
-        {
-          "sec": 448,
-          "hp": 61,
-          "maxHp": 196,
-          "level": 16,
-          "kills": 1245,
-          "enemies": 175,
-          "collectedXp": 91.64,
-          "bossHp": null
-        },
-        {
-          "sec": 480,
-          "hp": 9,
-          "maxHp": 196,
-          "level": 18,
-          "kills": 1452,
-          "enemies": 160,
-          "collectedXp": 9.96,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 226,
-      "maxProjectiles": 154,
+      "maxEnemies": 231,
+      "maxProjectiles": 152,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 24.1,
-        "rangePct": 98.8,
+        "activeSeconds": 26.22,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 214,
-        "damage": 3200,
+        "hits": 191,
+        "damage": 3069,
         "hitsBySource": {
-          "screw_gun": 189,
-          "badge": 14,
-          "power_bank": 11
+          "screw_gun": 149,
+          "badge": 28,
+          "power_bank": 14
         },
         "damageBySource": {
-          "screw_gun": 2488,
-          "badge": 448,
-          "power_bank": 264
+          "screw_gun": 1837,
+          "badge": 896,
+          "power_bank": 336
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -6213,20 +5890,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": true,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 431.1,
+      "outcome": "dead",
+      "deathSecond": 431.1,
       "firstLevelSecond": 13.266666666666667,
-      "lastLevel": 18,
-      "kills": 1234,
-      "hp": 66,
-      "maxHp": 170,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "lastLevel": 16,
+      "kills": 1004,
+      "hp": 0,
+      "maxHp": 155,
+      "bossDefeated": false,
+      "bossHpLeft": 1566,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
-      "upgrades": 17,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -6242,9 +5919,7 @@
         "page_turning",
         "page_turning",
         "page_turning",
-        "base_hp",
-        "kneepad",
-        "backpack"
+        "base_hp"
       ],
       "purchases": [
         "10:profession_weapon:-700",
@@ -6323,49 +5998,34 @@
           "enemies": 128,
           "collectedXp": 72,
           "bossHp": 2400
-        },
-        {
-          "sec": 448,
-          "hp": 64,
-          "maxHp": 155,
-          "level": 16,
-          "kills": 1094,
-          "enemies": 107,
-          "collectedXp": 117,
-          "bossHp": 893
-        },
-        {
-          "sec": 480,
-          "hp": 66,
-          "maxHp": 170,
-          "level": 18,
-          "kills": 1234,
-          "enemies": 101,
-          "collectedXp": 36,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 142,
-      "maxProjectiles": 100,
-      "damageSpikes": [],
+      "maxEnemies": 135,
+      "maxProjectiles": 67,
+      "damageSpikes": [
+        {
+          "sec": 426,
+          "lost": 48
+        }
+      ],
       "bossCombat": {
-        "activeSeconds": 43.87,
-        "rangePct": 98.3,
+        "activeSeconds": 13.1,
+        "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 73,
-        "damage": 2400,
+        "hits": 25,
+        "damage": 834,
         "hitsBySource": {
-          "profession": 50,
-          "power_bank": 23
+          "profession": 18,
+          "power_bank": 7
         },
         "damageBySource": {
-          "profession": 1850,
-          "power_bank": 550
+          "profession": 666,
+          "power_bank": 168
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -6373,16 +6033,16 @@
       "style": "harvester",
       "riskTag": "service",
       "assist": true,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 426.65,
+      "outcome": "dead",
+      "deathSecond": 426.65,
       "firstLevelSecond": 12.416666666666666,
       "lastLevel": 17,
-      "kills": 1241,
-      "hp": 26,
+      "kills": 1079,
+      "hp": 0,
       "maxHp": 140,
-      "bossDefeated": true,
-      "bossHpLeft": null,
+      "bossDefeated": false,
+      "bossHpLeft": 1228,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -6482,103 +6142,83 @@
           "enemies": 58,
           "collectedXp": 92,
           "bossHp": 2400
-        },
-        {
-          "sec": 448,
-          "hp": 26,
-          "maxHp": 140,
-          "level": 17,
-          "kills": 1155,
-          "enemies": 62,
-          "collectedXp": 126,
-          "bossHp": null
-        },
-        {
-          "sec": 480,
-          "hp": 26,
-          "maxHp": 140,
-          "level": 17,
-          "kills": 1241,
-          "enemies": 124,
-          "collectedXp": 210,
-          "bossHp": null
         }
       ],
-      "maxEnemies": 124,
-      "maxProjectiles": 58,
+      "maxEnemies": 66,
+      "maxProjectiles": 41,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 20.62,
+        "activeSeconds": 8.65,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 73,
-        "damage": 2400,
+        "hits": 37,
+        "damage": 1172,
         "hitsBySource": {
-          "profession": 49,
-          "badge": 13,
-          "power_bank": 11
+          "profession": 21,
+          "badge": 11,
+          "power_bank": 5
         },
         "damageBySource": {
-          "profession": 1813,
-          "badge": 325,
-          "power_bank": 262
+          "profession": 777,
+          "badge": 275,
+          "power_bank": 120
         }
       },
-      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
     }
   ],
   "statistics": [
     {
       "role": "student",
       "plays": 10,
-      "wins": 3,
-      "bossReached": 9,
+      "wins": 0,
+      "bossReached": 10,
       "meanFirstUpgradeSeconds": 12,
       "meanLevelAtEnd": 17.3,
-      "meanSurvivalSeconds": 452,
-      "meanBossRangePct": 63,
-      "meanBossDamage": 2182,
+      "meanSurvivalSeconds": 430,
+      "meanBossRangePct": 95,
+      "meanBossDamage": 1417,
       "meanOrbitContactPct": 0,
       "meanBatonHitPct": 0
     },
     {
       "role": "tea_worker",
       "plays": 10,
-      "wins": 1,
+      "wins": 3,
       "bossReached": 9,
       "meanFirstUpgradeSeconds": 16,
-      "meanLevelAtEnd": 16.5,
-      "meanSurvivalSeconds": 461,
-      "meanBossRangePct": 3,
-      "meanBossDamage": 1604,
-      "meanOrbitContactPct": 3,
+      "meanLevelAtEnd": 17,
+      "meanSurvivalSeconds": 437,
+      "meanBossRangePct": 62,
+      "meanBossDamage": 2490,
+      "meanOrbitContactPct": 62,
       "meanBatonHitPct": 0
     },
     {
       "role": "security",
       "plays": 10,
-      "wins": 1,
+      "wins": 4,
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 13,
-      "meanLevelAtEnd": 17.9,
-      "meanSurvivalSeconds": 480,
-      "meanBossRangePct": 3,
-      "meanBossDamage": 2220,
+      "meanLevelAtEnd": 17.2,
+      "meanSurvivalSeconds": 454,
+      "meanBossRangePct": 91,
+      "meanBossDamage": 2649,
       "meanOrbitContactPct": 0,
-      "meanBatonHitPct": 5
+      "meanBatonHitPct": 93
     },
     {
       "role": "screw_worker",
       "plays": 10,
-      "wins": 8,
+      "wins": 6,
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 10,
-      "meanLevelAtEnd": 17.6,
-      "meanSurvivalSeconds": 475,
-      "meanBossRangePct": 88,
-      "meanBossDamage": 3200,
+      "meanLevelAtEnd": 17.5,
+      "meanSurvivalSeconds": 461,
+      "meanBossRangePct": 99,
+      "meanBossDamage": 2684,
       "meanOrbitContactPct": 0,
       "meanBatonHitPct": 0
     }
