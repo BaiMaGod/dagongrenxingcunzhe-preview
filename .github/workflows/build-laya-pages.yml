@@ -93,7 +93,7 @@ jobs:
           r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text())
           assert r["kind"]=="ordinary-full-intensity-ai-playtest" and r["gameSeconds"]==480
           assert r["fullSpawn"] and r["fullBossHp"] and not r["modifiedConfig"] and not r["debugInvulnerability"]
-          assert len(r["samples"])==10 and len(r["statistics"])==4
+          assert len(r["samples"])==42 and len(r["statistics"])==4
           assert {s["role"] for s in r["samples"]}=={"student","tea_worker","security","screw_worker"}
           assert all(s["outcome"] in ("win","dead","timeout") and 0<s["seconds"]<=480 for s in r["samples"])
           assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
@@ -567,7 +567,7 @@ jobs:
           ai=pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json"
           if ai.is_file():
               payload=json.loads(ai.read_text())
-              if payload.get("kind")=="ordinary-full-intensity-ai-playtest" and len(payload.get("samples",[]))==10:
+              if payload.get("kind")=="ordinary-full-intensity-ai-playtest" and len(payload.get("samples",[]))==42:
                   shutil.copy2(ai,out/"ordinary-ai.json")
           result={
               "generated_at_utc":datetime.now(timezone.utc).isoformat(),
