@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: 40 fixed seeds; verify Lv1-2 baton cap correctly prioritizes Boss and capture actual damage telemetry.
+      # Release gate: normalize optional telemetry source fields in strict TypeScript; 40 seeded full-intensity trials.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
