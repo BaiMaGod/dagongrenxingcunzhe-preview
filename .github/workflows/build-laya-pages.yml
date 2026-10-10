@@ -550,7 +550,7 @@ jobs:
                       assert final["bossDefeated"] and final["salaryPaid"] and final["cash"]==2500 and final["spent"]==500,(name,"Month milestones or purchases not completed",final)
                       texts=await read_laya_texts()
                       assert any("月底结算：撑过去了" in t for t in texts),(name,"Month actual win screen missing",texts)
-                      assert any("练习模式 · 不存档、不发放局外收益" in t for t in texts),(name,"Month payout isolation missing",texts)
+                      assert any("练习模式 · 本局不保存、不发奖" in t for t in texts),(name,"Month payout isolation missing",texts)
                       assert any("本月工资剩余：¥2500" in t for t in texts),(name,"End screen incorrectly shows remaining wages",texts)
                       assert not errors,(name,"browser errors during full-month QA",errors)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("month-"+name+"-end.png")),full_page=True)
