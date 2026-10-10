@@ -567,7 +567,7 @@ jobs:
           PY
 
       - name: Play all responsive layouts and real battle UI
-        id: browser-regression # V11 risk-text overlap and overload-resume regression
+        id: browser-regression # V11 final responsive-layout and overload-resume regression
         working-directory: private-game
         shell: bash
         run: |
