@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: 40 real-combat seeded trials, Boss body-edge baton collisions, engaged melee AI v3 telemetry.
+      # Release gate: 40 seeded trials, role-specific melee engagement and restored ranged/newcomer kiting.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
@@ -99,6 +99,8 @@ jobs:
           assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
           assert all(s["bossCombat"]["damage"]>=0 and 0<=s["bossCombat"]["rangePct"]<=100 for s in r["samples"])
           assert all(s["bossCombat"]["damage"]==sum(s["bossCombat"]["damageBySource"].values()) for s in r["samples"])
+          assert len([s for s in r["samples"] if s["assist"]])==2
+          assert all(s["outcome"]=="win" for s in r["samples"] if s["assist"]), "First-clear assisted newcomers regressed"
           for row in r["statistics"]: print("AI playtest (not human):",row)
           print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
           PY
