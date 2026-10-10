@@ -136,7 +136,24 @@
       "maxEnemies": 244,
       "maxProjectiles": 159,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 36.47,
+        "rangePct": 93.5,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 37,
+        "damage": 1312,
+        "hitsBySource": {
+          "profession": 25,
+          "power_bank": 12
+        },
+        "damageBySource": {
+          "profession": 1000,
+          "power_bank": 312
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -269,7 +286,26 @@
       "maxEnemies": 145,
       "maxProjectiles": 89,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 55.65,
+        "rangePct": 46.5,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 70,
+        "damage": 2230,
+        "hitsBySource": {
+          "profession": 41,
+          "power_bank": 12,
+          "badge": 17
+        },
+        "damageBySource": {
+          "profession": 1517,
+          "power_bank": 288,
+          "badge": 425
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -411,7 +447,26 @@
       "maxEnemies": 124,
       "maxProjectiles": 71,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 59.1,
+        "rangePct": 64.1,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 95,
+        "damage": 3200,
+        "hitsBySource": {
+          "profession": 63,
+          "power_bank": 15,
+          "badge": 17
+        },
+        "damageBySource": {
+          "profession": 2296,
+          "power_bank": 360,
+          "badge": 544
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -553,7 +608,26 @@
       "maxEnemies": 204,
       "maxProjectiles": 118,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 39.62,
+        "rangePct": 89.9,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 90,
+        "damage": 3200,
+        "hitsBySource": {
+          "profession": 63,
+          "power_bank": 13,
+          "badge": 14
+        },
+        "damageBySource": {
+          "profession": 2484,
+          "power_bank": 338,
+          "badge": 378
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -679,7 +753,26 @@
           "lost": 40
         }
       ],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 29.15,
+        "rangePct": 91.2,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 84,
+        "damage": 2704,
+        "hitsBySource": {
+          "power_bank": 12,
+          "profession": 56,
+          "badge": 16
+        },
+        "damageBySource": {
+          "power_bank": 312,
+          "profession": 1960,
+          "badge": 432
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -823,7 +916,26 @@
       "maxEnemies": 114,
       "maxProjectiles": 85,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 37.2,
+        "rangePct": 94.5,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 94,
+        "damage": 3200,
+        "hitsBySource": {
+          "power_bank": 14,
+          "profession": 61,
+          "badge": 19
+        },
+        "damageBySource": {
+          "power_bank": 336,
+          "profession": 2256,
+          "badge": 608
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -946,7 +1058,26 @@
       "maxEnemies": 165,
       "maxProjectiles": 88,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 24.93,
+        "rangePct": 98,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 94,
+        "damage": 3046,
+        "hitsBySource": {
+          "profession": 59,
+          "power_bank": 12,
+          "badge": 23
+        },
+        "damageBySource": {
+          "profession": 2183,
+          "power_bank": 288,
+          "badge": 575
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1089,7 +1220,26 @@
       "maxEnemies": 166,
       "maxProjectiles": 95,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 51,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 74,
+        "damage": 2930,
+        "hitsBySource": {
+          "profession": 50,
+          "power_bank": 12,
+          "badge": 12
+        },
+        "damageBySource": {
+          "profession": 2150,
+          "power_bank": 336,
+          "badge": 444
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1199,7 +1349,18 @@
       "maxEnemies": 93,
       "maxProjectiles": 48,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 0,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 0,
+        "damage": 0,
+        "hitsBySource": {},
+        "damageBySource": {}
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -1319,7 +1480,18 @@
       "maxEnemies": 290,
       "maxProjectiles": 164,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 0,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 0,
+        "damage": 0,
+        "hitsBySource": {},
+        "damageBySource": {}
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1460,7 +1632,22 @@
       "maxEnemies": 358,
       "maxProjectiles": 160,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 35,
+        "damage": 840,
+        "hitsBySource": {
+          "power_bank": 35
+        },
+        "damageBySource": {
+          "power_bank": 840
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1603,7 +1790,24 @@
       "maxEnemies": 316,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 39,
+        "damage": 958,
+        "hitsBySource": {
+          "power_bank": 17,
+          "badge": 22
+        },
+        "damageBySource": {
+          "power_bank": 408,
+          "badge": 550
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1744,7 +1948,26 @@
       "maxEnemies": 313,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 48.85,
+        "rangePct": 6,
+        "orbitContactPct": 6,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 121,
+        "damage": 3200,
+        "hitsBySource": {
+          "power_bank": 23,
+          "orbit_cup": 59,
+          "badge": 39
+        },
+        "damageBySource": {
+          "power_bank": 545,
+          "orbit_cup": 1652,
+          "badge": 1003
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1885,7 +2108,22 @@
       "maxEnemies": 372,
       "maxProjectiles": 160,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 31,
+        "damage": 806,
+        "hitsBySource": {
+          "power_bank": 31
+        },
+        "damageBySource": {
+          "power_bank": 806
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2016,7 +2254,26 @@
       "maxEnemies": 312,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 43.73,
+        "rangePct": 12.3,
+        "orbitContactPct": 12.4,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 114,
+        "damage": 3200,
+        "hitsBySource": {
+          "power_bank": 18,
+          "orbit_cup": 71,
+          "badge": 25
+        },
+        "damageBySource": {
+          "power_bank": 466,
+          "orbit_cup": 2059,
+          "badge": 675
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2126,7 +2383,18 @@
       "maxEnemies": 171,
       "maxProjectiles": 100,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 0,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 0,
+        "damage": 0,
+        "hitsBySource": {},
+        "damageBySource": {}
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2265,7 +2533,26 @@
       "maxEnemies": 340,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 2.3,
+        "orbitContactPct": 2.4,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 69,
+        "damage": 1542,
+        "hitsBySource": {
+          "power_bank": 20,
+          "badge": 31,
+          "orbit_cup": 18
+        },
+        "damageBySource": {
+          "power_bank": 480,
+          "badge": 558,
+          "orbit_cup": 504
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2385,7 +2672,24 @@
       "maxEnemies": 305,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 7.28,
+        "rangePct": 0.9,
+        "orbitContactPct": 1.8,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 11,
+        "damage": 367,
+        "hitsBySource": {
+          "badge": 8,
+          "orbit_cup": 3
+        },
+        "damageBySource": {
+          "badge": 280,
+          "orbit_cup": 87
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2527,7 +2831,26 @@
       "maxEnemies": 221,
       "maxProjectiles": 139,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 2.4,
+        "orbitContactPct": 2.5,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 85,
+        "damage": 2456,
+        "hitsBySource": {
+          "badge": 37,
+          "orbit_cup": 24,
+          "power_bank": 24
+        },
+        "damageBySource": {
+          "badge": 1184,
+          "orbit_cup": 696,
+          "power_bank": 576
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2666,7 +2989,24 @@
       "maxEnemies": 356,
       "maxProjectiles": 160,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 7.6,
+        "orbitContactPct": 7.6,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 108,
+        "damage": 2666,
+        "hitsBySource": {
+          "orbit_cup": 74,
+          "power_bank": 34
+        },
+        "damageBySource": {
+          "orbit_cup": 1850,
+          "power_bank": 816
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -2810,7 +3150,26 @@
       "maxEnemies": 283,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 7.7,
+        "orbitContactPct": 0,
+        "batonSwingCount": 60,
+        "batonHitPct": 10,
+        "hits": 90,
+        "damage": 2990,
+        "hitsBySource": {
+          "badge": 52,
+          "power_bank": 32,
+          "baton": 6
+        },
+        "damageBySource": {
+          "badge": 1664,
+          "power_bank": 768,
+          "baton": 558
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -2954,7 +3313,26 @@
       "maxEnemies": 232,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 1.8,
+        "orbitContactPct": 0,
+        "batonSwingCount": 59,
+        "batonHitPct": 3.4,
+        "hits": 76,
+        "damage": 2346,
+        "hitsBySource": {
+          "power_bank": 26,
+          "badge": 48,
+          "baton": 2
+        },
+        "damageBySource": {
+          "power_bank": 624,
+          "badge": 1536,
+          "baton": 186
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3098,7 +3476,24 @@
       "maxEnemies": 117,
       "maxProjectiles": 67,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 59,
+        "batonHitPct": 0,
+        "hits": 81,
+        "damage": 2360,
+        "hitsBySource": {
+          "power_bank": 29,
+          "badge": 52
+        },
+        "damageBySource": {
+          "power_bank": 696,
+          "badge": 1664
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3239,7 +3634,24 @@
       "maxEnemies": 312,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 60,
+        "batonHitPct": 0,
+        "hits": 60,
+        "damage": 1875,
+        "hitsBySource": {
+          "power_bank": 25,
+          "badge": 35
+        },
+        "damageBySource": {
+          "power_bank": 650,
+          "badge": 1225
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3383,7 +3795,24 @@
       "maxEnemies": 294,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 44,
+        "batonHitPct": 0,
+        "hits": 71,
+        "damage": 1892,
+        "hitsBySource": {
+          "power_bank": 25,
+          "badge": 46
+        },
+        "damageBySource": {
+          "power_bank": 650,
+          "badge": 1242
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3525,7 +3954,24 @@
       "maxEnemies": 185,
       "maxProjectiles": 125,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 56,
+        "batonHitPct": 0,
+        "hits": 70,
+        "damage": 2032,
+        "hitsBySource": {
+          "power_bank": 26,
+          "badge": 44
+        },
+        "damageBySource": {
+          "power_bank": 624,
+          "badge": 1408
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3669,7 +4115,26 @@
       "maxEnemies": 242,
       "maxProjectiles": 162,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 4.1,
+        "orbitContactPct": 0,
+        "batonSwingCount": 45,
+        "batonHitPct": 6.7,
+        "hits": 57,
+        "damage": 1799,
+        "hitsBySource": {
+          "baton": 3,
+          "badge": 28,
+          "power_bank": 26
+        },
+        "damageBySource": {
+          "baton": 279,
+          "badge": 896,
+          "power_bank": 624
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3812,7 +4277,26 @@
       "maxEnemies": 230,
       "maxProjectiles": 161,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 5.7,
+        "orbitContactPct": 0,
+        "batonSwingCount": 47,
+        "batonHitPct": 10.6,
+        "hits": 78,
+        "damage": 2984,
+        "hitsBySource": {
+          "badge": 45,
+          "power_bank": 28,
+          "baton": 5
+        },
+        "damageBySource": {
+          "badge": 1665,
+          "power_bank": 784,
+          "baton": 535
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -3953,7 +4437,26 @@
       "maxEnemies": 254,
       "maxProjectiles": 161,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 58.05,
+        "rangePct": 11.8,
+        "orbitContactPct": 0,
+        "batonSwingCount": 56,
+        "batonHitPct": 19.6,
+        "hits": 87,
+        "damage": 3200,
+        "hitsBySource": {
+          "baton": 11,
+          "power_bank": 31,
+          "badge": 45
+        },
+        "damageBySource": {
+          "baton": 1023,
+          "power_bank": 737,
+          "badge": 1440
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "security",
@@ -4094,7 +4597,22 @@
       "maxEnemies": 386,
       "maxProjectiles": 160,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 62,
+        "rangePct": 0,
+        "orbitContactPct": 0,
+        "batonSwingCount": 71,
+        "batonHitPct": 0,
+        "hits": 34,
+        "damage": 721,
+        "hitsBySource": {
+          "power_bank": 34
+        },
+        "damageBySource": {
+          "power_bank": 721
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4235,7 +4753,26 @@
       "maxEnemies": 181,
       "maxProjectiles": 122,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 53.22,
+        "rangePct": 83.2,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 228,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 196,
+          "power_bank": 14,
+          "badge": 18
+        },
+        "damageBySource": {
+          "screw_gun": 2288,
+          "power_bank": 336,
+          "badge": 576
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4377,7 +4914,26 @@
       "maxEnemies": 195,
       "maxProjectiles": 126,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 59.83,
+        "rangePct": 56.8,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 226,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 204,
+          "power_bank": 10,
+          "badge": 12
+        },
+        "damageBySource": {
+          "screw_gun": 2576,
+          "power_bank": 240,
+          "badge": 384
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4518,7 +5074,26 @@
       "maxEnemies": 200,
       "maxProjectiles": 107,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 27.3,
+        "rangePct": 94.1,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 220,
+        "damage": 3200,
+        "hitsBySource": {
+          "power_bank": 12,
+          "screw_gun": 195,
+          "badge": 13
+        },
+        "damageBySource": {
+          "power_bank": 273,
+          "screw_gun": 2511,
+          "badge": 416
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4659,7 +5234,26 @@
       "maxEnemies": 317,
       "maxProjectiles": 169,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 18.67,
+        "rangePct": 100,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 177,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 147,
+          "power_bank": 10,
+          "badge": 20
+        },
+        "damageBySource": {
+          "screw_gun": 2249,
+          "power_bank": 260,
+          "badge": 691
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4789,7 +5383,26 @@
       "maxEnemies": 172,
       "maxProjectiles": 101,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 21.37,
+        "rangePct": 99.9,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 188,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 166,
+          "badge": 14,
+          "power_bank": 8
+        },
+        "damageBySource": {
+          "screw_gun": 2502,
+          "badge": 490,
+          "power_bank": 208
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4933,7 +5546,26 @@
       "maxEnemies": 142,
       "maxProjectiles": 86,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 35.52,
+        "rangePct": 80.6,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 204,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 169,
+          "badge": 23,
+          "power_bank": 12
+        },
+        "damageBySource": {
+          "screw_gun": 2176,
+          "badge": 736,
+          "power_bank": 288
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5065,7 +5697,26 @@
       "maxEnemies": 162,
       "maxProjectiles": 89,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 24.72,
+        "rangePct": 98.7,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 211,
+        "damage": 3200,
+        "hitsBySource": {
+          "power_bank": 12,
+          "screw_gun": 182,
+          "badge": 17
+        },
+        "damageBySource": {
+          "power_bank": 288,
+          "screw_gun": 2368,
+          "badge": 544
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5210,7 +5861,26 @@
       "maxEnemies": 161,
       "maxProjectiles": 86,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 44.75,
+        "rangePct": 72.4,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 188,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 166,
+          "power_bank": 11,
+          "badge": 11
+        },
+        "damageBySource": {
+          "screw_gun": 2518,
+          "power_bank": 308,
+          "badge": 374
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5354,7 +6024,26 @@
       "maxEnemies": 209,
       "maxProjectiles": 127,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 32.1,
+        "rangePct": 98.5,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 182,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 145,
+          "badge": 23,
+          "power_bank": 14
+        },
+        "damageBySource": {
+          "screw_gun": 2031,
+          "badge": 805,
+          "power_bank": 364
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5497,7 +6186,26 @@
       "maxEnemies": 226,
       "maxProjectiles": 154,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 24.1,
+        "rangePct": 98.8,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 214,
+        "damage": 3200,
+        "hitsBySource": {
+          "screw_gun": 189,
+          "badge": 14,
+          "power_bank": 11
+        },
+        "damageBySource": {
+          "screw_gun": 2488,
+          "badge": 448,
+          "power_bank": 264
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -5640,7 +6348,24 @@
       "maxEnemies": 142,
       "maxProjectiles": 100,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 43.87,
+        "rangePct": 98.3,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 73,
+        "damage": 2400,
+        "hitsBySource": {
+          "profession": 50,
+          "power_bank": 23
+        },
+        "damageBySource": {
+          "profession": 1850,
+          "power_bank": 550
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     },
     {
       "role": "student",
@@ -5782,7 +6507,26 @@
       "maxEnemies": 124,
       "maxProjectiles": 58,
       "damageSpikes": [],
-      "aiVersion": "heuristic-v1-controller12ticks-no-cheats"
+      "bossCombat": {
+        "activeSeconds": 20.62,
+        "rangePct": 100,
+        "orbitContactPct": 0,
+        "batonSwingCount": 0,
+        "batonHitPct": 0,
+        "hits": 73,
+        "damage": 2400,
+        "hitsBySource": {
+          "profession": 49,
+          "badge": 13,
+          "power_bank": 11
+        },
+        "damageBySource": {
+          "profession": 1813,
+          "badge": 325,
+          "power_bank": 262
+        }
+      },
+      "aiVersion": "heuristic-v2-controller4ticks-no-cheats"
     }
   ],
   "statistics": [
@@ -5793,7 +6537,11 @@
       "bossReached": 9,
       "meanFirstUpgradeSeconds": 12,
       "meanLevelAtEnd": 17.3,
-      "meanSurvivalSeconds": 452
+      "meanSurvivalSeconds": 452,
+      "meanBossRangePct": 63,
+      "meanBossDamage": 2182,
+      "meanOrbitContactPct": 0,
+      "meanBatonHitPct": 0
     },
     {
       "role": "tea_worker",
@@ -5802,7 +6550,11 @@
       "bossReached": 9,
       "meanFirstUpgradeSeconds": 16,
       "meanLevelAtEnd": 16.5,
-      "meanSurvivalSeconds": 461
+      "meanSurvivalSeconds": 461,
+      "meanBossRangePct": 3,
+      "meanBossDamage": 1604,
+      "meanOrbitContactPct": 3,
+      "meanBatonHitPct": 0
     },
     {
       "role": "security",
@@ -5811,7 +6563,11 @@
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 13,
       "meanLevelAtEnd": 17.9,
-      "meanSurvivalSeconds": 480
+      "meanSurvivalSeconds": 480,
+      "meanBossRangePct": 3,
+      "meanBossDamage": 2220,
+      "meanOrbitContactPct": 0,
+      "meanBatonHitPct": 5
     },
     {
       "role": "screw_worker",
@@ -5820,7 +6576,11 @@
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 10,
       "meanLevelAtEnd": 17.6,
-      "meanSurvivalSeconds": 475
+      "meanSurvivalSeconds": 475,
+      "meanBossRangePct": 88,
+      "meanBossDamage": 3200,
+      "meanOrbitContactPct": 0,
+      "meanBatonHitPct": 0
     }
   ],
   "warnings": [
