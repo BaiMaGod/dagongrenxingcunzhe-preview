@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: dagongren-laya-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-test-publish:
@@ -567,7 +567,7 @@ jobs:
           PY
 
       - name: Play all responsive layouts and real battle UI
-        id: browser-regression # V11 final responsive-layout and overload-resume regression
+        id: browser-regression # V11 explicit manual-pause and responsive-layout regression
         working-directory: private-game
         shell: bash
         run: |
