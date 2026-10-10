@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "name": "portrait direct start"
+    },
+    {
+      "name": "portrait pause freezes clock and resumes"
+    },
+    {
+      "name": "portrait touch moves and cancellation stops",
+      "overloadRecoveries": 0
+    },
+    {
+      "name": "portrait shop purchase, all pages, month settlement and restart"
+    },
+    {
+      "name": "narrow direct start"
+    },
+    {
+      "name": "narrow pause freezes clock and resumes"
+    },
+    {
+      "name": "narrow touch moves and cancellation stops",
+      "overloadRecoveries": 0
+    },
+    {
+      "name": "narrow shop purchase, all pages, month settlement and restart"
+    },
+    {
+      "name": "landscape direct start"
+    },
+    {
+      "name": "landscape pause freezes clock and resumes"
+    },
+    {
+      "name": "landscape touch moves and cancellation stops",
+      "overloadRecoveries": 0
+    },
+    {
+      "name": "landscape shop purchase, all pages, month settlement and restart"
+    },
+    {
+      "name": "desktop direct start"
+    },
+    {
+      "name": "desktop pause freezes clock and resumes"
+    },
+    {
+      "name": "desktop touch moves and cancellation stops",
+      "overloadRecoveries": 0
+    },
+    {
+      "name": "desktop shop purchase, all pages, month settlement and restart"
+    },
+    {
+      "name": "actual unlock purchase"
+    },
+    {
+      "name": "奶茶店员 starts, abandons, settles and returns"
+    },
+    {
+      "name": "保安 starts, abandons, settles and returns"
+    },
+    {
+      "name": "螺丝工 starts, abandons, settles and returns"
+    },
+    {
+      "name": "blur clears held keyboard input"
+    },
+    {
+      "name": "natural death settlement returns home"
+    },
+    {
+      "name": "second formal run starts without stale controls"
+    },
+    {
+      "name": "zero console errors, page errors, failed assets"
+    }
+  ],
+  "errors": [],
+  "naturalBattle": {
+    "wallSeconds": 56,
+    "upgrades": 3,
+    "texts": [
+      "大学生  Lv.4",
+      "HP 0/100",
+      "第 4 天",
+      "51/480 秒",
+      "工资 ¥0",
+      "普通月 · 本月高发：久坐",
+      "课本 Lv.1",
+      "击退 61",
+      "性能",
+      "本月失败",
+      "体力耗尽\n本局工资不结转\n\n本月收入：¥0\n装备及道具：-¥0\n本月工资剩余：¥0\n\n实际入账：¥0\n局外余额：¥15000",
+      "返回首页",
+      "开始准备下一个月"
+    ]
+  }
+}
