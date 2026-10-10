@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: rerun 40-episode career benchmark after synchronizing MVP narrative stats with real JSON.
+      # Release gate: compare forty fixed seeds with Boss-only baton 1.85x and orbital cup 1.45x.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
