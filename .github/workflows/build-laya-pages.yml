@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: compare genuine 480s rent-focused attack runs.
+      # Release gate: test melee/ranged rent-target priority with in-range geometry and ten 480s cases.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
