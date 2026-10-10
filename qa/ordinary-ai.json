@@ -1616,8 +1616,8 @@
       "deathSecond": null,
       "firstLevelSecond": 17,
       "lastLevel": 17,
-      "kills": 1378,
-      "hp": 9,
+      "kills": 1379,
+      "hp": 13,
       "maxHp": 182,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -1728,16 +1728,16 @@
           "kills": 1149,
           "enemies": 258,
           "collectedXp": 72,
-          "bossHp": 1291
+          "bossHp": 760
         },
         {
           "sec": 480,
-          "hp": 9,
+          "hp": 13,
           "maxHp": 182,
           "level": 17,
-          "kills": 1378,
-          "enemies": 163,
-          "collectedXp": 227,
+          "kills": 1379,
+          "enemies": 173,
+          "collectedXp": 164,
           "bossHp": null
         }
       ],
@@ -1893,16 +1893,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "timeout",
-      "deathSecond": null,
+      "seconds": 461.97,
+      "outcome": "dead",
+      "deathSecond": 461.96666666666664,
       "firstLevelSecond": 16.2,
       "lastLevel": 17,
-      "kills": 1326,
-      "hp": 13,
+      "kills": 1246,
+      "hp": 0,
       "maxHp": 176,
-      "bossDefeated": false,
-      "bossHpLeft": 453,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
@@ -2010,17 +2010,7 @@
           "kills": 1121,
           "enemies": 229,
           "collectedXp": 98,
-          "bossHp": 929
-        },
-        {
-          "sec": 480,
-          "hp": 13,
-          "maxHp": 176,
-          "level": 17,
-          "kills": 1326,
-          "enemies": 172,
-          "collectedXp": 131,
-          "bossHp": 453
+          "bossHp": 290
         }
       ],
       "maxEnemies": 312,
@@ -2153,7 +2143,7 @@
       "hp": 39,
       "maxHp": 175,
       "bossDefeated": false,
-      "bossHpLeft": 1820,
+      "bossHpLeft": 1658,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
@@ -2259,7 +2249,7 @@
           "kills": 1215,
           "enemies": 74,
           "collectedXp": 42,
-          "bossHp": 2878
+          "bossHp": 2842
         },
         {
           "sec": 480,
@@ -2269,7 +2259,7 @@
           "kills": 1306,
           "enemies": 115,
           "collectedXp": 110,
-          "bossHp": 1820
+          "bossHp": 1658
         }
       ],
       "maxEnemies": 340,
@@ -2292,7 +2282,7 @@
       "hp": 0,
       "maxHp": 156,
       "bossDefeated": false,
-      "bossHpLeft": 2860,
+      "bossHpLeft": 2833,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -2412,7 +2402,7 @@
       "hp": 116,
       "maxHp": 221,
       "bossDefeated": false,
-      "bossHpLeft": 960,
+      "bossHpLeft": 744,
       "salary": 3000,
       "spent": 2500,
       "remaining": 500,
@@ -2521,7 +2511,7 @@
           "kills": 1267,
           "enemies": 150,
           "collectedXp": 191.04,
-          "bossHp": 1912
+          "bossHp": 1696
         },
         {
           "sec": 480,
@@ -2531,7 +2521,7 @@
           "kills": 1491,
           "enemies": 68,
           "collectedXp": 74.44,
-          "bossHp": 960
+          "bossHp": 744
         }
       ],
       "maxEnemies": 221,
@@ -2554,7 +2544,7 @@
       "hp": 49,
       "maxHp": 202,
       "bossDefeated": false,
-      "bossHpLeft": 1126,
+      "bossHpLeft": 534,
       "salary": 3000,
       "spent": 2500,
       "remaining": 500,
@@ -2660,7 +2650,7 @@
           "kills": 691,
           "enemies": 345,
           "collectedXp": 100.44,
-          "bossHp": 1558
+          "bossHp": 966
         },
         {
           "sec": 480,
@@ -2670,7 +2660,7 @@
           "kills": 738,
           "enemies": 356,
           "collectedXp": 166.32,
-          "bossHp": 1126
+          "bossHp": 534
         }
       ],
       "maxEnemies": 356,
@@ -2693,7 +2683,7 @@
       "hp": 43,
       "maxHp": 279,
       "bossDefeated": false,
-      "bossHpLeft": 300,
+      "bossHpLeft": 210,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -2804,7 +2794,7 @@
           "kills": 1242,
           "enemies": 150,
           "collectedXp": 143,
-          "bossHp": 1636
+          "bossHp": 1546
         },
         {
           "sec": 480,
@@ -2814,7 +2804,7 @@
           "kills": 1421,
           "enemies": 92,
           "collectedXp": 137,
-          "bossHp": 300
+          "bossHp": 210
         }
       ],
       "maxEnemies": 283,
@@ -2837,7 +2827,7 @@
       "hp": 126,
       "maxHp": 270,
       "bossDefeated": false,
-      "bossHpLeft": 884,
+      "bossHpLeft": 854,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -2948,7 +2938,7 @@
           "kills": 1346,
           "enemies": 116,
           "collectedXp": 225,
-          "bossHp": 2116
+          "bossHp": 2086
         },
         {
           "sec": 480,
@@ -2958,7 +2948,7 @@
           "kills": 1524,
           "enemies": 68,
           "collectedXp": 209,
-          "bossHp": 884
+          "bossHp": 854
         }
       ],
       "maxEnemies": 232,
@@ -3552,7 +3542,7 @@
       "hp": 6,
       "maxHp": 243,
       "bossDefeated": false,
-      "bossHpLeft": 1446,
+      "bossHpLeft": 1401,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
@@ -3663,7 +3653,7 @@
           "kills": 1278,
           "enemies": 158,
           "collectedXp": 157,
-          "bossHp": 2166
+          "bossHp": 2121
         },
         {
           "sec": 480,
@@ -3673,7 +3663,7 @@
           "kills": 1482,
           "enemies": 77,
           "collectedXp": 189,
-          "bossHp": 1446
+          "bossHp": 1401
         }
       ],
       "maxEnemies": 242,
@@ -3696,7 +3686,7 @@
       "hp": 99,
       "maxHp": 261,
       "bossDefeated": false,
-      "bossHpLeft": 301,
+      "bossHpLeft": 216,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
@@ -3806,7 +3796,7 @@
           "kills": 1315,
           "enemies": 118,
           "collectedXp": 75,
-          "bossHp": 1470
+          "bossHp": 1385
         },
         {
           "sec": 480,
@@ -3816,7 +3806,7 @@
           "kills": 1492,
           "enemies": 75,
           "collectedXp": 118,
-          "bossHp": 301
+          "bossHp": 216
         }
       ],
       "maxEnemies": 230,
@@ -3831,15 +3821,15 @@
       "riskTag": "sedentary",
       "assist": false,
       "seconds": 480,
-      "outcome": "timeout",
+      "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 12.8,
       "lastLevel": 17,
-      "kills": 1440,
-      "hp": 122,
+      "kills": 1442,
+      "hp": 116,
       "maxHp": 270,
-      "bossDefeated": false,
-      "bossHpLeft": 14,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
@@ -3947,17 +3937,17 @@
           "kills": 1255,
           "enemies": 170,
           "collectedXp": 23.72,
-          "bossHp": 1182
+          "bossHp": 1017
         },
         {
           "sec": 480,
-          "hp": 122,
+          "hp": 116,
           "maxHp": 270,
           "level": 17,
-          "kills": 1440,
-          "enemies": 104,
-          "collectedXp": 113.36,
-          "bossHp": 14
+          "kills": 1442,
+          "enemies": 111,
+          "collectedXp": 152.24,
+          "bossHp": null
         }
       ],
       "maxEnemies": 254,
@@ -5812,12 +5802,12 @@
       "bossReached": 9,
       "meanFirstUpgradeSeconds": 16,
       "meanLevelAtEnd": 16.5,
-      "meanSurvivalSeconds": 463
+      "meanSurvivalSeconds": 461
     },
     {
       "role": "security",
       "plays": 10,
-      "wins": 0,
+      "wins": 1,
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 13,
       "meanLevelAtEnd": 17.9,
