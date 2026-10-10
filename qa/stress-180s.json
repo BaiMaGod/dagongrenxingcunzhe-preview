@@ -8,11 +8,11 @@
   "scenario": "Sustained 450 entities: 425 rice + 1 Boss + 24 Boss adds for 180 virtual seconds, no player offense or leveling interruptions",
   "realtimeDeviceFpsMeasured": false,
   "cpuPerStepMs": {
-    "mean": 0.033,
-    "p50": 0.028,
+    "mean": 0.034,
+    "p50": 0.029,
     "p95": 0.058,
-    "p99": 0.088,
-    "max": 1.437
+    "p99": 0.099,
+    "max": 1.403
   },
   "observed": {
     "maxEnemies": 450,
@@ -26,17 +26,17 @@
     {
       "gameSeconds": 60,
       "enemies": 450,
-      "sampleP95LogicMs": 0.062
+      "sampleP95LogicMs": 0.064
     },
     {
       "gameSeconds": 120,
       "enemies": 450,
-      "sampleP95LogicMs": 0.053
+      "sampleP95LogicMs": 0.057
     },
     {
       "gameSeconds": 180,
       "enemies": 450,
-      "sampleP95LogicMs": 0.058
+      "sampleP95LogicMs": 0.057
     }
   ],
   "final": {
