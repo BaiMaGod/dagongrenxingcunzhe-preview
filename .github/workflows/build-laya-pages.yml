@@ -229,6 +229,12 @@ jobs:
           test -s "$RUNNER_TEMP/game-web/art/city-floor.webp"
           test -s "$RUNNER_TEMP/game-web/audio/kill.wav"
 
+      - name: Configure shipped player and clear default widget requests
+        working-directory: private-game
+        run: |
+          python3 tools/test_finalize_web_build.py
+          python3 tools/finalize_web_build.py "$RUNNER_TEMP/game-web"
+
       - name: Manifest and public artifact hygiene checks
         shell: bash
         env:
@@ -353,7 +359,7 @@ jobs:
                             const stage=window.Laya.stage;
                             let found=null;
                             const walk=(node,depth)=>{
-                              if(found||!node||depth>15)return;
+                              if(found||!node||node.visible===false||node.alpha===0||depth>15)return;
                               if(typeof node.text==="string"&&node.text===targetText){found=node;return;}
                               const n=Number(node.numChildren)||0;
                               if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(n,100);i++)walk(node.getChildAt(i),depth+1);
@@ -378,7 +384,7 @@ jobs:
                       async def read_laya_texts():
                           return await page.evaluate("""() => {
                             const out=[],walk=(node,depth)=>{
-                              if(!node||depth>15||out.length>150)return;
+                              if(!node||node.visible===false||node.alpha===0||depth>15||out.length>150)return;
                               if(typeof node.text==="string"&&node.text.trim())out.push(node.text.slice(0,200));
                               if(typeof node.getChildAt==="function")for(let i=0;i<Math.min(node.numChildren||0,100);i++)walk(node.getChildAt(i),depth+1);
                             };
@@ -560,6 +566,19 @@ jobs:
           asyncio.run(main())
           PY
 
+      - name: Play all responsive layouts and real battle UI
+        id: browser-regression
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/browser-tools" playwright@1.55.0 --no-audit --no-fund
+          NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/regression-qa" node tools/browser_regression.cjs
+          cp "$RUNNER_TEMP/regression-qa/report.json" "$RUNNER_TEMP/qa/regression.json"
+          for shot in portrait-home landscape-shop narrow-end natural-upgrade natural-battle rotated-pause; do
+            cp "$RUNNER_TEMP/regression-qa/$shot.png" "$RUNNER_TEMP/qa/regression-$shot.png"
+          done
+
       - name: Upload non-source browser QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -577,6 +596,7 @@ jobs:
           SOURCE_TEST_OUTCOME: ${{ steps.source-tests.outcome }}
           LAYA_BUILD_OUTCOME: ${{ steps.laya-build.outcome }}
           BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
+          REGRESSION_QA_OUTCOME: ${{ steps.browser-regression.outcome }}
           STRESS_OUTCOME: ${{ steps.logic-stress.outcome }}
           MONTH_OUTCOME: ${{ steps.month-logic.outcome }}
           ORDINARY_AI_OUTCOME: ${{ steps.ordinary-ai.outcome }}
@@ -592,7 +612,9 @@ jobs:
                  "mobile-portrait.png","mobile-portrait-playing.png","mobile-portrait-paused.png",
                  "boss-desktop.png","boss-desktop-charge.png","boss-mobile-portrait.png","boss-mobile-portrait-charge.png",
                  "month-desktop-shop.png","month-desktop-boss.png","month-desktop-end.png",
-                 "month-mobile-portrait-shop.png","month-mobile-portrait-boss.png","month-mobile-portrait-end.png"]
+                 "month-mobile-portrait-shop.png","month-mobile-portrait-boss.png","month-mobile-portrait-end.png",
+                 "regression-portrait-home.png","regression-landscape-shop.png","regression-narrow-end.png",
+                 "regression-natural-upgrade.png","regression-natural-battle.png","regression-rotated-pause.png"]
           saved=[]
           for name in names:
               p=qa/name
@@ -614,6 +636,11 @@ jobs:
               payload=json.loads(ai.read_text())
               if payload.get("kind")=="ordinary-full-intensity-ai-playtest" and len(payload.get("samples",[]))==42:
                   shutil.copy2(ai,out/"ordinary-ai.json")
+          regression=qa/"regression.json"
+          if regression.is_file():
+              payload=json.loads(regression.read_text())
+              if not payload.get("errors") and payload.get("naturalBattle",{}).get("upgrades",0)>0:
+                  shutil.copy2(regression,out/"regression.json")
           result={
               "generated_at_utc":datetime.now(timezone.utc).isoformat(),
               "source_sha":os.environ.get("SOURCE_SHA",""),
@@ -621,6 +648,8 @@ jobs:
               "source_tests":os.environ["SOURCE_TEST_OUTCOME"],
               "laya_build":os.environ["LAYA_BUILD_OUTCOME"],
               "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
+              "browser_regression":os.environ["REGRESSION_QA_OUTCOME"],
+              "regression_report":"regression.json" if (out/"regression.json").is_file() else None,
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
               "ordinary_ai":os.environ.get("ORDINARY_AI_OUTCOME","skipped"),
               "ordinary_ai_report":"ordinary-ai.json" if (out/"ordinary-ai.json").is_file() else None,
@@ -662,6 +691,10 @@ jobs:
             month-desktop-shop.png month-desktop-boss.png month-desktop-end.png \
             month-mobile-portrait-shop.png month-mobile-portrait-boss.png month-mobile-portrait-end.png; do
               if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
+          done
+          if [ -s "$RUNNER_TEMP/qa-public/regression.json" ]; then cp "$RUNNER_TEMP/qa-public/regression.json" qa/regression.json; fi
+          for shot in portrait-home landscape-shop narrow-end natural-upgrade natural-battle rotated-pause; do
+            if [ -s "$RUNNER_TEMP/qa-public/regression-$shot.png" ]; then cp "$RUNNER_TEMP/qa-public/regression-$shot.png" "qa/regression-$shot.png"; fi
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
