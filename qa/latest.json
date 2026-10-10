@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-10-10T15:48:34.432308+00:00",
-  "source_sha": "12bce1f7c6b87c91335ae04087e9e08d8aec302b",
-  "workflow_run_id": "38064750706",
+  "generated_at_utc": "2026-10-10T15:52:13.338005+00:00",
+  "source_sha": "8c89c0ac125c7eb9258db057f124d9682c5dfcb6",
+  "workflow_run_id": "38064935320",
   "source_tests": "success",
   "laya_build": "success",
-  "browser_qa": "success",
-  "browser_regression": "failure",
+  "browser_qa": "cancelled",
+  "browser_regression": "skipped",
   "regression_report": null,
   "logic_stress": "success",
   "ordinary_ai": "success",
@@ -14,22 +14,7 @@
   "full_month_report": "full-month.json",
   "stress_report": "stress-180s.json",
   "screenshots": [
-    "desktop.png",
-    "desktop-playing.png",
-    "desktop-paused.png",
-    "mobile-portrait.png",
-    "mobile-portrait-playing.png",
-    "mobile-portrait-paused.png",
-    "boss-desktop.png",
-    "boss-desktop-charge.png",
-    "boss-mobile-portrait.png",
-    "boss-mobile-portrait-charge.png",
-    "month-desktop-shop.png",
-    "month-desktop-boss.png",
-    "month-desktop-end.png",
-    "month-mobile-portrait-shop.png",
-    "month-mobile-portrait-boss.png",
-    "month-mobile-portrait-end.png"
+    "desktop.png"
   ],
   "notes": "Desktop/mobile Chromium screenshots include an isolated no-payout accelerated 480-second calendar UI QA. The Node 180-second synthetic stress is CPU logic-only. Neither measures real physical-device FPS or live difficulty."
 }
