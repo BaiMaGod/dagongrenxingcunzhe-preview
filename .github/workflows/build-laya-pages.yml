@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # Ordinary-month pacing release candidate: exact Boss HUD automation substring restored; build latest source.
+          # Illustrated office art v10: build the current source, preserve calendar/difficulty.
           ref: dev/m9-laya-build
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
@@ -218,6 +218,8 @@ jobs:
           cp assets/art/actors-motion.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/combat-motion.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/office-scenes-v10.webp "$RUNNER_TEMP/game-web/art/"
+          test -s "$RUNNER_TEMP/game-web/art/office-scenes-v10.webp"
           cp assets/audio/*.wav "$RUNNER_TEMP/game-web/audio/"
           test -s "$RUNNER_TEMP/game-web/art/combat-atlas.webp"
           test -s "$RUNNER_TEMP/game-web/art/actors-motion.webp"
@@ -267,6 +269,7 @@ jobs:
           curl -fsS http://127.0.0.1:4173/art/actors-motion.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-motion.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/office-scenes-v10.webp > /dev/null
           for cue in hit kill hurt salary boss boss_down upgrade shot; do
             curl -fsS "http://127.0.0.1:4173/audio/$cue.wav" > /dev/null
           done
@@ -379,6 +382,9 @@ jobs:
                             walk(window.Laya.stage,0);return out;
                           }""")
 
+                      def battle_hud(texts):
+                          return any("480 秒" in t for t in texts) and any(t.startswith("HP ") for t in texts)
+
                       await click_laya_label("普通月")
                       for _ in range(20):
                           await page.wait_for_timeout(200)
@@ -387,15 +393,41 @@ jobs:
                       await click_laya_label("开工")
                       for _ in range(30):
                           await page.wait_for_timeout(200)
-                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                          if battle_hud(await read_laya_texts()):break
                       else:raise AssertionError((name,"profession start did not enter battle",await read_laya_texts()))
                       # Initial monsters have a short spawn telegraph. Capture after activation,
                       # otherwise the screenshot can misleadingly depict only the telegraph art.
                       await page.wait_for_timeout(1650)
                       active_texts=await read_laya_texts()
-                      assert any("480 秒" in t and "HP " in t for t in active_texts),(name,"game exited unexpectedly",active_texts)
+                      assert battle_hud(active_texts),(name,"game exited unexpectedly",active_texts)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-playing.png")),full_page=True)
                       print(name,"live 1.65s combat render captured after spawn telegraph")
+                      # Actual keyboard / touch input must move the camera-anchored world floor.
+                      # Read only the rendered first floor tile; do not call sim input or success functions.
+                      async def floor_position():
+                          return await page.evaluate("""() => {
+                            const cmds=window.Laya.stage.getChildAt(0).graphics.cmds;
+                            const first=cmds.find(c=>c.texture&&typeof c.x==="number");
+                            if(!first)throw Error("No rendered floor tile");
+                            return {x:first.x,y:first.y};
+                          }""")
+                      before_move=await floor_position()
+                      if mobile:
+                          client=await ctx.new_cdp_session(page)
+                          x,y=92,size["height"]-104
+                          await client.send("Input.dispatchTouchEvent",{"type":"touchStart","touchPoints":[{"x":x,"y":y}]})
+                          await client.send("Input.dispatchTouchEvent",{"type":"touchMove","touchPoints":[{"x":x+52,"y":y}]})
+                          await page.wait_for_timeout(300)
+                          await client.send("Input.dispatchTouchEvent",{"type":"touchEnd","touchPoints":[]})
+                      else:
+                          await page.keyboard.down("d")
+                          await page.wait_for_timeout(300)
+                          await page.keyboard.up("d")
+                      after_move=await floor_position()
+                      assert abs(after_move["x"]-before_move["x"])>5,(name,"real movement input did not move camera",before_move,after_move)
+                      print(name,"real keyboard/touch movement assertion",before_move,after_move)
+                      assert any("[art] Illustrated office scene loaded:" in m for m in info_logs),(name,"new scene asset not loaded")
+
 
                       # Verify pause freezes game time and resume removes the menu; record both layouts.
                       def battle_clock(texts):
@@ -437,7 +469,7 @@ jobs:
                       await click_laya_label("开工")
                       for _ in range(30):
                           await page.wait_for_timeout(200)
-                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                          if battle_hud(await read_laya_texts()):break
                       else:raise AssertionError((name,"Boss practice did not start",await read_laya_texts()))
                       await page.wait_for_timeout(1700)
                       practice_texts=await read_laya_texts()
@@ -476,7 +508,7 @@ jobs:
                       await click_laya_label("开工")
                       for _ in range(30):
                           await page.wait_for_timeout(200)
-                          if any("480 秒" in t and "HP " in t for t in await read_laya_texts()):break
+                          if battle_hud(await read_laya_texts()):break
                       else:raise AssertionError((name,"month QA battle not started"))
                       async def fastforward(tick):
                           return await page.evaluate("""tick => {
@@ -514,6 +546,12 @@ jobs:
                       assert not errors,(name,"browser errors during full-month QA",errors)
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/("month-"+name+"-end.png")),full_page=True)
                       print(name,"Day10/Day20 shops, Day27 Boss, end at 28800 and no-payout win UI verified",day10,day20,day27,final)
+                      await click_laya_label("返回首页")
+                      for _ in range(25):
+                          await page.wait_for_timeout(150)
+                          if any("本月开工准备" in t for t in await read_laya_texts()):break
+                      else:raise AssertionError((name,"end to home restart failed"))
+
                       await ctx.close()
                   await browser.close()
           asyncio.run(main())
@@ -663,3 +701,4 @@ jobs:
           done
           echo "::error::Live Pages manifest does not match source commit $SOURCE_SHA"
           exit 1
+
