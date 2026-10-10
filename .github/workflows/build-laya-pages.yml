@@ -219,6 +219,8 @@ jobs:
           cp assets/art/combat-motion.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/office-scenes-v10.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/office-floor-v10.webp "$RUNNER_TEMP/game-web/art/"
+          test -s "$RUNNER_TEMP/game-web/art/office-floor-v10.webp"
           test -s "$RUNNER_TEMP/game-web/art/office-scenes-v10.webp"
           cp assets/audio/*.wav "$RUNNER_TEMP/game-web/audio/"
           test -s "$RUNNER_TEMP/game-web/art/combat-atlas.webp"
@@ -270,6 +272,7 @@ jobs:
           curl -fsS http://127.0.0.1:4173/art/combat-motion.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/office-scenes-v10.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/office-floor-v10.webp > /dev/null
           for cue in hit kill hurt salary boss boss_down upgrade shot; do
             curl -fsS "http://127.0.0.1:4173/audio/$cue.wav" > /dev/null
           done
