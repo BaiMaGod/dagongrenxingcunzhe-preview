@@ -79,6 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
+      # Release gate: compare genuine 480s rent-focused attack runs.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
