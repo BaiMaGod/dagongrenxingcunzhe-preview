@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: compare forty fixed seeds with Boss-only baton 1.85x and orbital cup 1.45x.
+      # Release gate: 40 fixed seeds; verify Lv1-2 baton cap correctly prioritizes Boss and capture actual damage telemetry.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
@@ -97,6 +97,8 @@ jobs:
           assert {s["role"] for s in r["samples"]}=={"student","tea_worker","security","screw_worker"}
           assert all(s["outcome"] in ("win","dead","timeout") and 0<s["seconds"]<=480 for s in r["samples"])
           assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
+          assert all(s["bossCombat"]["damage"]>=0 and 0<=s["bossCombat"]["rangePct"]<=100 for s in r["samples"])
+          assert all(s["bossCombat"]["damage"]==sum(s["bossCombat"]["damageBySource"].values()) for s in r["samples"])
           for row in r["statistics"]: print("AI playtest (not human):",row)
           print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
           PY
