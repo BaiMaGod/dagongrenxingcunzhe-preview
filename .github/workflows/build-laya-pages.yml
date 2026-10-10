@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: test melee/ranged rent-target priority with in-range geometry and ten 480s cases.
+      # Release gate: retest forty full-strength seeds after security Boss DPS and tea-worker durability tuning.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
