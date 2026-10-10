@@ -148,7 +148,7 @@ jobs:
           echo "### Full month contract (accelerated, QA-only fixture)" >> "$GITHUB_STEP_SUMMARY"
           cat "$RUNNER_TEMP/full-month.json" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Rasterize illustrated combat atlas and synthesize event WAV
+      - name: Rasterize illustrated combat atlas and synthesize event WAV # painted enemies V11
         id: game-assets
         working-directory: private-game
         shell: bash
@@ -584,7 +584,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dagongren-laya-browser-qa
-          path: ${{ runner.temp }}/qa
+          path: |
+            ${{ runner.temp }}/qa
+            ${{ runner.temp }}/regression-qa
           if-no-files-found: ignore
           retention-days: 7
 
