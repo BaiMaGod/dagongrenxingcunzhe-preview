@@ -79,6 +79,29 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
+      - name: Full-strength ordinary-month AI playtests
+        id: ordinary-ai
+        working-directory: private-game
+        shell: bash
+        timeout-minutes: 12
+        run: |
+          set -euo pipefail
+          node .test-dist/tests/ordinary_playtest_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/ordinary-ai.json"
+          python3 - <<'PY'
+          import json,os,pathlib
+          r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text())
+          assert r["kind"]=="ordinary-full-intensity-ai-playtest" and r["gameSeconds"]==480
+          assert r["fullSpawn"] and r["fullBossHp"] and not r["modifiedConfig"] and not r["debugInvulnerability"]
+          assert len(r["samples"])==10 and len(r["statistics"])==4
+          assert {s["role"] for s in r["samples"]}=={"student","tea_worker","security","screw_worker"}
+          assert all(s["outcome"] in ("win","dead","timeout") and 0<s["seconds"]<=480 for s in r["samples"])
+          assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
+          for row in r["statistics"]: print("AI playtest (not human):",row)
+          print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
+          PY
+          echo "### Actual full-strength ordinary-month AI playtests (not human win rates)" >> "$GITHUB_STEP_SUMMARY"
+          python3 -c 'import json,os,pathlib; r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text());print("| Role | Plays | Wins | Boss reached | First level (s) | Final Lv | Survived (s) |\n|---|---:|---:|---:|---:|---:|---:|");[print("| {role} | {plays} | {wins} | {bossReached} | {meanFirstUpgradeSeconds} | {meanLevelAtEnd} | {meanSurvivalSeconds} |".format(**x)) for x in r["statistics"]])' >> "$GITHUB_STEP_SUMMARY"
+
       - name: 180 virtual seconds capped-swarm CPU logic stress
         id: logic-stress
         working-directory: private-game
@@ -510,6 +533,7 @@ jobs:
           BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
           STRESS_OUTCOME: ${{ steps.logic-stress.outcome }}
           MONTH_OUTCOME: ${{ steps.month-logic.outcome }}
+          ORDINARY_AI_OUTCOME: ${{ steps.ordinary-ai.outcome }}
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/qa-public"
@@ -539,6 +563,11 @@ jobs:
               payload=json.loads(stress.read_text())
               if payload.get("kind")=="logic-only-synthetic-stress" and payload.get("steps")==10800:
                   shutil.copy2(stress,out/"stress-180s.json")
+          ai=pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json"
+          if ai.is_file():
+              payload=json.loads(ai.read_text())
+              if payload.get("kind")=="ordinary-full-intensity-ai-playtest" and len(payload.get("samples",[]))==10:
+                  shutil.copy2(ai,out/"ordinary-ai.json")
           result={
               "generated_at_utc":datetime.now(timezone.utc).isoformat(),
               "source_sha":os.environ.get("SOURCE_SHA",""),
@@ -547,6 +576,8 @@ jobs:
               "laya_build":os.environ["LAYA_BUILD_OUTCOME"],
               "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
+              "ordinary_ai":os.environ.get("ORDINARY_AI_OUTCOME","skipped"),
+              "ordinary_ai_report":"ordinary-ai.json" if (out/"ordinary-ai.json").is_file() else None,
               "full_month_qa":os.environ.get("MONTH_OUTCOME","skipped"),
               "full_month_report":"full-month.json" if (out/"full-month.json").is_file() else None,
               "stress_report":"stress-180s.json" if (out/"stress-180s.json").is_file() else None,
@@ -578,6 +609,7 @@ jobs:
           cp "$RUNNER_TEMP/qa-public/latest.json" qa/latest.json
           if [ -s "$RUNNER_TEMP/qa-public/stress-180s.json" ]; then cp "$RUNNER_TEMP/qa-public/stress-180s.json" qa/stress-180s.json; fi
           if [ -s "$RUNNER_TEMP/qa-public/full-month.json" ]; then cp "$RUNNER_TEMP/qa-public/full-month.json" qa/full-month.json; fi
+          if [ -s "$RUNNER_TEMP/qa-public/ordinary-ai.json" ]; then cp "$RUNNER_TEMP/qa-public/ordinary-ai.json" qa/ordinary-ai.json; fi
           for name in desktop.png desktop-playing.png desktop-paused.png \
             mobile-portrait.png mobile-portrait-playing.png mobile-portrait-paused.png \
             boss-desktop.png boss-desktop-charge.png boss-mobile-portrait.png boss-mobile-portrait-charge.png \
