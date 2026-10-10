@@ -13,16 +13,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 423.37,
+      "seconds": 451.78,
       "outcome": "dead",
-      "deathSecond": 423.3666666666667,
+      "deathSecond": 451.78333333333336,
       "firstLevelSecond": 12.766666666666667,
       "lastLevel": 16,
-      "kills": 1052,
+      "kills": 1190,
       "hp": 0,
       "maxHp": 155,
       "bossDefeated": false,
-      "bossHpLeft": 3028,
+      "bossHpLeft": 2640,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
@@ -121,34 +121,39 @@
           "enemies": 241,
           "collectedXp": 63,
           "bossHp": 3200
-        }
-      ],
-      "maxEnemies": 247,
-      "maxProjectiles": 142,
-      "damageSpikes": [
+        },
         {
-          "sec": 423,
-          "lost": 52
+          "sec": 448,
+          "hp": 20,
+          "maxHp": 155,
+          "level": 16,
+          "kills": 1169,
+          "enemies": 240,
+          "collectedXp": 123,
+          "bossHp": 2725
         }
       ],
+      "maxEnemies": 254,
+      "maxProjectiles": 156,
+      "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 5.37,
-        "rangePct": 81.7,
+        "activeSeconds": 33.78,
+        "rangePct": 79.3,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 5,
-        "damage": 172,
+        "hits": 19,
+        "damage": 560,
         "hitsBySource": {
-          "power_bank": 1,
-          "profession": 4
+          "power_bank": 11,
+          "profession": 8
         },
         "damageBySource": {
-          "power_bank": 24,
-          "profession": 148
+          "power_bank": 264,
+          "profession": 296
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -156,16 +161,16 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 434.93,
+      "seconds": 479.58,
       "outcome": "dead",
-      "deathSecond": 434.93333333333334,
+      "deathSecond": 479.5833333333333,
       "firstLevelSecond": 12.333333333333334,
       "lastLevel": 18,
-      "kills": 1212,
+      "kills": 1456,
       "hp": 0,
       "maxHp": 140,
-      "bossDefeated": false,
-      "bossHpLeft": 1412,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
@@ -265,31 +270,41 @@
           "enemies": 145,
           "collectedXp": 225,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 16,
+          "maxHp": 140,
+          "level": 18,
+          "kills": 1330,
+          "enemies": 117,
+          "collectedXp": 16,
+          "bossHp": 427
         }
       ],
-      "maxEnemies": 167,
-      "maxProjectiles": 84,
+      "maxEnemies": 170,
+      "maxProjectiles": 103,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 16.93,
-        "rangePct": 100,
+        "activeSeconds": 40.48,
+        "rangePct": 90.3,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 57,
-        "damage": 1788,
+        "hits": 99,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 9,
-          "badge": 17,
-          "profession": 31
+          "power_bank": 15,
+          "badge": 22,
+          "profession": 62
         },
         "damageBySource": {
-          "power_bank": 216,
-          "badge": 425,
-          "profession": 1147
+          "power_bank": 360,
+          "badge": 550,
+          "profession": 2290
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -297,16 +312,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 433.37,
-      "outcome": "dead",
-      "deathSecond": 433.3666666666667,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 10.533333333333333,
       "lastLevel": 18,
-      "kills": 1194,
-      "hp": 0,
+      "kills": 1445,
+      "hp": 72,
       "maxHp": 125,
-      "bossDefeated": false,
-      "bossHpLeft": 1312,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
@@ -406,31 +421,51 @@
           "enemies": 111,
           "collectedXp": 3,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 72,
+          "maxHp": 125,
+          "level": 18,
+          "kills": 1275,
+          "enemies": 108,
+          "collectedXp": 29,
+          "bossHp": 1348
+        },
+        {
+          "sec": 480,
+          "hp": 72,
+          "maxHp": 125,
+          "level": 18,
+          "kills": 1445,
+          "enemies": 77,
+          "collectedXp": 140,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 121,
+      "maxEnemies": 124,
       "maxProjectiles": 71,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 15.37,
-        "rangePct": 100,
+        "activeSeconds": 59.1,
+        "rangePct": 64.1,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 56,
-        "damage": 1888,
+        "hits": 95,
+        "damage": 3200,
         "hitsBySource": {
-          "profession": 32,
-          "power_bank": 8,
-          "badge": 16
+          "profession": 63,
+          "power_bank": 15,
+          "badge": 17
         },
         "damageBySource": {
-          "profession": 1184,
-          "power_bank": 192,
-          "badge": 512
+          "profession": 2296,
+          "power_bank": 360,
+          "badge": 544
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -438,20 +473,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 425.65,
-      "outcome": "dead",
-      "deathSecond": 425.65,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 9.916666666666666,
-      "lastLevel": 18,
-      "kills": 1291,
-      "hp": 0,
-      "maxHp": 140,
-      "bossDefeated": false,
-      "bossHpLeft": 2174,
+      "lastLevel": 19,
+      "kills": 1492,
+      "hp": 36,
+      "maxHp": 160,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 1800,
       "remaining": 1200,
-      "upgrades": 17,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -469,7 +504,8 @@
         "backpack",
         "badge",
         "page_turning",
-        "kneepad"
+        "kneepad",
+        "fitness"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -547,31 +583,51 @@
           "enemies": 86,
           "collectedXp": 12,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 16,
+          "maxHp": 140,
+          "level": 18,
+          "kills": 1366,
+          "enemies": 88,
+          "collectedXp": 29,
+          "bossHp": 69
+        },
+        {
+          "sec": 480,
+          "hp": 36,
+          "maxHp": 160,
+          "level": 19,
+          "kills": 1492,
+          "enemies": 129,
+          "collectedXp": 263,
+          "bossHp": null
         }
       ],
       "maxEnemies": 135,
-      "maxProjectiles": 71,
+      "maxProjectiles": 91,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 7.65,
-        "rangePct": 100,
+        "activeSeconds": 31.45,
+        "rangePct": 88.5,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 30,
-        "damage": 1026,
+        "hits": 93,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 5,
-          "profession": 17,
-          "badge": 8
+          "power_bank": 15,
+          "profession": 56,
+          "badge": 22
         },
         "damageBySource": {
-          "power_bank": 130,
-          "profession": 680,
-          "badge": 216
+          "power_bank": 390,
+          "profession": 2240,
+          "badge": 570
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -579,16 +635,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 434.32,
+      "seconds": 447.15,
       "outcome": "dead",
-      "deathSecond": 434.31666666666666,
+      "deathSecond": 447.15,
       "firstLevelSecond": 11.65,
       "lastLevel": 17,
-      "kills": 1174,
+      "kills": 1209,
       "hp": 0,
       "maxHp": 140,
       "bossDefeated": false,
-      "bossHpLeft": 1229,
+      "bossHpLeft": 496,
       "salary": 3000,
       "spent": 1950,
       "remaining": 1050,
@@ -689,29 +745,34 @@
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 174,
+      "maxEnemies": 181,
       "maxProjectiles": 91,
-      "damageSpikes": [],
+      "damageSpikes": [
+        {
+          "sec": 426,
+          "lost": 40
+        }
+      ],
       "bossCombat": {
-        "activeSeconds": 16.32,
-        "rangePct": 100,
+        "activeSeconds": 29.15,
+        "rangePct": 91.2,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 63,
-        "damage": 1971,
+        "hits": 84,
+        "damage": 2704,
         "hitsBySource": {
-          "power_bank": 10,
-          "profession": 35,
-          "badge": 18
+          "power_bank": 12,
+          "profession": 56,
+          "badge": 16
         },
         "damageBySource": {
-          "power_bank": 260,
-          "profession": 1225,
-          "badge": 486
+          "power_bank": 312,
+          "profession": 1960,
+          "badge": 432
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -719,16 +780,16 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 425.98,
+      "seconds": 449.92,
       "outcome": "dead",
-      "deathSecond": 425.98333333333335,
+      "deathSecond": 449.9166666666667,
       "firstLevelSecond": 12.483333333333333,
       "lastLevel": 18,
-      "kills": 1234,
+      "kills": 1321,
       "hp": 0,
       "maxHp": 140,
-      "bossDefeated": false,
-      "bossHpLeft": 2325,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -829,31 +890,41 @@
           "enemies": 64,
           "collectedXp": 143,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 10,
+          "maxHp": 140,
+          "level": 18,
+          "kills": 1315,
+          "enemies": 87,
+          "collectedXp": 198,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 78,
+      "maxEnemies": 92,
       "maxProjectiles": 61,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 7.98,
+        "activeSeconds": 25.45,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 26,
-        "damage": 875,
+        "hits": 95,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 4,
-          "profession": 15,
-          "badge": 7
+          "power_bank": 14,
+          "profession": 59,
+          "badge": 22
         },
         "damageBySource": {
-          "power_bank": 96,
-          "profession": 555,
-          "badge": 224
+          "power_bank": 336,
+          "profession": 2160,
+          "badge": 704
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -861,16 +932,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 421.93,
+      "seconds": 434.85,
       "outcome": "dead",
-      "deathSecond": 421.93333333333334,
+      "deathSecond": 434.85,
       "firstLevelSecond": 11.833333333333334,
       "lastLevel": 17,
-      "kills": 1163,
+      "kills": 1298,
       "hp": 0,
       "maxHp": 125,
       "bossDefeated": false,
-      "bossHpLeft": 2657,
+      "bossHpLeft": 2080,
       "salary": 3000,
       "spent": 2500,
       "remaining": 500,
@@ -972,29 +1043,29 @@
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 153,
-      "maxProjectiles": 71,
+      "maxEnemies": 152,
+      "maxProjectiles": 73,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 3.93,
+        "activeSeconds": 16.85,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 17,
-        "damage": 543,
+        "hits": 37,
+        "damage": 1120,
         "hitsBySource": {
-          "badge": 5,
-          "profession": 10,
-          "power_bank": 2
+          "profession": 17,
+          "power_bank": 9,
+          "badge": 11
         },
         "damageBySource": {
-          "badge": 125,
-          "profession": 370,
-          "power_bank": 48
+          "profession": 629,
+          "power_bank": 216,
+          "badge": 275
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -1002,13 +1073,13 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 442.18,
-      "outcome": "dead",
-      "deathSecond": 442.18333333333334,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 13.15,
       "lastLevel": 17,
-      "kills": 1223,
-      "hp": 0,
+      "kills": 1419,
+      "hp": 85,
       "maxHp": 135,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -1112,36 +1183,51 @@
           "enemies": 122,
           "collectedXp": 13,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 90,
+          "maxHp": 135,
+          "level": 17,
+          "kills": 1250,
+          "enemies": 118,
+          "collectedXp": 49,
+          "bossHp": 3157
+        },
+        {
+          "sec": 480,
+          "hp": 85,
+          "maxHp": 135,
+          "level": 17,
+          "kills": 1419,
+          "enemies": 87,
+          "collectedXp": 142,
+          "bossHp": null
         }
       ],
       "maxEnemies": 166,
-      "maxProjectiles": 99,
-      "damageSpikes": [
-        {
-          "sec": 435,
-          "lost": 40
-        }
-      ],
+      "maxProjectiles": 95,
+      "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 23.85,
-        "rangePct": 99.1,
+        "activeSeconds": 61.1,
+        "rangePct": 53,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 82,
+        "hits": 81,
         "damage": 3200,
         "hitsBySource": {
-          "profession": 48,
-          "power_bank": 12,
-          "badge": 22
+          "profession": 56,
+          "power_bank": 11,
+          "badge": 14
         },
         "damageBySource": {
-          "profession": 2064,
-          "power_bank": 336,
-          "badge": 800
+          "profession": 2408,
+          "power_bank": 308,
+          "badge": 484
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -1149,16 +1235,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 438.7,
+      "seconds": 443.63,
       "outcome": "dead",
-      "deathSecond": 438.7,
+      "deathSecond": 443.6333333333333,
       "firstLevelSecond": 11.5,
       "lastLevel": 18,
-      "kills": 1229,
+      "kills": 1222,
       "hp": 0,
       "maxHp": 145,
       "bossDefeated": false,
-      "bossHpLeft": 609,
+      "bossHpLeft": 327,
       "salary": 3000,
       "spent": 2300,
       "remaining": 700,
@@ -1260,29 +1346,29 @@
           "bossHp": 3200
         }
       ],
-      "maxEnemies": 169,
-      "maxProjectiles": 78,
+      "maxEnemies": 173,
+      "maxProjectiles": 80,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 20.7,
+        "activeSeconds": 25.63,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 77,
-        "damage": 2591,
+        "hits": 84,
+        "damage": 2873,
         "hitsBySource": {
-          "profession": 43,
-          "badge": 23,
-          "power_bank": 11
+          "profession": 53,
+          "badge": 21,
+          "power_bank": 10
         },
         "damageBySource": {
-          "profession": 1591,
-          "badge": 736,
-          "power_bank": 264
+          "profession": 1961,
+          "badge": 672,
+          "power_bank": 240
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -1290,20 +1376,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 419.52,
+      "seconds": 442.97,
       "outcome": "dead",
-      "deathSecond": 419.51666666666665,
+      "deathSecond": 442.96666666666664,
       "firstLevelSecond": 9.55,
-      "lastLevel": 16,
-      "kills": 996,
+      "lastLevel": 17,
+      "kills": 1105,
       "hp": 0,
       "maxHp": 135,
       "bossDefeated": false,
-      "bossHpLeft": 3089,
+      "bossHpLeft": 2218,
       "salary": 3000,
       "spent": 2450,
       "remaining": 550,
-      "upgrades": 15,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -1319,7 +1405,8 @@
         "power_bank",
         "power_bank",
         "umbrella",
-        "backpack"
+        "backpack",
+        "kneepad"
       ],
       "purchases": [
         "10:profession_weapon:-350",
@@ -1404,21 +1491,23 @@
       "maxProjectiles": 164,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 1.52,
-        "rangePct": 73.6,
+        "activeSeconds": 24.97,
+        "rangePct": 59,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 3,
-        "damage": 111,
+        "hits": 29,
+        "damage": 982,
         "hitsBySource": {
-          "profession": 3
+          "profession": 22,
+          "power_bank": 7
         },
         "damageBySource": {
-          "profession": 111
+          "profession": 814,
+          "power_bank": 168
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1523,7 +1612,7 @@
         "hitsBySource": {},
         "damageBySource": {}
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1663,7 +1752,7 @@
           "badge": 125
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1825,7 +1914,7 @@
           "orbit_cup": 2760
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -1985,7 +2074,7 @@
           "orbit_cup": 3122
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2127,7 +2216,7 @@
           "orbit_cup": 2879
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2267,7 +2356,7 @@
           "badge": 128
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2419,7 +2508,7 @@
           "power_bank": 96
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2555,7 +2644,7 @@
           "orbit_cup": 232
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2707,7 +2796,7 @@
           "power_bank": 96
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "tea_worker",
@@ -2864,7 +2953,7 @@
           "power_bank": 72
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3002,7 +3091,7 @@
           "baton": 2139
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3166,7 +3255,7 @@
           "badge": 640
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3308,7 +3397,7 @@
           "baton": 1023
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3470,7 +3559,7 @@
           "badge": 665
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3630,7 +3719,7 @@
           "badge": 414
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3770,7 +3859,7 @@
           "badge": 544
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -3912,7 +4001,7 @@
           "badge": 448
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -4053,7 +4142,7 @@
           "badge": 407
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -4213,7 +4302,7 @@
           "badge": 704
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "security",
@@ -4350,7 +4439,7 @@
           "power_bank": 336
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4362,16 +4451,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 11.466666666666667,
-      "lastLevel": 17,
-      "kills": 1367,
-      "hp": 25,
-      "maxHp": 196,
+      "lastLevel": 19,
+      "kills": 1316,
+      "hp": 43,
+      "maxHp": 216,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 3000,
       "remaining": 1000,
-      "upgrades": 16,
+      "upgrades": 18,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4388,7 +4477,9 @@
         "badge",
         "badge",
         "target_management",
-        "kneepad"
+        "kneepad",
+        "backpack",
+        "target_management"
       ],
       "purchases": [
         "10:profession_weapon:-1100",
@@ -4470,48 +4561,48 @@
         },
         {
           "sec": 448,
-          "hp": 61,
+          "hp": 32,
           "maxHp": 196,
           "level": 17,
-          "kills": 1285,
-          "enemies": 121,
-          "collectedXp": 104,
+          "kills": 1253,
+          "enemies": 145,
+          "collectedXp": 62,
           "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 25,
-          "maxHp": 196,
-          "level": 17,
-          "kills": 1367,
-          "enemies": 201,
-          "collectedXp": 172,
+          "hp": 43,
+          "maxHp": 216,
+          "level": 19,
+          "kills": 1316,
+          "enemies": 234,
+          "collectedXp": 128,
           "bossHp": null
         }
       ],
-      "maxEnemies": 201,
-      "maxProjectiles": 113,
+      "maxEnemies": 234,
+      "maxProjectiles": 127,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 21.85,
+        "activeSeconds": 23.02,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 195,
+        "hits": 201,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 158,
-          "badge": 25,
-          "power_bank": 12
+          "screw_gun": 169,
+          "power_bank": 12,
+          "badge": 20
         },
         "damageBySource": {
-          "screw_gun": 2112,
-          "badge": 800,
-          "power_bank": 288
+          "screw_gun": 2272,
+          "power_bank": 288,
+          "badge": 640
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4523,16 +4614,16 @@
       "outcome": "win",
       "deathSecond": null,
       "firstLevelSecond": 11.166666666666666,
-      "lastLevel": 19,
-      "kills": 1436,
-      "hp": 53,
-      "maxHp": 182,
+      "lastLevel": 18,
+      "kills": 1531,
+      "hp": 64,
+      "maxHp": 169,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 18,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4550,8 +4641,7 @@
         "target_management",
         "badge",
         "kneepad",
-        "base_hp",
-        "shoes"
+        "target_management"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -4632,48 +4722,48 @@
         },
         {
           "sec": 448,
-          "hp": 60,
-          "maxHp": 182,
-          "level": 18,
-          "kills": 1362,
-          "enemies": 116,
-          "collectedXp": 72,
-          "bossHp": null
+          "hp": 104,
+          "maxHp": 169,
+          "level": 17,
+          "kills": 1349,
+          "enemies": 120,
+          "collectedXp": 191,
+          "bossHp": 3158
         },
         {
           "sec": 480,
-          "hp": 53,
-          "maxHp": 182,
-          "level": 19,
-          "kills": 1436,
-          "enemies": 204,
-          "collectedXp": 13,
+          "hp": 64,
+          "maxHp": 169,
+          "level": 18,
+          "kills": 1531,
+          "enemies": 75,
+          "collectedXp": 39,
           "bossHp": null
         }
       ],
-      "maxEnemies": 204,
-      "maxProjectiles": 145,
+      "maxEnemies": 195,
+      "maxProjectiles": 126,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 27.4,
-        "rangePct": 98,
+        "activeSeconds": 58.9,
+        "rangePct": 49.9,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 200,
+        "hits": 212,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 159,
-          "badge": 28,
-          "power_bank": 13
+          "screw_gun": 180,
+          "power_bank": 12,
+          "badge": 20
         },
         "damageBySource": {
-          "screw_gun": 1992,
-          "badge": 896,
-          "power_bank": 312
+          "screw_gun": 2272,
+          "power_bank": 288,
+          "badge": 640
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4681,20 +4771,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 423.38,
-      "outcome": "dead",
-      "deathSecond": 423.3833333333333,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 8.7,
-      "lastLevel": 16,
-      "kills": 1203,
-      "hp": 0,
+      "lastLevel": 17,
+      "kills": 1391,
+      "hp": 9,
       "maxHp": 169,
-      "bossDefeated": false,
-      "bossHpLeft": 2509,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 15,
+      "upgrades": 16,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -4710,7 +4800,8 @@
         "steady_feed",
         "badge",
         "steady_feed",
-        "base_defense"
+        "base_defense",
+        "kneepad"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -4788,31 +4879,51 @@
           "enemies": 146,
           "collectedXp": 74,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 27,
+          "maxHp": 169,
+          "level": 16,
+          "kills": 1314,
+          "enemies": 123,
+          "collectedXp": 138,
+          "bossHp": null
+        },
+        {
+          "sec": 480,
+          "hp": 9,
+          "maxHp": 169,
+          "level": 17,
+          "kills": 1391,
+          "enemies": 200,
+          "collectedXp": 85,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 156,
-      "maxProjectiles": 104,
+      "maxEnemies": 200,
+      "maxProjectiles": 107,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 5.38,
-        "rangePct": 100,
+        "activeSeconds": 27.3,
+        "rangePct": 94.1,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 47,
-        "damage": 691,
+        "hits": 220,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 3,
-          "screw_gun": 39,
-          "badge": 5
+          "power_bank": 12,
+          "screw_gun": 195,
+          "badge": 13
         },
         "damageBySource": {
-          "power_bank": 72,
-          "screw_gun": 459,
-          "badge": 160
+          "power_bank": 273,
+          "screw_gun": 2511,
+          "badge": 416
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4825,8 +4936,8 @@
       "deathSecond": null,
       "firstLevelSecond": 9.083333333333334,
       "lastLevel": 17,
-      "kills": 1180,
-      "hp": 111,
+      "kills": 1289,
+      "hp": 139,
       "maxHp": 189,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -4931,48 +5042,48 @@
         },
         {
           "sec": 448,
-          "hp": 111,
+          "hp": 144,
           "maxHp": 189,
           "level": 16,
-          "kills": 1105,
-          "enemies": 288,
-          "collectedXp": 90,
+          "kills": 1092,
+          "enemies": 299,
+          "collectedXp": 95,
           "bossHp": null
         },
         {
           "sec": 480,
-          "hp": 111,
+          "hp": 139,
           "maxHp": 189,
           "level": 17,
-          "kills": 1180,
-          "enemies": 300,
-          "collectedXp": 43,
+          "kills": 1289,
+          "enemies": 213,
+          "collectedXp": 25,
           "bossHp": null
         }
       ],
-      "maxEnemies": 316,
+      "maxEnemies": 317,
       "maxProjectiles": 169,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 19.55,
+        "activeSeconds": 18.67,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 179,
+        "hits": 177,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 151,
+          "screw_gun": 147,
           "power_bank": 10,
-          "badge": 18
+          "badge": 20
         },
         "damageBySource": {
-          "screw_gun": 2310,
+          "screw_gun": 2249,
           "power_bank": 260,
-          "badge": 630
+          "badge": 691
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -4980,20 +5091,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 480,
-      "outcome": "win",
-      "deathSecond": null,
+      "seconds": 459.57,
+      "outcome": "dead",
+      "deathSecond": 459.56666666666666,
       "firstLevelSecond": 10.35,
-      "lastLevel": 18,
-      "kills": 1489,
-      "hp": 13,
+      "lastLevel": 16,
+      "kills": 1388,
+      "hp": 0,
       "maxHp": 169,
       "bossDefeated": true,
       "bossHpLeft": null,
       "salary": 4000,
       "spent": 1800,
       "remaining": 2200,
-      "upgrades": 17,
+      "upgrades": 15,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -5009,9 +5120,7 @@
         "steady_feed",
         "badge",
         "badge",
-        "badge",
-        "steady_feed",
-        "target_management"
+        "badge"
       ],
       "purchases": [
         "10:kneepad:-400",
@@ -5092,48 +5201,38 @@
         },
         {
           "sec": 448,
-          "hp": 27,
+          "hp": 64,
           "maxHp": 169,
           "level": 16,
-          "kills": 1328,
-          "enemies": 97,
-          "collectedXp": 91,
-          "bossHp": null
-        },
-        {
-          "sec": 480,
-          "hp": 13,
-          "maxHp": 169,
-          "level": 18,
-          "kills": 1489,
-          "enemies": 122,
-          "collectedXp": 171,
+          "kills": 1293,
+          "enemies": 121,
+          "collectedXp": 58,
           "bossHp": null
         }
       ],
-      "maxEnemies": 158,
+      "maxEnemies": 172,
       "maxProjectiles": 101,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 19.33,
-        "rangePct": 100,
+        "activeSeconds": 21.37,
+        "rangePct": 99.9,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 174,
+        "hits": 188,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 142,
-          "badge": 22,
-          "power_bank": 10
+          "screw_gun": 166,
+          "badge": 14,
+          "power_bank": 8
         },
         "damageBySource": {
-          "screw_gun": 2170,
-          "badge": 770,
-          "power_bank": 260
+          "screw_gun": 2502,
+          "badge": 490,
+          "power_bank": 208
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5146,8 +5245,8 @@
       "deathSecond": null,
       "firstLevelSecond": 10.85,
       "lastLevel": 19,
-      "kills": 1476,
-      "hp": 8,
+      "kills": 1481,
+      "hp": 121,
       "maxHp": 216,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -5172,7 +5271,7 @@
         "backpack",
         "backpack",
         "target_management",
-        "base_defense",
+        "kneepad",
         "kneepad"
       ],
       "purchases": [
@@ -5255,48 +5354,48 @@
         },
         {
           "sec": 448,
-          "hp": 8,
+          "hp": 139,
           "maxHp": 216,
-          "level": 18,
-          "kills": 1386,
-          "enemies": 73,
-          "collectedXp": 124,
-          "bossHp": null
+          "level": 17,
+          "kills": 1380,
+          "enemies": 80,
+          "collectedXp": 210,
+          "bossHp": 751
         },
         {
           "sec": 480,
-          "hp": 8,
+          "hp": 121,
           "maxHp": 216,
           "level": 19,
-          "kills": 1476,
-          "enemies": 152,
-          "collectedXp": 140,
+          "kills": 1481,
+          "enemies": 141,
+          "collectedXp": 144,
           "bossHp": null
         }
       ],
-      "maxEnemies": 152,
-      "maxProjectiles": 101,
+      "maxEnemies": 142,
+      "maxProjectiles": 86,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 25.08,
-        "rangePct": 100,
+        "activeSeconds": 35.52,
+        "rangePct": 80.6,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 195,
+        "hits": 204,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 158,
-          "power_bank": 12,
-          "badge": 25
+          "screw_gun": 169,
+          "badge": 23,
+          "power_bank": 12
         },
         "damageBySource": {
-          "screw_gun": 2131,
-          "power_bank": 288,
-          "badge": 781
+          "screw_gun": 2176,
+          "badge": 736,
+          "power_bank": 288
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5304,20 +5403,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 429.5,
+      "seconds": 452.93,
       "outcome": "dead",
-      "deathSecond": 429.5,
+      "deathSecond": 452.93333333333334,
       "firstLevelSecond": 10.333333333333334,
-      "lastLevel": 17,
-      "kills": 1292,
+      "lastLevel": 18,
+      "kills": 1411,
       "hp": 0,
       "maxHp": 155,
       "bossDefeated": false,
-      "bossHpLeft": 1737,
+      "bossHpLeft": 476,
       "salary": 4000,
       "spent": 3200,
       "remaining": 800,
-      "upgrades": 16,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -5334,7 +5433,8 @@
         "badge",
         "target_management",
         "kneepad",
-        "target_management"
+        "target_management",
+        "base_defense"
       ],
       "purchases": [
         "10:profession_weapon:-800",
@@ -5413,31 +5513,41 @@
           "enemies": 60,
           "collectedXp": 173,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 36,
+          "maxHp": 155,
+          "level": 18,
+          "kills": 1385,
+          "enemies": 74,
+          "collectedXp": 166,
+          "bossHp": 1080
         }
       ],
       "maxEnemies": 186,
       "maxProjectiles": 81,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 11.5,
-        "rangePct": 97.1,
+        "activeSeconds": 34.93,
+        "rangePct": 83.1,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 94,
-        "damage": 1463,
+        "hits": 181,
+        "damage": 2724,
         "hitsBySource": {
-          "screw_gun": 78,
-          "power_bank": 6,
-          "badge": 10
+          "screw_gun": 152,
+          "power_bank": 12,
+          "badge": 17
         },
         "damageBySource": {
-          "screw_gun": 999,
-          "power_bank": 144,
-          "badge": 320
+          "screw_gun": 1892,
+          "power_bank": 288,
+          "badge": 544
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5450,8 +5560,8 @@
       "deathSecond": null,
       "firstLevelSecond": 10.666666666666666,
       "lastLevel": 18,
-      "kills": 1323,
-      "hp": 96,
+      "kills": 1458,
+      "hp": 93,
       "maxHp": 209,
       "bossDefeated": true,
       "bossHpLeft": null,
@@ -5559,48 +5669,48 @@
         },
         {
           "sec": 448,
-          "hp": 83,
+          "hp": 105,
           "maxHp": 196,
           "level": 17,
-          "kills": 1265,
-          "enemies": 135,
-          "collectedXp": 83,
-          "bossHp": null
+          "kills": 1254,
+          "enemies": 138,
+          "collectedXp": 54,
+          "bossHp": 2739
         },
         {
           "sec": 480,
-          "hp": 96,
+          "hp": 93,
           "maxHp": 209,
           "level": 18,
-          "kills": 1323,
-          "enemies": 230,
-          "collectedXp": 39,
+          "kills": 1458,
+          "enemies": 89,
+          "collectedXp": 20,
           "bossHp": null
         }
       ],
-      "maxEnemies": 230,
-      "maxProjectiles": 122,
+      "maxEnemies": 169,
+      "maxProjectiles": 87,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 18.17,
-        "rangePct": 97.2,
+        "activeSeconds": 48.77,
+        "rangePct": 68.8,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 161,
+        "hits": 175,
         "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 134,
-          "power_bank": 9,
+          "screw_gun": 144,
+          "power_bank": 13,
           "badge": 18
         },
         "damageBySource": {
-          "screw_gun": 2282,
-          "power_bank": 252,
+          "screw_gun": 2170,
+          "power_bank": 364,
           "badge": 666
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5608,16 +5718,16 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": false,
-      "seconds": 435.27,
+      "seconds": 454.12,
       "outcome": "dead",
-      "deathSecond": 435.26666666666665,
+      "deathSecond": 454.1166666666667,
       "firstLevelSecond": 10.516666666666667,
       "lastLevel": 18,
-      "kills": 1258,
+      "kills": 1307,
       "hp": 0,
       "maxHp": 216,
-      "bossDefeated": false,
-      "bossHpLeft": 784,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 4000,
       "spent": 3450,
       "remaining": 550,
@@ -5718,31 +5828,41 @@
           "enemies": 59,
           "collectedXp": 78.44,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 25,
+          "maxHp": 216,
+          "level": 18,
+          "kills": 1294,
+          "enemies": 119,
+          "collectedXp": 129.2,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 104,
-      "maxProjectiles": 60,
+      "maxEnemies": 133,
+      "maxProjectiles": 85,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 17.27,
+        "activeSeconds": 25.82,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 150,
-        "damage": 2416,
+        "hits": 214,
+        "damage": 3200,
         "hitsBySource": {
-          "power_bank": 9,
-          "screw_gun": 124,
-          "badge": 17
+          "power_bank": 12,
+          "screw_gun": 192,
+          "badge": 10
         },
         "damageBySource": {
-          "power_bank": 216,
-          "screw_gun": 1656,
-          "badge": 544
+          "power_bank": 271,
+          "screw_gun": 2609,
+          "badge": 320
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "screw_worker",
@@ -5750,20 +5870,20 @@
       "style": "fighter",
       "riskTag": "service",
       "assist": false,
-      "seconds": 444.22,
-      "outcome": "dead",
-      "deathSecond": 444.21666666666664,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 8.433333333333334,
-      "lastLevel": 16,
-      "kills": 1323,
-      "hp": 0,
+      "lastLevel": 18,
+      "kills": 1400,
+      "hp": 62,
       "maxHp": 196,
-      "bossDefeated": false,
-      "bossHpLeft": 131,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 4000,
       "spent": 3350,
       "remaining": 650,
-      "upgrades": 15,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "base_xp",
@@ -5779,7 +5899,9 @@
         "power_bank",
         "power_bank",
         "backpack",
-        "base_hp"
+        "base_hp",
+        "target_management",
+        "base_defense"
       ],
       "purchases": [
         "10:profession_weapon:-550",
@@ -5858,31 +5980,51 @@
           "enemies": 188,
           "collectedXp": 40.88,
           "bossHp": 3200
+        },
+        {
+          "sec": 448,
+          "hp": 69,
+          "maxHp": 196,
+          "level": 16,
+          "kills": 1311,
+          "enemies": 130,
+          "collectedXp": 137,
+          "bossHp": null
+        },
+        {
+          "sec": 480,
+          "hp": 62,
+          "maxHp": 196,
+          "level": 18,
+          "kills": 1400,
+          "enemies": 210,
+          "collectedXp": 188.16,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 231,
-      "maxProjectiles": 152,
+      "maxEnemies": 226,
+      "maxProjectiles": 151,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 26.22,
+        "activeSeconds": 26.42,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 191,
-        "damage": 3069,
+        "hits": 203,
+        "damage": 3200,
         "hitsBySource": {
-          "screw_gun": 149,
-          "badge": 28,
-          "power_bank": 14
+          "screw_gun": 168,
+          "badge": 22,
+          "power_bank": 13
         },
         "damageBySource": {
-          "screw_gun": 1837,
-          "badge": 896,
-          "power_bank": 336
+          "screw_gun": 2184,
+          "badge": 704,
+          "power_bank": 312
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -5890,20 +6032,20 @@
       "style": "harvester",
       "riskTag": "sedentary",
       "assist": true,
-      "seconds": 431.1,
-      "outcome": "dead",
-      "deathSecond": 431.1,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 13.266666666666667,
-      "lastLevel": 16,
-      "kills": 1004,
-      "hp": 0,
-      "maxHp": 155,
-      "bossDefeated": false,
-      "bossHpLeft": 1566,
+      "lastLevel": 18,
+      "kills": 1234,
+      "hp": 66,
+      "maxHp": 170,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2600,
       "remaining": 400,
-      "upgrades": 15,
+      "upgrades": 17,
       "choices": [
         "profession_weapon",
         "profession_weapon",
@@ -5919,7 +6061,9 @@
         "page_turning",
         "page_turning",
         "page_turning",
-        "base_hp"
+        "base_hp",
+        "kneepad",
+        "backpack"
       ],
       "purchases": [
         "10:profession_weapon:-700",
@@ -5998,34 +6142,49 @@
           "enemies": 128,
           "collectedXp": 72,
           "bossHp": 2400
-        }
-      ],
-      "maxEnemies": 135,
-      "maxProjectiles": 67,
-      "damageSpikes": [
+        },
         {
-          "sec": 426,
-          "lost": 48
+          "sec": 448,
+          "hp": 64,
+          "maxHp": 155,
+          "level": 16,
+          "kills": 1094,
+          "enemies": 107,
+          "collectedXp": 117,
+          "bossHp": 893
+        },
+        {
+          "sec": 480,
+          "hp": 66,
+          "maxHp": 170,
+          "level": 18,
+          "kills": 1234,
+          "enemies": 101,
+          "collectedXp": 36,
+          "bossHp": null
         }
       ],
+      "maxEnemies": 142,
+      "maxProjectiles": 100,
+      "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 13.1,
-        "rangePct": 100,
+        "activeSeconds": 43.87,
+        "rangePct": 98.3,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 25,
-        "damage": 834,
+        "hits": 73,
+        "damage": 2400,
         "hitsBySource": {
-          "profession": 18,
-          "power_bank": 7
+          "profession": 50,
+          "power_bank": 23
         },
         "damageBySource": {
-          "profession": 666,
-          "power_bank": 168
+          "profession": 1850,
+          "power_bank": 550
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     },
     {
       "role": "student",
@@ -6033,16 +6192,16 @@
       "style": "harvester",
       "riskTag": "service",
       "assist": true,
-      "seconds": 426.65,
-      "outcome": "dead",
-      "deathSecond": 426.65,
+      "seconds": 480,
+      "outcome": "win",
+      "deathSecond": null,
       "firstLevelSecond": 12.416666666666666,
       "lastLevel": 17,
-      "kills": 1079,
-      "hp": 0,
+      "kills": 1241,
+      "hp": 26,
       "maxHp": 140,
-      "bossDefeated": false,
-      "bossHpLeft": 1228,
+      "bossDefeated": true,
+      "bossHpLeft": null,
       "salary": 3000,
       "spent": 2550,
       "remaining": 450,
@@ -6142,44 +6301,64 @@
           "enemies": 58,
           "collectedXp": 92,
           "bossHp": 2400
+        },
+        {
+          "sec": 448,
+          "hp": 26,
+          "maxHp": 140,
+          "level": 17,
+          "kills": 1155,
+          "enemies": 62,
+          "collectedXp": 126,
+          "bossHp": null
+        },
+        {
+          "sec": 480,
+          "hp": 26,
+          "maxHp": 140,
+          "level": 17,
+          "kills": 1241,
+          "enemies": 124,
+          "collectedXp": 210,
+          "bossHp": null
         }
       ],
-      "maxEnemies": 66,
-      "maxProjectiles": 41,
+      "maxEnemies": 124,
+      "maxProjectiles": 58,
       "damageSpikes": [],
       "bossCombat": {
-        "activeSeconds": 8.65,
+        "activeSeconds": 20.62,
         "rangePct": 100,
         "orbitContactPct": 0,
         "batonSwingCount": 0,
         "batonHitPct": 0,
-        "hits": 37,
-        "damage": 1172,
+        "hits": 73,
+        "damage": 2400,
         "hitsBySource": {
-          "profession": 21,
-          "badge": 11,
-          "power_bank": 5
+          "profession": 49,
+          "badge": 13,
+          "power_bank": 11
         },
         "damageBySource": {
-          "profession": 777,
-          "badge": 275,
-          "power_bank": 120
+          "profession": 1813,
+          "badge": 325,
+          "power_bank": 262
         }
       },
-      "aiVersion": "heuristic-v3-melee-engage-and-dodge-controller4ticks-no-cheats"
+      "aiVersion": "heuristic-v3-split-melee-engage-ranged-kite-no-cheats"
     }
   ],
   "statistics": [
     {
       "role": "student",
       "plays": 10,
-      "wins": 0,
+      "wins": 3,
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 12,
-      "meanLevelAtEnd": 17.3,
-      "meanSurvivalSeconds": 430,
-      "meanBossRangePct": 95,
-      "meanBossDamage": 1417,
+      "meanLevelAtEnd": 17.5,
+      "meanSurvivalSeconds": 459,
+      "meanBossRangePct": 83,
+      "meanBossDamage": 2424,
       "meanOrbitContactPct": 0,
       "meanBatonHitPct": 0
     },
@@ -6212,13 +6391,13 @@
     {
       "role": "screw_worker",
       "plays": 10,
-      "wins": 6,
+      "wins": 7,
       "bossReached": 10,
       "meanFirstUpgradeSeconds": 10,
-      "meanLevelAtEnd": 17.5,
-      "meanSurvivalSeconds": 461,
-      "meanBossRangePct": 99,
-      "meanBossDamage": 2684,
+      "meanLevelAtEnd": 17.8,
+      "meanSurvivalSeconds": 473,
+      "meanBossRangePct": 88,
+      "meanBossDamage": 3152,
       "meanOrbitContactPct": 0,
       "meanBatonHitPct": 0
     }
