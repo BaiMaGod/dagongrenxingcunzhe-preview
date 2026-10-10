@@ -79,7 +79,7 @@ jobs:
           npm run check
           python3 tools/test_laya_prepare.py
 
-      # Release gate: normalize optional telemetry source fields in strict TypeScript; 40 seeded full-intensity trials.
+      # Release gate: 40 real-combat seeded trials, Boss body-edge baton collisions, engaged melee AI v3 telemetry.
       - name: Full-strength ordinary-month AI playtests
         id: ordinary-ai
         working-directory: private-game
