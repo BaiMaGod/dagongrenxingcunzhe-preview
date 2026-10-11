@@ -4,6 +4,13 @@
       "name": "portrait direct start"
     },
     {
+      "name": "portrait continuous room and compact controls",
+      "hudHeight": 68,
+      "weaponHeight": 40,
+      "joystickRadius": 48,
+      "roomLoaded": true
+    },
+    {
       "name": "portrait pause freezes clock and resumes"
     },
     {
@@ -11,10 +18,22 @@
       "overloadRecoveries": 0
     },
     {
+      "name": "portrait room camera drifts relative to spawn",
+      "x": -8.80434107201988,
+      "y": 0
+    },
+    {
       "name": "portrait shop purchase, all pages, month settlement and restart"
     },
     {
       "name": "narrow direct start"
+    },
+    {
+      "name": "narrow continuous room and compact controls",
+      "hudHeight": 72,
+      "weaponHeight": 40,
+      "joystickRadius": 48,
+      "roomLoaded": true
     },
     {
       "name": "narrow pause freezes clock and resumes"
@@ -24,10 +43,22 @@
       "overloadRecoveries": 0
     },
     {
+      "name": "narrow room camera drifts relative to spawn",
+      "x": -7.340835749452818,
+      "y": 0
+    },
+    {
       "name": "narrow shop purchase, all pages, month settlement and restart"
     },
     {
       "name": "landscape direct start"
+    },
+    {
+      "name": "landscape continuous room and compact controls",
+      "hudHeight": 68,
+      "weaponHeight": 40,
+      "joystickRadius": 48,
+      "roomLoaded": true
     },
     {
       "name": "landscape pause freezes clock and resumes"
@@ -37,10 +68,22 @@
       "overloadRecoveries": 0
     },
     {
+      "name": "landscape room camera drifts relative to spawn",
+      "x": -5.13264753181479,
+      "y": 0
+    },
+    {
       "name": "landscape shop purchase, all pages, month settlement and restart"
     },
     {
       "name": "desktop direct start"
+    },
+    {
+      "name": "desktop continuous room and compact controls",
+      "hudHeight": 68,
+      "weaponHeight": 40,
+      "joystickRadius": 48,
+      "roomLoaded": true
     },
     {
       "name": "desktop pause freezes clock and resumes"
@@ -48,6 +91,11 @@
     {
       "name": "desktop touch moves and cancellation stops",
       "overloadRecoveries": 0
+    },
+    {
+      "name": "desktop room camera drifts relative to spawn",
+      "x": -7.036061109037814,
+      "y": 0
     },
     {
       "name": "desktop shop purchase, all pages, month settlement and restart"
@@ -79,18 +127,18 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 56,
+    "wallSeconds": 60,
     "upgrades": 3,
     "texts": [
       "大学生  Lv.4",
-      "HP 0/100",
-      "第 4 天",
-      "51/480 秒",
+      "0/100",
+      "第4天",
+      "54/480 秒",
       "工资 ¥0",
-      "普通月 · 本月高发：久坐",
-      "课本 Lv.1",
-      "击退 61",
-      "性能",
+      "久坐高发",
+      "普通月",
+      "课本 Lv.2",
+      "击退 67",
       "本月失败",
       "体力耗尽\n本局工资不结转\n\n本月收入：¥0\n装备及道具：-¥0\n本月工资剩余：¥0\n\n实际入账：¥0\n局外余额：¥15000",
       "返回首页",
