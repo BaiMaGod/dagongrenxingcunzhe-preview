@@ -44,8 +44,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # Approved V12 room and HUD: build the tested source commit.
-          ref: 3e77a2ff1219659561617b86ced39b4b313fb830
+          # Upgrade resume fix: build the exact tested source commit.
+          ref: bbd4da3a33840c65bc0856d4fe8a08e06b8c60d5
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
