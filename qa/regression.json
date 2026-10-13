@@ -19,7 +19,7 @@
     },
     {
       "name": "portrait room camera drifts relative to spawn",
-      "x": -8.80434107201988,
+      "x": -7.641720496629112,
       "y": 0
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "name": "narrow room camera drifts relative to spawn",
-      "x": -7.340835749452818,
+      "x": -5.13264753181479,
       "y": 0
     },
     {
@@ -69,7 +69,7 @@
     },
     {
       "name": "landscape room camera drifts relative to spawn",
-      "x": -5.13264753181479,
+      "x": -3.124209315372454,
       "y": 0
     },
     {
@@ -94,7 +94,7 @@
     },
     {
       "name": "desktop room camera drifts relative to spawn",
-      "x": -7.036061109037814,
+      "x": -5.13264753181479,
       "y": 0
     },
     {
@@ -116,6 +116,21 @@
       "name": "blur clears held keyboard input"
     },
     {
+      "name": "natural upgrade resumes battle clock",
+      "beforeClock": "11/480 秒",
+      "afterClock": "12/480 秒"
+    },
+    {
+      "name": "natural upgrade resumes battle clock",
+      "beforeClock": "28/480 秒",
+      "afterClock": "29/480 秒"
+    },
+    {
+      "name": "natural upgrade resumes battle clock",
+      "beforeClock": "41/480 秒",
+      "afterClock": "43/480 秒"
+    },
+    {
       "name": "natural death settlement returns home"
     },
     {
@@ -127,18 +142,18 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 60,
+    "wallSeconds": 57,
     "upgrades": 3,
     "texts": [
       "大学生  Lv.4",
       "0/100",
       "第4天",
-      "54/480 秒",
+      "53/480 秒",
       "工资 ¥0",
-      "久坐高发",
+      "服务压力高发",
       "普通月",
-      "课本 Lv.2",
-      "击退 67",
+      "课本 Lv.1",
+      "击退 63",
       "本月失败",
       "体力耗尽\n本局工资不结转\n\n本月收入：¥0\n装备及道具：-¥0\n本月工资剩余：¥0\n\n实际入账：¥0\n局外余额：¥15000",
       "返回首页",
