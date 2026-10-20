@@ -44,8 +44,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # Upgrade resume fix: build the exact tested source commit.
-          ref: bbd4da3a33840c65bc0856d4fe8a08e06b8c60d5
+          # V13 long-frame recovery and first-run combat: exact tested source commit.
+          ref: f3ae050aeed3b6a45fb9e8e857d5f84846d3f33a
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
