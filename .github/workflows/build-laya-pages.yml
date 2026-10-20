@@ -416,13 +416,12 @@ jobs:
                       await page.screenshot(path=str(pathlib.Path(os.environ["RUNNER_TEMP"])/"qa"/(name+"-playing.png")),full_page=True)
                       print(name,"live 1.65s combat render captured after spawn telegraph")
                       # Actual keyboard / touch input must move the camera-anchored world floor.
-                      # Read only the rendered first floor tile; do not call sim input or success functions.
+                      # Read the rendered scenery transform; do not call sim input or success functions.
                       async def floor_position():
                           return await page.evaluate("""() => {
-                            const cmds=window.Laya.stage.getChildAt(0).graphics.cmds;
-                            const first=cmds.find(c=>c.texture&&typeof c.x==="number");
-                            if(!first)throw Error("No rendered floor tile");
-                            return {x:first.x,y:first.y};
+                            const scenery=window.Laya.stage.getChildByName("battleScenery");
+                            if(!scenery)throw Error("No rendered battle scenery");
+                            return {x:scenery.x,y:scenery.y};
                           }""")
                       before_move=await floor_position()
                       if mobile:
