@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V13 long-frame recovery and first-run combat: exact tested source commit.
-          ref: f3ae050aeed3b6a45fb9e8e857d5f84846d3f33a
+          ref: c4f2544b5a8d0c3fef0762aa7663caf864fe5439
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
