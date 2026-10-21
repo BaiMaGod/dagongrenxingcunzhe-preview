@@ -1,4 +1,4 @@
-name: Diagnostic natural battle layer costs
+name: Diagnostic full-fidelity backdrop compositing
 'on':
   push:
     branches:
@@ -140,22 +140,16 @@ jobs:
     - name: Prepare isolated natural-battle diagnostic (no release)
       working-directory: private-game
       shell: python
-      run: "from pathlib import Path\np=Path('tools/browser_regression.cjs');s=p.read_text()\na=s.index('for(const [name,w,h,dpr]');b=s.index(\"\
+      run: "from pathlib import Path\ns=Path('tools/browser_regression.cjs').read_text()\na=s.index('for(const [name,w,h,dpr]');b=s.index(\"\
         const ctx=await b.newContext({viewport:{width:390,height:844},\",a);s=s[:a]+s[b:]\na=s.index(\"await seed(p);await\
         \ click(p,'解锁 ¥1500')\");b=s.index(\"await p.goto('http://127.0.0.1:8765/?debug_perf=1')\",a);s=s[:a]+\"await seed(p,{student:1,tea_worker:1,security:1,screw_worker:1});\"\
-        +s[b:]\na=s.index('await p.evaluate(()=>{const samples=[]');b=s.index('let upgrades=0',a)\nobserver='''await p.evaluate(()=>{\n\
-        \ const sequence=['full','no-scenery','full','no-ui','full','no-world','full','no-geometry','full','no-textures','full'];\n\
-        \ const samples=[],phases=sequence.map(mode=>({mode,samples:[],drawCalls:[],sprites:[]}));let previous=0,wasActive=false,activeMs=0,lastPhase=-1;\n\
-        \ window.__qaPhase=0;\n Laya.timer.frameLoop(1,window,()=>{const mode=sequence[window.__qaPhase],world=Laya.stage.getChildByName('battleWorld'),scenery=Laya.stage.getChildByName('battleScenery'),hud=Laya.stage.getChildByName('battleHud');\n\
-        \ if(scenery)scenery.visible=mode!=='no-scenery';if(world){world.visible=mode!=='no-world';if(mode==='no-geometry')world.graphics.clear();if(mode==='no-textures')for(let\
-        \ i=0;i<world.numChildren;i++)world.getChildAt(i).visible=false;}\n if(hud)hud.visible=mode!=='no-ui';for(let i=0;i<Laya.stage.numChildren;i++){const\
-        \ n=Laya.stage.getChildAt(i);if(n.getChildByName?.('battleWeapon'))n.visible=mode!=='no-ui';}\n });\n const observe=now=>{const\
-        \ active=!document.hidden&&Laya.stage.getChildByName('battleOverlay')?.visible===false;let phase=Math.min(sequence.length-1,Math.floor(activeMs/4000));\n\
-        \ if(active&&wasActive&&previous){const dt=now-previous;activeMs+=dt;if(phase===lastPhase){samples.push(dt);phases[phase].samples.push(dt);if(phases[phase].samples.length%15===0){phases[phase].drawCalls.push(Laya.LayaGL.statAgent.getElementData(Laya.StatElement.CT_DrawCall));phases[phase].sprites.push(Laya.LayaGL.statAgent.getElementData(Laya.StatElement.C_Sprite2DCount));}}}\n\
-        \ previous=now;wasActive=active;lastPhase=phase;window.__qaPhase=phase;window.__qaFrameRequest=requestAnimationFrame(observe);};window.__qaFrameSamples=samples;window.__qaPhaseSamples=phases;window.__qaFrameRequest=requestAnimationFrame(observe);\n\
-        });\n'''\ns=s[:a]+observer+s[b:]\ns=s.replace(\"report.renderTiming.cpuDiagnostic=\", \"report.phaseTiming=await p.evaluate(()=>window.__qaPhaseSamples.map(p=>{const\
-        \ a=p.samples.sort((a,b)=>a-b);return {mode:p.mode,samples:a.length,mean:a.reduce((x,y)=>x+y,0)/a.length,p95:a[Math.ceil(a.length*.95)-1],drawCalls:p.drawCalls,sprites:p.sprites};}));console.log('PHASE_TIMING',JSON.stringify(report.phaseTiming));report.renderTiming.cpuDiagnostic=\"\
-        ,1)\nPath('tools/render_natural_diagnostic.cjs').write_text(s)\n"
+        +s[b:]\ns=s.replace(\"const p=await watch(ctx);\",'''if(process.env.QA_RENDER_MODE==='dom-scene'){let configured=fs.readFileSync(require('path').join(process.env.GAME_WEB_ROOT,'js/index.js'),'utf8');assert(configured.includes('\"\
+        isAlpha\":false'));configured=configured.replace('\"isAlpha\":false','\"isAlpha\":true');await ctx.route('**/js/index.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:configured}));}const\
+        \ p=await watch(ctx);''',1)\ninject='''await p.evaluate(mode=>{const scenery=Laya.stage.getChildByName('battleScenery'),w=Laya.stage.width,h=Laya.stage.height;\n\
+        \ if(mode==='baked-scene'){scenery.cacheAs='none';scenery.pos(0,0);const rt=scenery.drawToTexture(w+40,h+40,-20,-20);const\
+        \ texture=new Laya.Texture(rt);scenery.graphics.clear();scenery.graphics.drawTexture(texture,-20,-20,w+40,h+40);}\n\
+        \ if(mode==='dom-scene'){scenery.visible=false;Laya.stage.bgColor=null;const layer=document.createElement('div');layer.setAttribute('aria-hidden','true');layer.style.cssText=`position:fixed;left:-20px;top:-20px;width:${w+40}px;height:${h+40}px;pointer-events:none;z-index:0;background-image:linear-gradient(#41646A66,#41646A66),url(art/office-room-v12.webp);background-size:cover;background-position:center;will-change:transform;`;document.body.prepend(layer);Laya.timer.frameLoop(1,layer,()=>{layer.style.transform=`translate3d(${scenery.x}px,${scenery.y}px,0)`;});}\n\
+        },process.env.QA_RENDER_MODE);'''\ns=s.replace(\"await click(p,'性能');\",\"await click(p,'性能');\"+inject,1)\nPath('tools/render_natural_diagnostic.cjs').write_text(s)\n"
     - name: Compare full battle with cached and hidden diagnostics
       working-directory: private-game
       env:
@@ -163,11 +157,9 @@ jobs:
         GAME_WEB_ROOT: ${{ runner.temp }}/game-web
         QA_FIXED_SEED: '20261021'
         QA_RECORD_VIDEO: '0'
-      run: 'npm install --prefix "$RUNNER_TEMP/browser-tools" playwright@1.55.0 --no-audit --no-fund
-
-        BROWSER_QA_OUT="$RUNNER_TEMP/natural-phases" node tools/render_natural_diagnostic.cjs
-
-        '
+      run: "npm install --prefix \"$RUNNER_TEMP/browser-tools\" playwright@1.55.0 --no-audit --no-fund\nfor MODE in full baked-scene\
+        \ dom-scene; do\n QA_RENDER_MODE=\"$MODE\" BROWSER_QA_OUT=\"$RUNNER_TEMP/natural-$MODE\" node tools/render_natural_diagnostic.cjs\n\
+        done\n"
       shell: bash
     - name: Upload diagnostic evidence (not release gates)
       if: always()
