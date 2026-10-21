@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V14 combat readability, build review and active-frame diagnostics.
-          ref: 3bb0bacc03e3b2fdebd6a57d3f54822bda16d944
+          ref: 70f0e2e1f22cdeb11d6aae50b63499d1a0cfa3fc
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
