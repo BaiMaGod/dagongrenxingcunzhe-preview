@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V14 combat readability, build review and active-frame diagnostics.
-          ref: 169a4716c5d26e4cb7076f7776ee88944d200a10
+          ref: 11987dc0d08daa4d57cd8fdb70d2e7e76b0277ce
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
@@ -578,11 +578,34 @@ jobs:
         run: |
           set -euo pipefail
           npm install --prefix "$RUNNER_TEMP/browser-tools" playwright@1.55.0 --no-audit --no-fund
-          NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/regression-qa" node tools/browser_regression.cjs
+          QA_FIXED_SEED=20261021 QA_RECORD_VIDEO=1 NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/regression-qa" node tools/browser_regression.cjs
           cp "$RUNNER_TEMP/regression-qa/report.json" "$RUNNER_TEMP/qa/regression.json"
           for shot in portrait-home landscape-shop narrow-end natural-upgrade natural-battle rotated-pause; do
             cp "$RUNNER_TEMP/regression-qa/$shot.png" "$RUNNER_TEMP/qa/regression-$shot.png"
           done
+
+      - name: Controlled replay without video capture
+        id: recording-control
+        working-directory: private-game
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          set -euo pipefail
+          QA_FIXED_SEED=20261021 QA_RECORD_VIDEO=0 NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/regression-unrecorded" node tools/browser_regression.cjs
+          python3 - <<'PY'
+          import json,os,pathlib
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])
+          a=json.loads((root/"regression-qa/report.json").read_text())
+          b=json.loads((root/"regression-unrecorded/report.json").read_text())
+          assert a["captureVideo"] is True and b["captureVideo"] is False
+          assert a["fixedSeed"]==b["fixedSeed"]==20261021
+          assert a["sourceCommit"]==b["sourceCommit"]==os.environ["SOURCE_SHA"]
+          assert not a["errors"] and not b["errors"] and a["naturalBattle"]["upgrades"]>0 and b["naturalBattle"]["upgrades"]>0
+          result={"kind":"paired-recording-control","source_sha":os.environ["SOURCE_SHA"],"seed":20261021,"viewport":[390,844],"recorded":a["renderTiming"],"unrecorded":b["renderTiming"],"functional_checks":[len(a["checks"]),len(b["checks"])],"notes":"Same compiled game, seed, viewport and real-input script. Video capture is the independent variable. rAF intervals are not physical-device GPU timing."}
+          (root/"qa/performance-control.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\\n")
+          print(json.dumps(result,ensure_ascii=False))
+          PY
 
       - name: Enforce configured active-combat frame interval budget
         id: render-budget
@@ -592,7 +615,7 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           import json,os,pathlib
-          r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"regression-qa/report.json").read_text())["renderTiming"]
+          r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"qa/performance-control.json").read_text())["unrecorded"]
           budget=json.loads(pathlib.Path("assets/config/mvp-balance.v0.3.json").read_text())["performance"]["mobileFrameP95Ms"]
           assert r["samples"]>120 and r["targetP95Ms"]==budget and r["p95Ms"]<=budget and r["withinBudget"],r
           print("Chromium active-combat rAF budget passed (not physical-device GPU timing):",r)
@@ -606,6 +629,7 @@ jobs:
           path: |
             ${{ runner.temp }}/qa
             ${{ runner.temp }}/regression-qa
+            ${{ runner.temp }}/regression-unrecorded
           if-no-files-found: ignore
           retention-days: 7
 
@@ -663,6 +687,11 @@ jobs:
               payload=json.loads(regression.read_text())
               if not payload.get("errors") and payload.get("naturalBattle",{}).get("upgrades",0)>0:
                   shutil.copy2(regression,out/"regression.json")
+          control=qa/"performance-control.json"
+          if control.is_file():
+              payload=json.loads(control.read_text())
+              if payload.get("kind")=="paired-recording-control" and payload.get("source_sha")==os.environ.get("SOURCE_SHA"):
+                  shutil.copy2(control,out/"performance-control.json")
           result={
               "generated_at_utc":datetime.now(timezone.utc).isoformat(),
               "source_sha":os.environ.get("SOURCE_SHA",""),
@@ -672,6 +701,7 @@ jobs:
               "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
               "browser_regression":os.environ["REGRESSION_QA_OUTCOME"],
               "performance_budget":os.environ["PERFORMANCE_QA_OUTCOME"],
+              "performance_report":"performance-control.json" if (out/"performance-control.json").is_file() else None,
               "regression_report":"regression.json" if (out/"regression.json").is_file() else None,
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
               "ordinary_ai":os.environ.get("ORDINARY_AI_OUTCOME","skipped"),
@@ -716,6 +746,7 @@ jobs:
               if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
           done
           if [ -s "$RUNNER_TEMP/qa-public/regression.json" ]; then cp "$RUNNER_TEMP/qa-public/regression.json" qa/regression.json; fi
+          if [ -s "$RUNNER_TEMP/qa-public/performance-control.json" ]; then cp "$RUNNER_TEMP/qa-public/performance-control.json" qa/performance-control.json; fi
           for shot in portrait-home landscape-shop narrow-end natural-upgrade natural-battle rotated-pause; do
             if [ -s "$RUNNER_TEMP/qa-public/regression-$shot.png" ]; then cp "$RUNNER_TEMP/qa-public/regression-$shot.png" "qa/regression-$shot.png"; fi
           done
