@@ -1,4 +1,4 @@
-name: Diagnostic render cost isolation
+name: Diagnostic render cache and antialias costs
 'on':
   push:
     branches:
@@ -57,123 +57,6 @@ jobs:
         npm run check
 
         python3 tools/test_laya_prepare.py
-
-        '
-    - name: Full-strength ordinary-month AI playtests
-      id: ordinary-ai
-      working-directory: private-game
-      shell: bash
-      timeout-minutes: 12
-      run: 'set -euo pipefail
-
-        node .test-dist/tests/ordinary_playtest_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/ordinary-ai.json"
-
-        python3 - <<''PY''
-
-        import json,os,pathlib
-
-        r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text())
-
-        assert r["kind"]=="ordinary-full-intensity-ai-playtest" and r["gameSeconds"]==480
-
-        assert r["fullSpawn"] and r["fullBossHp"] and not r["modifiedConfig"] and not r["debugInvulnerability"]
-
-        assert len(r["samples"])==42 and len(r["statistics"])==4
-
-        assert {s["role"] for s in r["samples"]}=={"student","tea_worker","security","screw_worker"}
-
-        assert all(s["outcome"] in ("win","dead","timeout") and 0<s["seconds"]<=480 for s in r["samples"])
-
-        assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
-
-        assert all(s["bossCombat"]["damage"]>=0 and 0<=s["bossCombat"]["rangePct"]<=100 for s in r["samples"])
-
-        assert all(s["bossCombat"]["damage"]==sum(s["bossCombat"]["damageBySource"].values()) for s in r["samples"])
-
-        assert len([s for s in r["samples"] if s["assist"]])==2
-
-        assert all(s["outcome"]=="win" for s in r["samples"] if s["assist"]), "First-clear assisted newcomers regressed"
-
-        for row in r["statistics"]: print("AI playtest (not human):",row)
-
-        print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
-
-        PY
-
-        echo "### Actual full-strength ordinary-month AI playtests (not human win rates)" >> "$GITHUB_STEP_SUMMARY"
-
-        python3 -c ''import json,os,pathlib; r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text());print("|
-        Role | Plays | Wins | Boss reached | First level (s) | Final Lv | Survived (s) |\n|---|---:|---:|---:|---:|---:|---:|");[print("|
-        {role} | {plays} | {wins} | {bossReached} | {meanFirstUpgradeSeconds} | {meanLevelAtEnd} | {meanSurvivalSeconds} |".format(**x))
-        for x in r["statistics"]]'' >> "$GITHUB_STEP_SUMMARY"
-
-        '
-    - name: 180 virtual seconds capped-swarm CPU logic stress
-      id: logic-stress
-      working-directory: private-game
-      shell: bash
-      run: 'set -euo pipefail
-
-        node .test-dist/tests/stress_probe.js > "$RUNNER_TEMP/stress-180s.json"
-
-        python3 - <<''PY''
-
-        import json,os,pathlib
-
-        p=pathlib.Path(os.environ["RUNNER_TEMP"])/"stress-180s.json"
-
-        r=json.loads(p.read_text())
-
-        assert r["kind"]=="logic-only-synthetic-stress",r
-
-        assert r["gameSeconds"]==180 and r["steps"]==10800,r
-
-        assert r["capsPassed"] and r["observed"]["maxEnemies"]==450,r
-
-        assert r["final"]["kills"]==0 and all(p["enemies"]==450 for p in r["checkpoints"]),r
-
-        assert r["realtimeDeviceFpsMeasured"] is False,r
-
-        print("180 virtual seconds / 10800 ticks checked:",r["cpuPerStepMs"],r["observed"])
-
-        PY
-
-        echo "### Logic-only synthetic 180-second battle stress" >> "$GITHUB_STEP_SUMMARY"
-
-        cat "$RUNNER_TEMP/stress-180s.json" >> "$GITHUB_STEP_SUMMARY"
-
-        '
-    - name: Full 480-second month salary/shop/Boss/settlement regression
-      id: month-logic
-      working-directory: private-game
-      shell: bash
-      run: 'set -euo pipefail
-
-        node .test-dist/tests/full_month_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/full-month.json"
-
-        python3 - <<''PY''
-
-        import json,os,pathlib
-
-        r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"full-month.json").read_text())
-
-        assert r["kind"]=="full-month-calendar-and-settlement-logic" and r["ticks"]==28800,r
-
-        assert r["end"]["outcome"]=="win" and r["settlement"]["timeoutCredit"]==0,r
-
-        assert [x["day"] for x in r["shops"]]==[10,20],r
-
-        assert r["boss"]["spawnTick"]==24960 and 24960<r["boss"]["defeatTick"]<28800,r
-
-        assert r["settlement"]["winCredit"]==r["wage"]["remaining"],r
-
-        print("Full 480 second real-config calendar/settlement verified",r["wage"],r["boss"])
-
-        PY
-
-        echo "### Full month contract (accelerated, QA-only fixture)" >> "$GITHUB_STEP_SUMMARY"
-
-        cat "$RUNNER_TEMP/full-month.json" >> "$GITHUB_STEP_SUMMARY"
 
         '
     - name: Rasterize illustrated combat atlas and synthesize event WAV
@@ -262,15 +145,19 @@ jobs:
         server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),handler)\nthreading.Thread(target=server.serve_forever,daemon=True).start()\n\
         async def main():\n  report={'kind':'render-cost-isolation','releaseGate':False,'phases':[]}\n  async with async_playwright()\
         \ as p:\n    browser=await p.chromium.launch(args=['--no-sandbox','--no-proxy-server','--use-angle=swiftshader','--enable-unsafe-swiftshader'])\n\
-        \    for mode in ['empty','full','no-scenery','no-world','no-ui','hidden-stage','full-retina']:\n      ctx=await browser.new_context(viewport={'width':390,'height':844},device_scale_factor=2\
-        \ if mode=='full-retina' else 1)\n      page=await ctx.new_page()\n      if mode!='empty':\n        await page.goto('http://127.0.0.1:8765/')\n\
+        \    for mode in ['full','no-aa','cache-scene','no-aa-cache','cache-ui','no-aa-retina','no-aa-cache-retina']:\n  \
+        \    ctx=await browser.new_context(viewport={'width':390,'height':844},device_scale_factor=2 if 'retina' in mode else\
+        \ 1)\n      page=await ctx.new_page()\n      if mode.startswith('no-aa'):\n        original=pathlib.Path(root,'js/index.js').read_text()\n\
+        \        import re\n        replaced,count=re.subn(r'(\"isAntialias\"\\s*:\\s*)true',r'\\1false',original)\n     \
+        \   assert count==1, 'AA configuration absent'\n        async def override(route): await route.fulfill(status=200,content_type='application/javascript',body=replaced)\n\
+        \        await page.route('**/js/index.js',override)\n      if mode!='empty':\n        await page.goto('http://127.0.0.1:8765/')\n\
         \        await page.wait_for_selector('#splash',state='detached',timeout=20000)\n        await page.wait_for_timeout(1200)\n\
         \        button=await page.evaluate(\"\"\"()=>{let target;const walk=n=>{if(n.visible===false)return;if(n.text==='开工'&&!target){const\
         \ p=n.localToGlobal(new Laya.Point());target={x:p.x+n.width/2,y:p.y+n.height/2};}for(let i=0;i<n.numChildren;i++)walk(n.getChildAt(i));};walk(Laya.stage);return\
         \ target;}\"\"\")\n        assert button, 'start absent'\n        await page.mouse.click(button['x'],button['y'])\n\
         \        await page.wait_for_function(\"Laya.stage.getChildByName('battleOverlay')?.visible===false\",timeout=10000)\n\
         \        await page.wait_for_timeout(3000)\n        await page.evaluate(\"\"\"mode=>{const find=n=>Laya.stage.getChildByName(n);if(mode==='no-scenery')find('battleScenery').visible=false;if(mode==='no-world')find('battleWorld').visible=false;if(mode==='no-ui'){find('battleHud').visible=false;for(let\
-        \ i=0;i<Laya.stage.numChildren;i++){const n=Laya.stage.getChildAt(i);if(n.getChildByName?.('battleWeapon'))n.visible=false;}}if(mode==='hidden-stage')Laya.stage.alpha=0;}\"\
+        \ i=0;i<Laya.stage.numChildren;i++){const n=Laya.stage.getChildAt(i);if(n.getChildByName?.('battleWeapon'))n.visible=false;}}if(mode.includes('cache')&&mode!=='cache-ui')find('battleScenery').cacheAs='bitmap';if(mode==='cache-ui'){find('battleHud').cacheAs='bitmap';find('battleScenery').cacheAs='bitmap';}}\"\
         \"\",mode)\n      cdp=await ctx.new_cdp_session(page)\n      await cdp.send('Performance.enable')\n      before=await\
         \ cdp.send('Performance.getMetrics')\n      timing=await page.evaluate(\"\"\"()=>new Promise(resolve=>{const values=[];let\
         \ prior=0;const start=performance.now();const loop=t=>{if(prior)values.push(t-prior);prior=t;if(t-start<10000)requestAnimationFrame(loop);else{values.sort((a,b)=>a-b);resolve({samples:values.length,mean:values.reduce((a,b)=>a+b,0)/values.length,p95:values[Math.ceil(values.length*.95)-1]});}};requestAnimationFrame(loop);})\"\
@@ -278,7 +165,8 @@ jobs:
         \ for x in after['metrics']}\n      cpu={k:round(b[k]-a.get(k,0),4) for k in ['TaskDuration','ScriptDuration','LayoutDuration','RecalcStyleDuration']}\n\
         \      canvas=await page.evaluate(\"\"\"()=>Array.from(document.querySelectorAll('canvas')).map(c=>({w:c.width,h:c.height,cssW:c.clientWidth,cssH:c.clientHeight}))\"\
         \"\")\n      report['phases'].append({'mode':mode,'timing':timing,'cpuSeconds':cpu,'canvas':canvas})\n      print('PROFILE',json.dumps(report['phases'][-1]),flush=True)\n\
-        \      await ctx.close()\n    await browser.close()\n  pathlib.Path(os.environ['RUNNER_TEMP'],'render-profile.json').write_text(json.dumps(report,indent=2))\n\
+        \      await page.screenshot(path=str(pathlib.Path(os.environ['RUNNER_TEMP'],mode+'.png')))\n      await ctx.close()\n\
+        \    await browser.close()\n  pathlib.Path(os.environ['RUNNER_TEMP'],'render-profile.json').write_text(json.dumps(report,indent=2))\n\
         asyncio.run(main())\n"
       shell: python
     - name: Upload render profile
@@ -286,4 +174,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: render-cost-profile
-        path: ${{ runner.temp }}/render-profile.json
+        path: '${{ runner.temp }}/render-profile.json
+
+          ${{ runner.temp }}/*.png'
