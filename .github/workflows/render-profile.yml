@@ -1,0 +1,289 @@
+name: Diagnostic render cost isolation
+'on':
+  push:
+    branches:
+    - main
+    paths:
+    - .github/workflows/render-profile.yml
+permissions:
+  contents: read
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Require read-only token for private source
+      shell: bash
+      env:
+        READ_TOKEN: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+      run: "if [ -z \"$READ_TOKEN\" ]; then\n  echo \"::error::Set DAGONGREN_SOURCE_READ_TOKEN with Contents:Read on private\
+        \ source repo in this public preview repo.\"\n  exit 1\nfi\n"
+    - name: Checkout private source without persisting token
+      uses: actions/checkout@v4
+      with:
+        repository: BaiMaGod/dagongrenxingcunzhe
+        ref: c507b519e190e7eeea4a7fcb5f32d533b938af4f
+        path: private-game
+        token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+        persist-credentials: false
+    - name: Record exact private-source commit
+      id: source
+      shell: bash
+      run: 'set -euo pipefail
+
+        SHA="$(git -C private-game rev-parse HEAD)"
+
+        test "${#SHA}" -eq 40
+
+        echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+
+        echo "Building private game commit $SHA" >> "$GITHUB_STEP_SUMMARY"
+
+        '
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Typecheck, game regression and source/template bridge tests
+      id: source-tests
+      working-directory: private-game
+      shell: bash
+      run: 'set -euo pipefail
+
+        npm install --no-audit --no-fund
+
+        npm run check
+
+        python3 tools/test_laya_prepare.py
+
+        '
+    - name: Full-strength ordinary-month AI playtests
+      id: ordinary-ai
+      working-directory: private-game
+      shell: bash
+      timeout-minutes: 12
+      run: 'set -euo pipefail
+
+        node .test-dist/tests/ordinary_playtest_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/ordinary-ai.json"
+
+        python3 - <<''PY''
+
+        import json,os,pathlib
+
+        r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text())
+
+        assert r["kind"]=="ordinary-full-intensity-ai-playtest" and r["gameSeconds"]==480
+
+        assert r["fullSpawn"] and r["fullBossHp"] and not r["modifiedConfig"] and not r["debugInvulnerability"]
+
+        assert len(r["samples"])==42 and len(r["statistics"])==4
+
+        assert {s["role"] for s in r["samples"]}=={"student","tea_worker","security","screw_worker"}
+
+        assert all(s["outcome"] in ("win","dead","timeout") and 0<s["seconds"]<=480 for s in r["samples"])
+
+        assert all(s["salary"]-s["spent"]==s["remaining"] for s in r["samples"])
+
+        assert all(s["bossCombat"]["damage"]>=0 and 0<=s["bossCombat"]["rangePct"]<=100 for s in r["samples"])
+
+        assert all(s["bossCombat"]["damage"]==sum(s["bossCombat"]["damageBySource"].values()) for s in r["samples"])
+
+        assert len([s for s in r["samples"] if s["assist"]])==2
+
+        assert all(s["outcome"]=="win" for s in r["samples"] if s["assist"]), "First-clear assisted newcomers regressed"
+
+        for row in r["statistics"]: print("AI playtest (not human):",row)
+
+        print("First-clear assistant samples:",[(s["seed"],s["outcome"]) for s in r["samples"] if s["assist"]])
+
+        PY
+
+        echo "### Actual full-strength ordinary-month AI playtests (not human win rates)" >> "$GITHUB_STEP_SUMMARY"
+
+        python3 -c ''import json,os,pathlib; r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"ordinary-ai.json").read_text());print("|
+        Role | Plays | Wins | Boss reached | First level (s) | Final Lv | Survived (s) |\n|---|---:|---:|---:|---:|---:|---:|");[print("|
+        {role} | {plays} | {wins} | {bossReached} | {meanFirstUpgradeSeconds} | {meanLevelAtEnd} | {meanSurvivalSeconds} |".format(**x))
+        for x in r["statistics"]]'' >> "$GITHUB_STEP_SUMMARY"
+
+        '
+    - name: 180 virtual seconds capped-swarm CPU logic stress
+      id: logic-stress
+      working-directory: private-game
+      shell: bash
+      run: 'set -euo pipefail
+
+        node .test-dist/tests/stress_probe.js > "$RUNNER_TEMP/stress-180s.json"
+
+        python3 - <<''PY''
+
+        import json,os,pathlib
+
+        p=pathlib.Path(os.environ["RUNNER_TEMP"])/"stress-180s.json"
+
+        r=json.loads(p.read_text())
+
+        assert r["kind"]=="logic-only-synthetic-stress",r
+
+        assert r["gameSeconds"]==180 and r["steps"]==10800,r
+
+        assert r["capsPassed"] and r["observed"]["maxEnemies"]==450,r
+
+        assert r["final"]["kills"]==0 and all(p["enemies"]==450 for p in r["checkpoints"]),r
+
+        assert r["realtimeDeviceFpsMeasured"] is False,r
+
+        print("180 virtual seconds / 10800 ticks checked:",r["cpuPerStepMs"],r["observed"])
+
+        PY
+
+        echo "### Logic-only synthetic 180-second battle stress" >> "$GITHUB_STEP_SUMMARY"
+
+        cat "$RUNNER_TEMP/stress-180s.json" >> "$GITHUB_STEP_SUMMARY"
+
+        '
+    - name: Full 480-second month salary/shop/Boss/settlement regression
+      id: month-logic
+      working-directory: private-game
+      shell: bash
+      run: 'set -euo pipefail
+
+        node .test-dist/tests/full_month_probe.js assets/config/mvp-balance.v0.3.json > "$RUNNER_TEMP/full-month.json"
+
+        python3 - <<''PY''
+
+        import json,os,pathlib
+
+        r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"full-month.json").read_text())
+
+        assert r["kind"]=="full-month-calendar-and-settlement-logic" and r["ticks"]==28800,r
+
+        assert r["end"]["outcome"]=="win" and r["settlement"]["timeoutCredit"]==0,r
+
+        assert [x["day"] for x in r["shops"]]==[10,20],r
+
+        assert r["boss"]["spawnTick"]==24960 and 24960<r["boss"]["defeatTick"]<28800,r
+
+        assert r["settlement"]["winCredit"]==r["wage"]["remaining"],r
+
+        print("Full 480 second real-config calendar/settlement verified",r["wage"],r["boss"])
+
+        PY
+
+        echo "### Full month contract (accelerated, QA-only fixture)" >> "$GITHUB_STEP_SUMMARY"
+
+        cat "$RUNNER_TEMP/full-month.json" >> "$GITHUB_STEP_SUMMARY"
+
+        '
+    - name: Rasterize illustrated combat atlas and synthesize event WAV
+      id: game-assets
+      working-directory: private-game
+      shell: bash
+      run: "set -euo pipefail\npython3 -m pip install --no-cache-dir 'cairosvg==2.7.1' 'Pillow==11.3.0'\npython3 tools/render_combat_art.py\n\
+        python3 tools/generate_anim_atlas.py\npython3 tools/generate_combat_sfx.py\ntest -s assets/art/combat-atlas.webp\n\
+        test -s assets/art/actors-motion.webp\ntest -s assets/art/combat-motion.webp\ntest -s assets/art/city-floor.webp\n\
+        for cue in hit kill hurt salary boss boss_down upgrade shot; do\n  test -s \"assets/audio/$cue.wav\"\ndone\necho \"\
+        Combat atlas, 96 cropped pre-rendered pose frames, city floor and eight event sounds generated\" >> \"$GITHUB_STEP_SUMMARY\"\
+        \n"
+    - name: Install official LayaAir CLI 3.4.0
+      shell: bash
+      run: 'set -euo pipefail
+
+        curl --fail --silent --show-error --location https://raw.githubusercontent.com/layabox/layaair-cli/master/install.sh
+        -o "$RUNNER_TEMP/install-layaair.sh"
+
+        LAYAAIR_INSTALL_DIR="$RUNNER_TEMP/layaair" bash "$RUNNER_TEMP/install-layaair.sh"
+
+        echo "$RUNNER_TEMP/layaair" >> "$GITHUB_PATH"
+
+        "$RUNNER_TEMP/layaair/layaair" install 3.4.0
+
+        "$RUNNER_TEMP/layaair/layaair" --version=3.4.0 create --list-templates | grep -F "2D empty project"
+
+        '
+    - name: Create original 2D template, bind game and compile genuine Web build
+      id: laya-build
+      working-directory: private-game
+      shell: bash
+      run: "set -euo pipefail\nmkdir -p \"$RUNNER_TEMP/official-laya-project\"\nlayaair --version=3.4.0 create Dagongren -t\
+        \ \"2D empty project\" -p \"$RUNNER_TEMP/official-laya-project\"\necho \"=== OFFICIAL 2D TEMPLATE FILES ===\"\nfind\
+        \ \"$RUNNER_TEMP/official-laya-project\" -maxdepth 4 -type f | sort | head -130\necho \"=== PLAYER SETTINGS ===\"\n\
+        cat \"$RUNNER_TEMP/official-laya-project/settings/PlayerSettings.json\"\necho \"=== PROJECT INIT SETTINGS ===\"\n\
+        cat \"$RUNNER_TEMP/official-laya-project/Dagongren.laya\"\necho \"=== COMPILER/STARTUP CANDIDATES ===\"\nfind \"$RUNNER_TEMP/official-laya-project\"\
+        \ -type f \\( -name '*Compiler*' -o -name '*Main*' -o -name '*.laya' \\) | sort\npython3 tools/prepare_laya_project.py\
+        \ --repo \"$PWD\" --project \"$RUNNER_TEMP/official-laya-project\"\nlayaair --version=3.4.0 build web -p \"$RUNNER_TEMP/official-laya-project\"\
+        \ -o \"$RUNNER_TEMP/game-web\"\ntest -s \"$RUNNER_TEMP/game-web/index.html\"\ntest -n \"$(find \"$RUNNER_TEMP/game-web\"\
+        \ -type f -name '*.js' -size +0c -print -quit)\"\nmkdir -p \"$RUNNER_TEMP/game-web/config\"\ncp assets/config/mvp-balance.v0.3.json\
+        \ \"$RUNNER_TEMP/game-web/config/\"\ntest -s \"$RUNNER_TEMP/game-web/config/mvp-balance.v0.3.json\"\n# Asset bytes\
+        \ are packaged only after their actual Git upload.\n# Source PNG/design docs never get copied into public runtime\
+        \ output.\nif [ -s assets/art/actors-atlas.webp ]; then\n  mkdir -p \"$RUNNER_TEMP/game-web/art\"\n  cp assets/art/actors-atlas.webp\
+        \ \"$RUNNER_TEMP/game-web/art/actors-atlas.webp\"\n  test -s \"$RUNNER_TEMP/game-web/art/actors-atlas.webp\"\n  echo\
+        \ \"Real actor texture atlas included\" >> \"$GITHUB_STEP_SUMMARY\"\nelse\n  echo \"Actor atlas absent; view must\
+        \ retain explicitly marked prototype art\" >> \"$GITHUB_STEP_SUMMARY\"\nfi\n# Real combat art/sound assets: generated\
+        \ above from private source assets.\ntest -s assets/art/combat-atlas.webp\ntest -s assets/art/city-floor.webp\nmkdir\
+        \ -p \"$RUNNER_TEMP/game-web/art\" \"$RUNNER_TEMP/game-web/audio\"\ncp assets/art/combat-atlas.webp \"$RUNNER_TEMP/game-web/art/\"\
+        \ncp assets/art/actors-motion.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/combat-motion.webp \"$RUNNER_TEMP/game-web/art/\"\
+        \ncp assets/art/city-floor.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/office-scenes-v10.webp \"$RUNNER_TEMP/game-web/art/\"\
+        \ncp assets/art/office-floor-v10.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/office-room-v12.webp \"$RUNNER_TEMP/game-web/art/\"\
+        \ntest -s \"$RUNNER_TEMP/game-web/art/office-floor-v10.webp\"\ntest -s \"$RUNNER_TEMP/game-web/art/office-scenes-v10.webp\"\
+        \ncp assets/audio/*.wav \"$RUNNER_TEMP/game-web/audio/\"\ntest -s \"$RUNNER_TEMP/game-web/art/combat-atlas.webp\"\n\
+        test -s \"$RUNNER_TEMP/game-web/art/actors-motion.webp\"\ntest -s \"$RUNNER_TEMP/game-web/art/combat-motion.webp\"\
+        \ntest -s \"$RUNNER_TEMP/game-web/art/city-floor.webp\"\ntest -s \"$RUNNER_TEMP/game-web/audio/kill.wav\"\n"
+    - name: Configure shipped player and clear default widget requests
+      working-directory: private-game
+      run: 'python3 tools/test_finalize_web_build.py
+
+        python3 tools/finalize_web_build.py "$RUNNER_TEMP/game-web"
+
+        '
+    - name: Manifest and public artifact hygiene checks
+      shell: bash
+      env:
+        SOURCE_SHA: ${{ steps.source.outputs.sha }}
+      run: "set -euo pipefail\npython3 - <<'PY'\nimport json,os,pathlib\noutput=pathlib.Path(os.environ[\"RUNNER_TEMP\"])/\"\
+        game-web\"\nforbidden=[\"src\",\"docs\",\"tools\",\".git\",\"node_modules\",\"private-game\"]\nfor item in forbidden:\n\
+        \    if (output/item).exists(): raise SystemExit(\"Private path in Web artifact: \"+item)\nmanifest={\"schemaVersion\"\
+        :1,\"commitSha\":os.environ[\"SOURCE_SHA\"],\"engineVersion\":\"3.4.0\",\"target\":\"web\"}\n(output/\"build-manifest.json\"\
+        ).write_text(json.dumps(manifest,indent=2)+\"\\n\",encoding=\"utf-8\")\nassert len(manifest[\"commitSha\"])==40\n\
+        print(\"Staged only Laya Web build from:\",manifest[\"commitSha\"])\nPY\n"
+    - name: Install Chromium for actual browser smoke
+      shell: bash
+      run: 'python3 -m pip install ''playwright==1.55.0''
+
+        python3 -m playwright install --with-deps chromium
+
+        '
+    - name: Isolate browser render costs without publishing
+      env:
+        GAME_WEB_ROOT: ${{ runner.temp }}/game-web
+      run: "import asyncio, json, os, pathlib, threading, http.server, functools\nfrom playwright.async_api import async_playwright\n\
+        \nroot=os.environ['GAME_WEB_ROOT']\nhandler=functools.partial(http.server.SimpleHTTPRequestHandler,directory=root)\n\
+        server=http.server.ThreadingHTTPServer(('127.0.0.1',8765),handler)\nthreading.Thread(target=server.serve_forever,daemon=True).start()\n\
+        async def main():\n  report={'kind':'render-cost-isolation','releaseGate':False,'phases':[]}\n  async with async_playwright()\
+        \ as p:\n    browser=await p.chromium.launch(args=['--no-sandbox','--no-proxy-server','--use-angle=swiftshader','--enable-unsafe-swiftshader'])\n\
+        \    for mode in ['empty','full','no-scenery','no-world','no-ui','hidden-stage','full-retina']:\n      ctx=await browser.new_context(viewport={'width':390,'height':844},device_scale_factor=2\
+        \ if mode=='full-retina' else 1)\n      page=await ctx.new_page()\n      if mode!='empty':\n        await page.goto('http://127.0.0.1:8765/')\n\
+        \        await page.wait_for_selector('#splash',state='detached',timeout=20000)\n        await page.wait_for_timeout(1200)\n\
+        \        button=await page.evaluate(\"\"\"()=>{let target;const walk=n=>{if(n.visible===false)return;if(n.text==='开工'&&!target){const\
+        \ p=n.localToGlobal(new Laya.Point());target={x:p.x+n.width/2,y:p.y+n.height/2};}for(let i=0;i<n.numChildren;i++)walk(n.getChildAt(i));};walk(Laya.stage);return\
+        \ target;}\"\"\")\n        assert button, 'start absent'\n        await page.mouse.click(button['x'],button['y'])\n\
+        \        await page.wait_for_function(\"Laya.stage.getChildByName('battleOverlay')?.visible===false\",timeout=10000)\n\
+        \        await page.wait_for_timeout(3000)\n        await page.evaluate(\"\"\"mode=>{const find=n=>Laya.stage.getChildByName(n);if(mode==='no-scenery')find('battleScenery').visible=false;if(mode==='no-world')find('battleWorld').visible=false;if(mode==='no-ui'){find('battleHud').visible=false;for(let\
+        \ i=0;i<Laya.stage.numChildren;i++){const n=Laya.stage.getChildAt(i);if(n.getChildByName?.('battleWeapon'))n.visible=false;}}if(mode==='hidden-stage')Laya.stage.alpha=0;}\"\
+        \"\",mode)\n      cdp=await ctx.new_cdp_session(page)\n      await cdp.send('Performance.enable')\n      before=await\
+        \ cdp.send('Performance.getMetrics')\n      timing=await page.evaluate(\"\"\"()=>new Promise(resolve=>{const values=[];let\
+        \ prior=0;const start=performance.now();const loop=t=>{if(prior)values.push(t-prior);prior=t;if(t-start<10000)requestAnimationFrame(loop);else{values.sort((a,b)=>a-b);resolve({samples:values.length,mean:values.reduce((a,b)=>a+b,0)/values.length,p95:values[Math.ceil(values.length*.95)-1]});}};requestAnimationFrame(loop);})\"\
+        \"\")\n      after=await cdp.send('Performance.getMetrics')\n      a={x['name']:x['value'] for x in before['metrics']};b={x['name']:x['value']\
+        \ for x in after['metrics']}\n      cpu={k:round(b[k]-a.get(k,0),4) for k in ['TaskDuration','ScriptDuration','LayoutDuration','RecalcStyleDuration']}\n\
+        \      canvas=await page.evaluate(\"\"\"()=>Array.from(document.querySelectorAll('canvas')).map(c=>({w:c.width,h:c.height,cssW:c.clientWidth,cssH:c.clientHeight}))\"\
+        \"\")\n      report['phases'].append({'mode':mode,'timing':timing,'cpuSeconds':cpu,'canvas':canvas})\n      print('PROFILE',json.dumps(report['phases'][-1]),flush=True)\n\
+        \      await ctx.close()\n    await browser.close()\n  pathlib.Path(os.environ['RUNNER_TEMP'],'render-profile.json').write_text(json.dumps(report,indent=2))\n\
+        asyncio.run(main())\n"
+      shell: python
+    - name: Upload render profile
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: render-cost-profile
+        path: ${{ runner.temp }}/render-profile.json
