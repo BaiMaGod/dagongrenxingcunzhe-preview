@@ -1,12 +1,12 @@
 {
-  "generated_at_utc": "2026-10-21T08:31:26.303812+00:00",
+  "generated_at_utc": "2026-10-21T08:40:25.784922+00:00",
   "source_sha": "70f0e2e1f22cdeb11d6aae50b63499d1a0cfa3fc",
-  "workflow_run_id": "39569250189",
+  "workflow_run_id": "39569784739",
   "source_tests": "success",
   "laya_build": "success",
-  "browser_qa": "cancelled",
-  "browser_regression": "skipped",
-  "regression_report": null,
+  "browser_qa": "success",
+  "browser_regression": "success",
+  "regression_report": "regression.json",
   "logic_stress": "success",
   "ordinary_ai": "success",
   "ordinary_ai_report": "ordinary-ai.json",
@@ -29,7 +29,13 @@
     "month-desktop-end.png",
     "month-mobile-portrait-shop.png",
     "month-mobile-portrait-boss.png",
-    "month-mobile-portrait-end.png"
+    "month-mobile-portrait-end.png",
+    "regression-portrait-home.png",
+    "regression-landscape-shop.png",
+    "regression-narrow-end.png",
+    "regression-natural-upgrade.png",
+    "regression-natural-battle.png",
+    "regression-rotated-pause.png"
   ],
   "notes": "Desktop/mobile Chromium screenshots include an isolated no-payout accelerated 480-second calendar UI QA. The Node 180-second synthetic stress is CPU logic-only. Neither measures real physical-device FPS or live difficulty."
 }

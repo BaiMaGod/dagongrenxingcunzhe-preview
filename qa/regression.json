@@ -11,12 +11,15 @@
       "roomLoaded": true
     },
     {
+      "name": "portrait build overview opens and returns while paused"
+    },
+    {
       "name": "portrait pause freezes clock and resumes"
     },
     {
       "name": "portrait 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 213,
-      "afterStall": 233
+      "beforeStall": 193,
+      "afterStall": 213
     },
     {
       "name": "portrait touch moves and cancellation stops",
@@ -41,12 +44,15 @@
       "roomLoaded": true
     },
     {
+      "name": "narrow build overview opens and returns while paused"
+    },
+    {
       "name": "narrow pause freezes clock and resumes"
     },
     {
       "name": "narrow 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 184,
-      "afterStall": 205
+      "beforeStall": 186,
+      "afterStall": 208
     },
     {
       "name": "narrow touch moves and cancellation stops",
@@ -54,7 +60,7 @@
     },
     {
       "name": "narrow room camera drifts relative to spawn",
-      "x": -7.938608640101755,
+      "x": -5.458101611262803,
       "y": 0
     },
     {
@@ -71,12 +77,15 @@
       "roomLoaded": true
     },
     {
+      "name": "landscape build overview opens and returns while paused"
+    },
+    {
       "name": "landscape pause freezes clock and resumes"
     },
     {
       "name": "landscape 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 122,
-      "afterStall": 150
+      "beforeStall": 125,
+      "afterStall": 153
     },
     {
       "name": "landscape touch moves and cancellation stops",
@@ -84,7 +93,7 @@
     },
     {
       "name": "landscape room camera drifts relative to spawn",
-      "x": -3.4647031566933,
+      "x": -4.139329994589168,
       "y": 0
     },
     {
@@ -101,12 +110,15 @@
       "roomLoaded": true
     },
     {
+      "name": "desktop build overview opens and returns while paused"
+    },
+    {
       "name": "desktop pause freezes clock and resumes"
     },
     {
       "name": "desktop 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 219,
-      "afterStall": 241
+      "beforeStall": 213,
+      "afterStall": 232
     },
     {
       "name": "desktop touch moves and cancellation stops",
@@ -137,18 +149,18 @@
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "13/480 秒",
-      "afterClock": "15/480 秒"
+      "beforeClock": "11/480 秒",
+      "afterClock": "12/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "27/480 秒",
-      "afterClock": "29/480 秒"
+      "beforeClock": "23/480 秒",
+      "afterClock": "24/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "43/480 秒",
-      "afterClock": "45/480 秒"
+      "beforeClock": "42/480 秒",
+      "afterClock": "44/480 秒"
     },
     {
       "name": "natural death settlement returns home"
@@ -162,22 +174,34 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 58,
+    "wallSeconds": 56,
     "upgrades": 3,
     "texts": [
       "大学生  Lv.4",
       "0/100",
       "第4天",
-      "49/480 秒",
+      "48/480 秒",
       "工资 ¥0",
-      "久坐高发",
+      "服务压力高发",
       "普通月",
-      "课本 Lv.2",
+      "-2  奶茶 · 弹丸",
+      "课本 Lv.2  ≡",
       "击退 51",
       "本月失败",
-      "体力耗尽\n本局工资不结转\n\n本月收入：¥0\n装备及道具：-¥0\n本月工资剩余：¥0\n\n实际入账：¥0\n局外余额：¥15000",
+      "体力耗尽 · 本局工资不结转\n\n存活 0分48秒 · 第4天 · Lv.4 · 击退 51\n构筑：课本 Lv.2 / 基础强化累计\n主要受伤：奶茶 · 58体力 / 8次\n最后受击：奶茶 · 弹丸 -2\n下局建议：看准亮边弹丸，横向移动避开弹道。",
+      "本月收入：¥0 · 装备支出：¥0\n本月工资剩余：¥0\n实际入账 ¥0 · 局外余额 ¥15000",
       "返回首页",
-      "开始准备下一个月"
+      "带着经验，准备下一局"
     ]
+  },
+  "renderTiming": {
+    "kind": "active-combat-rAF-intervals",
+    "environment": "Chromium automated browser; not a physical device or GPU timing",
+    "samples": 1166,
+    "meanMs": 41.42186963979411,
+    "p95Ms": 66.70000000000437,
+    "p99Ms": 83.40000000000146,
+    "targetP95Ms": 33.4,
+    "withinBudget": false
   }
 }
