@@ -584,6 +584,19 @@ jobs:
             cp "$RUNNER_TEMP/regression-qa/$shot.png" "$RUNNER_TEMP/qa/regression-$shot.png"
           done
 
+      - name: Enforce configured active-combat frame interval budget
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib
+          r=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"regression-qa/report.json").read_text())["renderTiming"]
+          budget=json.loads(pathlib.Path("assets/config/mvp-balance.v0.3.json").read_text())["performance"]["mobileFrameP95Ms"]
+          assert r["samples"]>120 and r["targetP95Ms"]==budget and r["p95Ms"]<=budget and r["withinBudget"],r
+          print("Chromium active-combat rAF budget passed (not physical-device GPU timing):",r)
+          PY
+
       - name: Upload non-source browser QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
