@@ -603,7 +603,7 @@ jobs:
           assert a["sourceCommit"]==b["sourceCommit"]==os.environ["SOURCE_SHA"]
           assert not a["errors"] and not b["errors"] and a["naturalBattle"]["upgrades"]>0 and b["naturalBattle"]["upgrades"]>0
           result={"kind":"paired-recording-control","source_sha":os.environ["SOURCE_SHA"],"seed":20261021,"viewport":[390,844],"recorded":a["renderTiming"],"unrecorded":b["renderTiming"],"functional_checks":[len(a["checks"]),len(b["checks"])],"notes":"Same compiled game, seed, viewport and real-input script. Video capture is the independent variable. rAF intervals are not physical-device GPU timing."}
-          (root/"qa/performance-control.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\\n")
+          (root/"qa/performance-control.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
           print(json.dumps(result,ensure_ascii=False))
           PY
 
