@@ -1,0 +1,26 @@
+name: Prepare official QA browser runtime
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/qa-browser-runtime.yml']
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Obtain official Playwright Chromium headless runtime
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install chromium --only-shell
+          tar -C "$HOME/.cache" -czf "$RUNNER_TEMP/qa-browser-runtime.tgz" ms-playwright
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-qa-browser-runtime
+          path: ${{ runner.temp }}/qa-browser-runtime.tgz
+          compression-level: 0
+          retention-days: 1
