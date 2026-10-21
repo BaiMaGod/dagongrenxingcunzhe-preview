@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V14 combat readability, build review and active-frame diagnostics.
-          ref: 70f0e2e1f22cdeb11d6aae50b63499d1a0cfa3fc
+          ref: 9c12bd3e434896be638cb2eef3ad634ad2920fc5
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
@@ -585,6 +585,7 @@ jobs:
           done
 
       - name: Enforce configured active-combat frame interval budget
+        id: render-budget
         working-directory: private-game
         shell: bash
         run: |
@@ -617,6 +618,7 @@ jobs:
           LAYA_BUILD_OUTCOME: ${{ steps.laya-build.outcome }}
           BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
           REGRESSION_QA_OUTCOME: ${{ steps.browser-regression.outcome }}
+          PERFORMANCE_QA_OUTCOME: ${{ steps.render-budget.outcome }}
           STRESS_OUTCOME: ${{ steps.logic-stress.outcome }}
           MONTH_OUTCOME: ${{ steps.month-logic.outcome }}
           ORDINARY_AI_OUTCOME: ${{ steps.ordinary-ai.outcome }}
@@ -669,6 +671,7 @@ jobs:
               "laya_build":os.environ["LAYA_BUILD_OUTCOME"],
               "browser_qa":os.environ["BROWSER_QA_OUTCOME"],
               "browser_regression":os.environ["REGRESSION_QA_OUTCOME"],
+              "performance_budget":os.environ["PERFORMANCE_QA_OUTCOME"],
               "regression_report":"regression.json" if (out/"regression.json").is_file() else None,
               "logic_stress":os.environ.get("STRESS_OUTCOME","skipped"),
               "ordinary_ai":os.environ.get("ORDINARY_AI_OUTCOME","skipped"),
