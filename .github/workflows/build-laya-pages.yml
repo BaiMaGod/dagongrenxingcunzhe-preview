@@ -44,8 +44,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # V13 long-frame recovery and first-run combat: exact tested source commit.
-          ref: c4f2544b5a8d0c3fef0762aa7663caf864fe5439
+          # V14 combat readability, build review and active-frame diagnostics.
+          ref: 3bb0bacc03e3b2fdebd6a57d3f54822bda16d944
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
