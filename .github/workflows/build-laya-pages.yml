@@ -44,8 +44,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
-          # V14 combat readability, build review and active-frame diagnostics.
-          ref: 6b5affb2f5eaf5c176abd554ab78cc90446ccef0
+          # V15 dedicated Boss detail, readable action phases and normal-speed browser pacing.
+          ref: 8032c5f5401b3c26e3725307a9976a24134da4ae
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
@@ -160,6 +160,7 @@ jobs:
           python3 tools/generate_combat_sfx.py
           test -s assets/art/combat-atlas.webp
           test -s assets/art/actors-motion.webp
+          test -s assets/art/boss-rent-motion-v15.webp
           test -s assets/art/combat-motion.webp
           test -s assets/art/city-floor.webp
           for cue in hit kill hurt salary boss boss_down upgrade shot; do
@@ -216,6 +217,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/game-web/art" "$RUNNER_TEMP/game-web/audio"
           cp assets/art/combat-atlas.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/actors-motion.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/boss-rent-motion-v15.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/combat-motion.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
           cp assets/art/office-scenes-v10.webp "$RUNNER_TEMP/game-web/art/"
@@ -276,6 +278,7 @@ jobs:
           curl -fsS http://127.0.0.1:4173/config/mvp-balance.v0.3.json > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-atlas.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/actors-motion.webp > /dev/null
+          curl -fsS http://127.0.0.1:4173/art/boss-rent-motion-v15.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/combat-motion.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/city-floor.webp > /dev/null
           curl -fsS http://127.0.0.1:4173/art/office-scenes-v10.webp > /dev/null
@@ -621,6 +624,16 @@ jobs:
           print("Chromium active-combat rAF budget passed (not physical-device GPU timing):",r)
           PY
 
+      - name: Normal-speed ordinary browser playthrough with real input
+        id: normal-run
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/normal-run-qa" node tools/browser_full_run.cjs
+          cp "$RUNNER_TEMP/normal-run-qa/report.json" "$RUNNER_TEMP/qa/normal-run.json"
+          cp "$RUNNER_TEMP/normal-run-qa/normal-end.png" "$RUNNER_TEMP/qa/normal-run-end.png"
+
       - name: Upload non-source browser QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -630,6 +643,7 @@ jobs:
             ${{ runner.temp }}/qa
             ${{ runner.temp }}/regression-qa
             ${{ runner.temp }}/regression-unrecorded
+            ${{ runner.temp }}/normal-run-qa
           if-no-files-found: ignore
           retention-days: 7
 
@@ -643,6 +657,7 @@ jobs:
           BROWSER_QA_OUTCOME: ${{ steps.browser-qa.outcome }}
           REGRESSION_QA_OUTCOME: ${{ steps.browser-regression.outcome }}
           PERFORMANCE_QA_OUTCOME: ${{ steps.render-budget.outcome }}
+          NORMAL_RUN_OUTCOME: ${{ steps.normal-run.outcome }}
           STRESS_OUTCOME: ${{ steps.logic-stress.outcome }}
           MONTH_OUTCOME: ${{ steps.month-logic.outcome }}
           ORDINARY_AI_OUTCOME: ${{ steps.ordinary-ai.outcome }}
@@ -660,7 +675,7 @@ jobs:
                  "month-desktop-shop.png","month-desktop-boss.png","month-desktop-end.png",
                  "month-mobile-portrait-shop.png","month-mobile-portrait-boss.png","month-mobile-portrait-end.png",
                  "regression-portrait-home.png","regression-landscape-shop.png","regression-narrow-end.png",
-                 "regression-natural-upgrade.png","regression-natural-battle.png","regression-rotated-pause.png"]
+                 "regression-natural-upgrade.png","regression-natural-battle.png","regression-rotated-pause.png","normal-run-end.png"]
           saved=[]
           for name in names:
               p=qa/name
@@ -692,7 +707,14 @@ jobs:
               payload=json.loads(control.read_text())
               if payload.get("kind")=="paired-recording-control" and payload.get("source_sha")==os.environ.get("SOURCE_SHA"):
                   shutil.copy2(control,out/"performance-control.json")
+          normal=qa/"normal-run.json"
+          if normal.is_file():
+              payload=json.loads(normal.read_text())
+              if payload.get("sourceCommit")==os.environ.get("SOURCE_SHA") and payload.get("kind")=="normal-speed-real-input-browser-run":
+                  shutil.copy2(normal,out/"normal-run.json")
           result={
+              "normal_speed_browser":os.environ.get("NORMAL_RUN_OUTCOME","skipped"),
+              "normal_speed_report":"normal-run.json" if (out/"normal-run.json").is_file() else None,
               "generated_at_utc":datetime.now(timezone.utc).isoformat(),
               "source_sha":os.environ.get("SOURCE_SHA",""),
               "workflow_run_id":os.environ.get("GITHUB_RUN_ID",""),
@@ -745,6 +767,8 @@ jobs:
             month-mobile-portrait-shop.png month-mobile-portrait-boss.png month-mobile-portrait-end.png; do
               if [ -s "$RUNNER_TEMP/qa-public/$name" ]; then cp "$RUNNER_TEMP/qa-public/$name" "qa/$name"; fi
           done
+          if [ -s "$RUNNER_TEMP/qa-public/normal-run.json" ]; then cp "$RUNNER_TEMP/qa-public/normal-run.json" qa/normal-run.json; fi
+          if [ -s "$RUNNER_TEMP/qa-public/normal-run-end.png" ]; then cp "$RUNNER_TEMP/qa-public/normal-run-end.png" qa/normal-run-end.png; fi
           if [ -s "$RUNNER_TEMP/qa-public/regression.json" ]; then cp "$RUNNER_TEMP/qa-public/regression.json" qa/regression.json; fi
           if [ -s "$RUNNER_TEMP/qa-public/performance-control.json" ]; then cp "$RUNNER_TEMP/qa-public/performance-control.json" qa/performance-control.json; fi
           for shot in portrait-home landscape-shop narrow-end natural-upgrade natural-battle rotated-pause; do
