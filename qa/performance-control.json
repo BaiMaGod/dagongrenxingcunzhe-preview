@@ -1,6 +1,6 @@
 {
   "kind": "paired-recording-control",
-  "source_sha": "35832c24962c08f76c4f269b80478e41a9e46290",
+  "source_sha": "6b5affb2f5eaf5c176abd554ab78cc90446ccef0",
   "seed": 20261021,
   "viewport": [
     390,
@@ -9,28 +9,28 @@
   "recorded": {
     "kind": "active-combat-rAF-intervals",
     "environment": "Chromium automated browser; not a physical device or GPU timing",
-    "samples": 1875,
-    "meanMs": 33.63413333333334,
-    "p95Ms": 66.69999999999709,
-    "p99Ms": 66.80000000000291,
+    "samples": 3736,
+    "meanMs": 17.241434689506804,
+    "p95Ms": 16.799999999999272,
+    "p99Ms": 33.400000000001455,
     "targetP95Ms": 33.4,
-    "withinBudget": false,
-    "cpuDiagnostic": "帧间隔 34.0ms · P95 65.2 · 预算≤33.4\nCPU 逻辑 0.12 / 提交 0.56ms · P95 1.90\n逻辑 2.0步/帧 · 长帧 0\nEnemy 25 · XP 3/3\nProjectile P/E 1/8\nDelay P/E 0/0"
+    "withinBudget": true,
+    "cpuDiagnostic": "帧间隔 17.2ms · P95 20.3 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.43ms · P95 1.20\n逻辑 1.0步/帧 · 长帧 0\nEnemy 23 · XP 4/4\nProjectile P/E 1/4\nDelay P/E 0/0"
   },
   "unrecorded": {
     "kind": "active-combat-rAF-intervals",
     "environment": "Chromium automated browser; not a physical device or GPU timing",
-    "samples": 2408,
-    "meanMs": 28.64647009966784,
-    "p95Ms": 50,
-    "p99Ms": 66.69999999999709,
+    "samples": 3632,
+    "meanMs": 17.170759911893573,
+    "p95Ms": 16.800000000000182,
+    "p99Ms": 33.40000000000009,
     "targetP95Ms": 33.4,
-    "withinBudget": false,
-    "cpuDiagnostic": "帧间隔 29.4ms · P95 53.1 · 预算≤33.4\nCPU 逻辑 0.12 / 提交 0.53ms · P95 2.30\n逻辑 1.8步/帧 · 长帧 0\nEnemy 21 · XP 4/4\nProjectile P/E 2/7\nDelay P/E 0/0"
+    "withinBudget": true,
+    "cpuDiagnostic": "帧间隔 17.2ms · P95 21.1 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.38ms · P95 1.10\n逻辑 1.0步/帧 · 长帧 0\nEnemy 25 · XP 3/3\nProjectile P/E 1/6\nDelay P/E 0/0"
   },
   "functional_checks": [
-    44,
-    44
+    48,
+    48
   ],
   "notes": "Same compiled game, seed, viewport and real-input script. Video capture is the independent variable. rAF intervals are not physical-device GPU timing."
 }

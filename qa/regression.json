@@ -11,6 +11,16 @@
       "roomLoaded": true
     },
     {
+      "name": "portrait native-resolution backdrop orientation and coverage",
+      "size": [
+        860,
+        1768
+      ],
+      "opaque": 1,
+      "correlation": 0.9999247235049882,
+      "flippedCorrelation": 0.03687009201038187
+    },
+    {
       "name": "portrait build overview opens and returns while paused"
     },
     {
@@ -18,8 +28,8 @@
     },
     {
       "name": "portrait 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 221,
-      "afterStall": 249
+      "beforeStall": 246,
+      "afterStall": 263
     },
     {
       "name": "portrait touch moves and cancellation stops",
@@ -27,7 +37,7 @@
     },
     {
       "name": "portrait room camera drifts relative to spawn",
-      "x": -6.727510886726822,
+      "x": -7.036061109037814,
       "y": 0
     },
     {
@@ -44,6 +54,16 @@
       "roomLoaded": true
     },
     {
+      "name": "narrow native-resolution backdrop orientation and coverage",
+      "size": [
+        720,
+        1216
+      ],
+      "opaque": 1,
+      "correlation": 0.9999174800721502,
+      "flippedCorrelation": -0.11616279499758793
+    },
+    {
       "name": "narrow build overview opens and returns while paused"
     },
     {
@@ -51,8 +71,8 @@
     },
     {
       "name": "narrow 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 161,
-      "afterStall": 189
+      "beforeStall": 193,
+      "afterStall": 218
     },
     {
       "name": "narrow touch moves and cancellation stops",
@@ -77,6 +97,16 @@
       "roomLoaded": true
     },
     {
+      "name": "landscape native-resolution backdrop orientation and coverage",
+      "size": [
+        884,
+        430
+      ],
+      "opaque": 1,
+      "correlation": 0.9997378331569631,
+      "flippedCorrelation": 0.15660877439018367
+    },
+    {
       "name": "landscape build overview opens and returns while paused"
     },
     {
@@ -84,8 +114,8 @@
     },
     {
       "name": "landscape 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 109,
-      "afterStall": 138
+      "beforeStall": 119,
+      "afterStall": 147
     },
     {
       "name": "landscape touch moves and cancellation stops",
@@ -110,6 +140,16 @@
       "roomLoaded": true
     },
     {
+      "name": "desktop native-resolution backdrop orientation and coverage",
+      "size": [
+        1320,
+        840
+      ],
+      "opaque": 1,
+      "correlation": 0.9998554899088766,
+      "flippedCorrelation": -0.1243796236942572
+    },
+    {
       "name": "desktop build overview opens and returns while paused"
     },
     {
@@ -117,8 +157,8 @@
     },
     {
       "name": "desktop 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 215,
-      "afterStall": 240
+      "beforeStall": 237,
+      "afterStall": 263
     },
     {
       "name": "desktop touch moves and cancellation stops",
@@ -126,7 +166,7 @@
     },
     {
       "name": "desktop room camera drifts relative to spawn",
-      "x": -6.099578487709945,
+      "x": -6.415306923168815,
       "y": 0
     },
     {
@@ -149,23 +189,23 @@
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "13/480 秒",
-      "afterClock": "14/480 秒"
+      "beforeClock": "14/480 秒",
+      "afterClock": "16/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "26/480 秒",
-      "afterClock": "27/480 秒"
+      "beforeClock": "28/480 秒",
+      "afterClock": "29/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "41/480 秒",
-      "afterClock": "42/480 秒"
+      "beforeClock": "42/480 秒",
+      "afterClock": "44/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "56/480 秒",
-      "afterClock": "58/480 秒"
+      "beforeClock": "55/480 秒",
+      "afterClock": "57/480 秒"
     },
     {
       "name": "natural death settlement returns home"
@@ -179,23 +219,23 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 72,
+    "wallSeconds": 70,
     "upgrades": 4,
     "texts": [
       "大学生  Lv.5",
       "0/100",
-      "第4天",
-      "63/480 秒",
+      "第5天",
+      "64/480 秒",
       "工资 ¥0",
       "服务压力高发",
       "普通月",
-      "-4  奶茶 · 弹丸",
+      "-4  米饭 · 接触",
       "课本 Lv.3  ≡",
-      "击退 77",
+      "击退 81",
       "性能",
-      "帧间隔 34.0ms · P95 65.2 · 预算≤33.4\nCPU 逻辑 0.12 / 提交 0.56ms · P95 1.90\n逻辑 2.0步/帧 · 长帧 0\nEnemy 25 · XP 3/3\nProjectile P/E 1/8\nDelay P/E 0/0",
+      "帧间隔 17.2ms · P95 20.3 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.43ms · P95 1.20\n逻辑 1.0步/帧 · 长帧 0\nEnemy 23 · XP 4/4\nProjectile P/E 1/4\nDelay P/E 0/0",
       "本月失败",
-      "体力耗尽 · 本局工资不结转\n\n存活 1分3秒 · 第4天 · Lv.5 · 击退 77\n构筑：课本 Lv.3 / 人体工学椅 Lv.1 / 戒奶茶\n主要受伤：米饭 · 42体力 / 7次\n最后受击：奶茶 · 弹丸 -4\n下局建议：看准亮边弹丸，横向移动避开弹道。",
+      "体力耗尽 · 本局工资不结转\n\n存活 1分4秒 · 第5天 · Lv.5 · 击退 81\n构筑：课本 Lv.3 / 人体工学椅 Lv.1 / 戒奶茶\n主要受伤：米饭 · 70体力 / 12次\n最后受击：米饭 · 接触 -4\n下局建议：持续移动绕开包围，靠近绿晶升级。",
       "本月收入：¥0 · 装备支出：¥0\n本月工资剩余：¥0\n实际入账 ¥0 · 局外余额 ¥15000",
       "返回首页",
       "带着经验，准备下一局"
@@ -203,16 +243,16 @@
   },
   "captureVideo": true,
   "fixedSeed": 20261021,
-  "sourceCommit": "35832c24962c08f76c4f269b80478e41a9e46290",
+  "sourceCommit": "6b5affb2f5eaf5c176abd554ab78cc90446ccef0",
   "renderTiming": {
     "kind": "active-combat-rAF-intervals",
     "environment": "Chromium automated browser; not a physical device or GPU timing",
-    "samples": 1875,
-    "meanMs": 33.63413333333334,
-    "p95Ms": 66.69999999999709,
-    "p99Ms": 66.80000000000291,
+    "samples": 3736,
+    "meanMs": 17.241434689506804,
+    "p95Ms": 16.799999999999272,
+    "p99Ms": 33.400000000001455,
     "targetP95Ms": 33.4,
-    "withinBudget": false,
-    "cpuDiagnostic": "帧间隔 34.0ms · P95 65.2 · 预算≤33.4\nCPU 逻辑 0.12 / 提交 0.56ms · P95 1.90\n逻辑 2.0步/帧 · 长帧 0\nEnemy 25 · XP 3/3\nProjectile P/E 1/8\nDelay P/E 0/0"
+    "withinBudget": true,
+    "cpuDiagnostic": "帧间隔 17.2ms · P95 20.3 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.43ms · P95 1.20\n逻辑 1.0步/帧 · 长帧 0\nEnemy 23 · XP 4/4\nProjectile P/E 1/4\nDelay P/E 0/0"
   }
 }
