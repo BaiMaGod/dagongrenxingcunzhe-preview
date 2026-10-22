@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V15 dedicated Boss detail, readable action phases and normal-speed browser pacing.
-          ref: 8032c5f5401b3c26e3725307a9976a24134da4ae
+          ref: aa14a90ee4946ea2462bb5225ab3b6ace75802ba
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
