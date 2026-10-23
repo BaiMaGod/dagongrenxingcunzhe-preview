@@ -1,169 +1,31 @@
-name: Diagnostic full-fidelity backdrop compositing
-'on':
+name: Prepare official headless browser QA runtime
+on:
   push:
-    branches:
-    - main
-    paths:
-    - .github/workflows/render-profile.yml
+    branches: [main]
+    paths: ['.github/workflows/render-profile.yml']
 permissions:
   contents: read
 jobs:
-  profile:
+  runtime:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
-    - name: Require read-only token for private source
-      shell: bash
-      env:
-        READ_TOKEN: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
-      run: "if [ -z \"$READ_TOKEN\" ]; then\n  echo \"::error::Set DAGONGREN_SOURCE_READ_TOKEN with Contents:Read on private\
-        \ source repo in this public preview repo.\"\n  exit 1\nfi\n"
-    - name: Checkout private source without persisting token
-      uses: actions/checkout@v4
-      with:
-        repository: BaiMaGod/dagongrenxingcunzhe
-        ref: 35832c24962c08f76c4f269b80478e41a9e46290
-        path: private-game
-        token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
-        persist-credentials: false
-    - name: Record exact private-source commit
-      id: source
-      shell: bash
-      run: 'set -euo pipefail
-
-        SHA="$(git -C private-game rev-parse HEAD)"
-
-        test "${#SHA}" -eq 40
-
-        echo "sha=$SHA" >> "$GITHUB_OUTPUT"
-
-        echo "Building private game commit $SHA" >> "$GITHUB_STEP_SUMMARY"
-
-        '
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-    - name: Typecheck, game regression and source/template bridge tests
-      id: source-tests
-      working-directory: private-game
-      shell: bash
-      run: 'set -euo pipefail
-
-        npm install --no-audit --no-fund
-
-        npm run check
-
-        python3 tools/test_laya_prepare.py
-
-        '
-    - name: Rasterize illustrated combat atlas and synthesize event WAV
-      id: game-assets
-      working-directory: private-game
-      shell: bash
-      run: "set -euo pipefail\npython3 -m pip install --no-cache-dir 'cairosvg==2.7.1' 'Pillow==11.3.0'\npython3 tools/render_combat_art.py\n\
-        python3 tools/generate_anim_atlas.py\npython3 tools/generate_combat_sfx.py\ntest -s assets/art/combat-atlas.webp\n\
-        test -s assets/art/actors-motion.webp\ntest -s assets/art/combat-motion.webp\ntest -s assets/art/city-floor.webp\n\
-        for cue in hit kill hurt salary boss boss_down upgrade shot; do\n  test -s \"assets/audio/$cue.wav\"\ndone\necho \"\
-        Combat atlas, 96 cropped pre-rendered pose frames, city floor and eight event sounds generated\" >> \"$GITHUB_STEP_SUMMARY\"\
-        \n"
-    - name: Install official LayaAir CLI 3.4.0
-      shell: bash
-      run: 'set -euo pipefail
-
-        curl --fail --silent --show-error --location https://raw.githubusercontent.com/layabox/layaair-cli/master/install.sh
-        -o "$RUNNER_TEMP/install-layaair.sh"
-
-        LAYAAIR_INSTALL_DIR="$RUNNER_TEMP/layaair" bash "$RUNNER_TEMP/install-layaair.sh"
-
-        echo "$RUNNER_TEMP/layaair" >> "$GITHUB_PATH"
-
-        "$RUNNER_TEMP/layaair/layaair" install 3.4.0
-
-        "$RUNNER_TEMP/layaair/layaair" --version=3.4.0 create --list-templates | grep -F "2D empty project"
-
-        '
-    - name: Create original 2D template, bind game and compile genuine Web build
-      id: laya-build
-      working-directory: private-game
-      shell: bash
-      run: "set -euo pipefail\nmkdir -p \"$RUNNER_TEMP/official-laya-project\"\nlayaair --version=3.4.0 create Dagongren -t\
-        \ \"2D empty project\" -p \"$RUNNER_TEMP/official-laya-project\"\necho \"=== OFFICIAL 2D TEMPLATE FILES ===\"\nfind\
-        \ \"$RUNNER_TEMP/official-laya-project\" -maxdepth 4 -type f | sort | head -130\necho \"=== PLAYER SETTINGS ===\"\n\
-        cat \"$RUNNER_TEMP/official-laya-project/settings/PlayerSettings.json\"\necho \"=== PROJECT INIT SETTINGS ===\"\n\
-        cat \"$RUNNER_TEMP/official-laya-project/Dagongren.laya\"\necho \"=== COMPILER/STARTUP CANDIDATES ===\"\nfind \"$RUNNER_TEMP/official-laya-project\"\
-        \ -type f \\( -name '*Compiler*' -o -name '*Main*' -o -name '*.laya' \\) | sort\npython3 tools/prepare_laya_project.py\
-        \ --repo \"$PWD\" --project \"$RUNNER_TEMP/official-laya-project\"\nlayaair --version=3.4.0 build web -p \"$RUNNER_TEMP/official-laya-project\"\
-        \ -o \"$RUNNER_TEMP/game-web\"\ntest -s \"$RUNNER_TEMP/game-web/index.html\"\ntest -n \"$(find \"$RUNNER_TEMP/game-web\"\
-        \ -type f -name '*.js' -size +0c -print -quit)\"\nmkdir -p \"$RUNNER_TEMP/game-web/config\"\ncp assets/config/mvp-balance.v0.3.json\
-        \ \"$RUNNER_TEMP/game-web/config/\"\ntest -s \"$RUNNER_TEMP/game-web/config/mvp-balance.v0.3.json\"\n# Asset bytes\
-        \ are packaged only after their actual Git upload.\n# Source PNG/design docs never get copied into public runtime\
-        \ output.\nif [ -s assets/art/actors-atlas.webp ]; then\n  mkdir -p \"$RUNNER_TEMP/game-web/art\"\n  cp assets/art/actors-atlas.webp\
-        \ \"$RUNNER_TEMP/game-web/art/actors-atlas.webp\"\n  test -s \"$RUNNER_TEMP/game-web/art/actors-atlas.webp\"\n  echo\
-        \ \"Real actor texture atlas included\" >> \"$GITHUB_STEP_SUMMARY\"\nelse\n  echo \"Actor atlas absent; view must\
-        \ retain explicitly marked prototype art\" >> \"$GITHUB_STEP_SUMMARY\"\nfi\n# Real combat art/sound assets: generated\
-        \ above from private source assets.\ntest -s assets/art/combat-atlas.webp\ntest -s assets/art/city-floor.webp\nmkdir\
-        \ -p \"$RUNNER_TEMP/game-web/art\" \"$RUNNER_TEMP/game-web/audio\"\ncp assets/art/combat-atlas.webp \"$RUNNER_TEMP/game-web/art/\"\
-        \ncp assets/art/actors-motion.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/combat-motion.webp \"$RUNNER_TEMP/game-web/art/\"\
-        \ncp assets/art/city-floor.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/office-scenes-v10.webp \"$RUNNER_TEMP/game-web/art/\"\
-        \ncp assets/art/office-floor-v10.webp \"$RUNNER_TEMP/game-web/art/\"\ncp assets/art/office-room-v12.webp \"$RUNNER_TEMP/game-web/art/\"\
-        \ntest -s \"$RUNNER_TEMP/game-web/art/office-floor-v10.webp\"\ntest -s \"$RUNNER_TEMP/game-web/art/office-scenes-v10.webp\"\
-        \ncp assets/audio/*.wav \"$RUNNER_TEMP/game-web/audio/\"\ntest -s \"$RUNNER_TEMP/game-web/art/combat-atlas.webp\"\n\
-        test -s \"$RUNNER_TEMP/game-web/art/actors-motion.webp\"\ntest -s \"$RUNNER_TEMP/game-web/art/combat-motion.webp\"\
-        \ntest -s \"$RUNNER_TEMP/game-web/art/city-floor.webp\"\ntest -s \"$RUNNER_TEMP/game-web/audio/kill.wav\"\n"
-    - name: Configure shipped player and clear default widget requests
-      working-directory: private-game
-      run: 'python3 tools/test_finalize_web_build.py
-
-        python3 tools/finalize_web_build.py "$RUNNER_TEMP/game-web"
-
-        '
-    - name: Manifest and public artifact hygiene checks
-      shell: bash
-      env:
-        SOURCE_SHA: ${{ steps.source.outputs.sha }}
-      run: "set -euo pipefail\npython3 - <<'PY'\nimport json,os,pathlib\noutput=pathlib.Path(os.environ[\"RUNNER_TEMP\"])/\"\
-        game-web\"\nforbidden=[\"src\",\"docs\",\"tools\",\".git\",\"node_modules\",\"private-game\"]\nfor item in forbidden:\n\
-        \    if (output/item).exists(): raise SystemExit(\"Private path in Web artifact: \"+item)\nmanifest={\"schemaVersion\"\
-        :1,\"commitSha\":os.environ[\"SOURCE_SHA\"],\"engineVersion\":\"3.4.0\",\"target\":\"web\"}\n(output/\"build-manifest.json\"\
-        ).write_text(json.dumps(manifest,indent=2)+\"\\n\",encoding=\"utf-8\")\nassert len(manifest[\"commitSha\"])==40\n\
-        print(\"Staged only Laya Web build from:\",manifest[\"commitSha\"])\nPY\n"
-    - name: Install Chromium for actual browser smoke
-      shell: bash
-      run: 'python3 -m pip install ''playwright==1.55.0''
-
-        python3 -m playwright install --with-deps chromium
-
-        '
-    - name: Prepare isolated natural-battle diagnostic (no release)
-      working-directory: private-game
-      shell: python
-      run: "from pathlib import Path\ns=Path('tools/browser_regression.cjs').read_text()\na=s.index('for(const [name,w,h,dpr]');b=s.index(\"\
-        const ctx=await b.newContext({viewport:{width:390,height:844},\",a);s=s[:a]+s[b:]\na=s.index(\"await seed(p);await\
-        \ click(p,'解锁 ¥1500')\");b=s.index(\"await p.goto('http://127.0.0.1:8765/?debug_perf=1')\",a);s=s[:a]+\"await seed(p,{student:1,tea_worker:1,security:1,screw_worker:1});\"\
-        +s[b:]\ns=s.replace(\"const p=await watch(ctx);\",'''if(process.env.QA_RENDER_MODE==='dom-scene'){let configured=fs.readFileSync(require('path').join(process.env.GAME_WEB_ROOT,'js/index.js'),'utf8');assert(configured.includes('\"\
-        isAlpha\":false'));configured=configured.replace('\"isAlpha\":false','\"isAlpha\":true');await ctx.route('**/js/index.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:configured}));}const\
-        \ p=await watch(ctx);''',1)\ninject='''await p.evaluate(mode=>{const scenery=Laya.stage.getChildByName('battleScenery'),w=Laya.stage.width,h=Laya.stage.height;\n\
-        \ if(mode==='baked-scene'){scenery.cacheAs='none';scenery.pos(0,0);const rt=scenery.drawToTexture(w+40,h+40,-20,-20);const\
-        \ texture=new Laya.Texture(rt);scenery.graphics.clear();scenery.graphics.drawTexture(texture,-20,-20,w+40,h+40);}\n\
-        \ if(mode==='dom-scene'){scenery.visible=false;Laya.stage.bgColor=null;const layer=document.createElement('div');layer.setAttribute('aria-hidden','true');layer.style.cssText=`position:fixed;left:-20px;top:-20px;width:${w+40}px;height:${h+40}px;pointer-events:none;z-index:0;background-image:linear-gradient(#41646A66,#41646A66),url(art/office-room-v12.webp);background-size:cover;background-position:center;will-change:transform;`;document.body.prepend(layer);Laya.timer.frameLoop(1,layer,()=>{layer.style.transform=`translate3d(${scenery.x}px,${scenery.y}px,0)`;});}\n\
-        },process.env.QA_RENDER_MODE);'''\ns=s.replace(\"await click(p,'性能');\",\"await click(p,'性能');\"+inject,1)\nPath('tools/render_natural_diagnostic.cjs').write_text(s)\n"
-    - name: Compare full battle with cached and hidden diagnostics
-      working-directory: private-game
-      env:
-        NODE_PATH: ${{ runner.temp }}/browser-tools/node_modules
-        GAME_WEB_ROOT: ${{ runner.temp }}/game-web
-        QA_FIXED_SEED: '20261021'
-        QA_RECORD_VIDEO: '0'
-      run: "npm install --prefix \"$RUNNER_TEMP/browser-tools\" playwright@1.55.0 --no-audit --no-fund\nfor MODE in full baked-scene\
-        \ dom-scene; do\n QA_RENDER_MODE=\"$MODE\" BROWSER_QA_OUT=\"$RUNNER_TEMP/natural-$MODE\" node tools/render_natural_diagnostic.cjs\n\
-        done\n"
-      shell: bash
-    - name: Upload diagnostic evidence (not release gates)
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: natural-render-costs
-        path: ${{ runner.temp }}/natural-*/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install pinned official Playwright and Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix "$RUNNER_TEMP/browser-tools" playwright@1.55.0 --no-audit --no-fund
+          "$RUNNER_TEMP/browser-tools/node_modules/.bin/playwright" install chromium
+          mkdir -p "$RUNNER_TEMP/local-qa-runtime"
+          cp -a "$RUNNER_TEMP/browser-tools/node_modules" "$RUNNER_TEMP/local-qa-runtime/"
+          cp -a "$HOME"/.cache/ms-playwright/chromium_headless_shell-* "$RUNNER_TEMP/local-qa-runtime/"
+          tar -C "$RUNNER_TEMP/local-qa-runtime" -czf "$RUNNER_TEMP/official-browser-runtime.tar.gz" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-browser-runtime
+          path: ${{ runner.temp }}/official-browser-runtime.tar.gz
+          retention-days: 1
+          compression-level: 0
