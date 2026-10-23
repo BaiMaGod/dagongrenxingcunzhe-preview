@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V15 dedicated Boss detail, readable action phases and normal-speed browser pacing.
-          ref: daf3f07063057f35fd6922dac406b1eb1954c29a
+          ref: d7e0fed0670aef2e389a5e9014c9310a73c538d6
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
@@ -256,11 +256,37 @@ jobs:
           print("Staged only Laya Web build from:",manifest["commitSha"])
           PY
 
+      - name: Cache pinned browser and official CJK QA font
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            ~/.local/share/fonts
+          key: playwright-1.55.0-${{ runner.os }}-noto-cjk-v1
+
       - name: Install Chromium for actual browser smoke
         shell: bash
         run: |
+          set -euo pipefail
           python3 -m pip install 'playwright==1.55.0'
-          python3 -m playwright install --with-deps chromium
+          # Standard Ubuntu runners already include Chrome's native dependencies.
+          # Validate the actual launch below instead of downloading unrelated fonts.
+          python3 -m playwright install chromium
+          mkdir -p "$HOME/.local/share/fonts"
+          if [ ! -s "$HOME/.local/share/fonts/NotoSansCJKsc-Regular.otf" ]; then
+            curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" -o "$HOME/.local/share/fonts/NotoSansCJKsc-Regular.otf"
+            curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" -o "$HOME/.local/share/fonts/Noto-CJK-LICENSE"
+          fi
+          fc-cache -f "$HOME/.local/share/fonts"
+          python3 - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page()
+              page.set_content("<title>Official browser launch check</title>")
+              assert page.title()=="Official browser launch check"
+              browser.close()
+          PY
 
       - name: Desktop and mobile portrait smoke and screenshots
         id: browser-qa
