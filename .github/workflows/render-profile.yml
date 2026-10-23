@@ -1,4 +1,4 @@
-name: Prepare official headless browser QA runtime
+name: Isolated DPR2 renderer diagnostics
 on:
   push:
     branches: [main]
@@ -6,38 +6,242 @@ on:
 permissions:
   contents: read
 jobs:
-  runtime:
+  profile:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
+      - name: Require read-only token for private source
+        shell: bash
+        env:
+          READ_TOKEN: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+        run: |
+          if [ -z "$READ_TOKEN" ]; then
+            echo "::error::Set DAGONGREN_SOURCE_READ_TOKEN with Contents:Read on private source repo in this public preview repo."
+            exit 1
+          fi
+
+      - name: Checkout private source without persisting token
+        uses: actions/checkout@v4
+        with:
+          repository: BaiMaGod/dagongrenxingcunzhe
+          # V15 dedicated Boss detail, readable action phases and normal-speed browser pacing.
+          ref: d7e0fed0670aef2e389a5e9014c9310a73c538d6
+          path: private-game
+          token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
+          persist-credentials: false
+
+      - name: Record exact private-source commit
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          SHA="$(git -C private-game rev-parse HEAD)"
+          test "${#SHA}" -eq 40
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "Building private game commit $SHA" >> "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Install pinned official Playwright and Chromium
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Includes the four-corner LayaAir 3.4 drawRoundRect rendering contract guard for every View, including legacy M1.
+      - name: Typecheck, game regression and source/template bridge tests
+        id: source-tests
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund
+          npm run check
+          python3 tools/test_laya_prepare.py
+
+      - name: Rasterize illustrated combat atlas and synthesize event WAV # painted enemies V11
+        id: game-assets
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --no-cache-dir 'cairosvg==2.7.1' 'Pillow==11.3.0'
+          python3 tools/render_combat_art.py
+          python3 tools/generate_anim_atlas.py
+          python3 tools/generate_combat_sfx.py
+          test -s assets/art/combat-atlas.webp
+          test -s assets/art/actors-motion.webp
+          test -s assets/art/boss-rent-motion-v15.webp
+          test -s assets/art/combat-motion.webp
+          test -s assets/art/city-floor.webp
+          for cue in hit kill hurt salary boss boss_down upgrade shot; do
+            test -s "assets/audio/$cue.wav"
+          done
+          echo "Combat atlas, 96 cropped pre-rendered pose frames, city floor and eight event sounds generated" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Install official LayaAir CLI 3.4.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location https://raw.githubusercontent.com/layabox/layaair-cli/master/install.sh -o "$RUNNER_TEMP/install-layaair.sh"
+          LAYAAIR_INSTALL_DIR="$RUNNER_TEMP/layaair" bash "$RUNNER_TEMP/install-layaair.sh"
+          echo "$RUNNER_TEMP/layaair" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/layaair/layaair" install 3.4.0
+          "$RUNNER_TEMP/layaair/layaair" --version=3.4.0 create --list-templates | grep -F "2D empty project"
+
+      - name: Create original 2D template, bind game and compile genuine Web build
+        id: laya-build
+        working-directory: private-game
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/official-laya-project"
+          layaair --version=3.4.0 create Dagongren -t "2D empty project" -p "$RUNNER_TEMP/official-laya-project"
+          echo "=== OFFICIAL 2D TEMPLATE FILES ==="
+          find "$RUNNER_TEMP/official-laya-project" -maxdepth 4 -type f | sort | head -130
+          echo "=== PLAYER SETTINGS ==="
+          cat "$RUNNER_TEMP/official-laya-project/settings/PlayerSettings.json"
+          echo "=== PROJECT INIT SETTINGS ==="
+          cat "$RUNNER_TEMP/official-laya-project/Dagongren.laya"
+          echo "=== COMPILER/STARTUP CANDIDATES ==="
+          find "$RUNNER_TEMP/official-laya-project" -type f \( -name '*Compiler*' -o -name '*Main*' -o -name '*.laya' \) | sort
+          python3 tools/prepare_laya_project.py --repo "$PWD" --project "$RUNNER_TEMP/official-laya-project"
+          layaair --version=3.4.0 build web -p "$RUNNER_TEMP/official-laya-project" -o "$RUNNER_TEMP/game-web"
+          test -s "$RUNNER_TEMP/game-web/index.html"
+          test -n "$(find "$RUNNER_TEMP/game-web" -type f -name '*.js' -size +0c -print -quit)"
+          mkdir -p "$RUNNER_TEMP/game-web/config"
+          cp assets/config/mvp-balance.v0.3.json "$RUNNER_TEMP/game-web/config/"
+          test -s "$RUNNER_TEMP/game-web/config/mvp-balance.v0.3.json"
+          # Asset bytes are packaged only after their actual Git upload.
+          # Source PNG/design docs never get copied into public runtime output.
+          if [ -s assets/art/actors-atlas.webp ]; then
+            mkdir -p "$RUNNER_TEMP/game-web/art"
+            cp assets/art/actors-atlas.webp "$RUNNER_TEMP/game-web/art/actors-atlas.webp"
+            test -s "$RUNNER_TEMP/game-web/art/actors-atlas.webp"
+            echo "Real actor texture atlas included" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Actor atlas absent; view must retain explicitly marked prototype art" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # Real combat art/sound assets: generated above from private source assets.
+          test -s assets/art/combat-atlas.webp
+          test -s assets/art/city-floor.webp
+          mkdir -p "$RUNNER_TEMP/game-web/art" "$RUNNER_TEMP/game-web/audio"
+          cp assets/art/combat-atlas.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/actors-motion.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/boss-rent-motion-v15.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/combat-motion.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/city-floor.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/office-scenes-v10.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/office-floor-v10.webp "$RUNNER_TEMP/game-web/art/"
+          cp assets/art/office-room-v12.webp "$RUNNER_TEMP/game-web/art/"
+          test -s "$RUNNER_TEMP/game-web/art/office-floor-v10.webp"
+          test -s "$RUNNER_TEMP/game-web/art/office-scenes-v10.webp"
+          cp assets/audio/*.wav "$RUNNER_TEMP/game-web/audio/"
+          test -s "$RUNNER_TEMP/game-web/art/combat-atlas.webp"
+          test -s "$RUNNER_TEMP/game-web/art/actors-motion.webp"
+          test -s "$RUNNER_TEMP/game-web/art/combat-motion.webp"
+          test -s "$RUNNER_TEMP/game-web/art/city-floor.webp"
+          test -s "$RUNNER_TEMP/game-web/audio/kill.wav"
+
+      - name: Configure shipped player and clear default widget requests
+        working-directory: private-game
+        run: |
+          python3 tools/test_finalize_web_build.py
+          python3 tools/finalize_web_build.py "$RUNNER_TEMP/game-web"
+
+      - name: Manifest and public artifact hygiene checks
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib
+          output=pathlib.Path(os.environ["RUNNER_TEMP"])/"game-web"
+          forbidden=["src","docs","tools",".git","node_modules","private-game"]
+          for item in forbidden:
+              if (output/item).exists(): raise SystemExit("Private path in Web artifact: "+item)
+          manifest={"schemaVersion":1,"commitSha":os.environ["SOURCE_SHA"],"engineVersion":"3.4.0","target":"web"}
+          (output/"build-manifest.json").write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8")
+          assert len(manifest["commitSha"])==40
+          print("Staged only Laya Web build from:",manifest["commitSha"])
+          PY
+
+      - name: Cache pinned browser and official CJK QA font
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            ~/.local/share/fonts
+          key: playwright-1.55.0-${{ runner.os }}-noto-cjk-v1
+
+      - name: Install Chromium for actual browser smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install 'playwright==1.55.0'
+          # Standard Ubuntu runners already include Chrome's native dependencies.
+          # Validate the actual launch below instead of downloading unrelated fonts.
+          python3 -m playwright install chromium
+          mkdir -p "$HOME/.local/share/fonts"
+          if [ ! -s "$HOME/.local/share/fonts/NotoSansCJKsc-Regular.otf" ]; then
+            curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" -o "$HOME/.local/share/fonts/NotoSansCJKsc-Regular.otf"
+            curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" -o "$HOME/.local/share/fonts/Noto-CJK-LICENSE"
+          fi
+          fc-cache -f "$HOME/.local/share/fonts"
+          python3 - <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              page=browser.new_page()
+              page.set_content("<title>Official browser launch check</title>")
+              assert page.title()=="Official browser launch check"
+              browser.close()
+          PY
+
+
+      - name: Sequential DPR2 renderer diagnostics, never deployment
+        working-directory: private-game
         shell: bash
         run: |
           set -euo pipefail
           npm install --prefix "$RUNNER_TEMP/browser-tools" playwright@1.55.0 --no-audit --no-fund
-          "$RUNNER_TEMP/browser-tools/node_modules/.bin/playwright" install chromium
-          mkdir -p "$RUNNER_TEMP/local-qa-runtime"
-          cp -a "$RUNNER_TEMP/browser-tools/node_modules" "$RUNNER_TEMP/local-qa-runtime/"
-          cp -a "$HOME"/.cache/ms-playwright/chromium_headless_shell-* "$RUNNER_TEMP/local-qa-runtime/"
-          tar -C "$RUNNER_TEMP/local-qa-runtime" -czf "$RUNNER_TEMP/official-browser-runtime.tar.gz" .
-      - name: Fetch official Noto CJK font for isolated local QA
-        run: |
-          mkdir -p "$RUNNER_TEMP/qa-fonts"
-          curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" -o "$RUNNER_TEMP/qa-fonts/NotoSansCJKsc-Regular.otf"
-          curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" -o "$RUNNER_TEMP/qa-fonts/LICENSE"
-          sha256sum "$RUNNER_TEMP/qa-fonts/NotoSansCJKsc-Regular.otf"
+          cat > "$RUNNER_TEMP/renderer-probe.cjs" <<'PROBE'
+          const fs=require('fs'),path=require('path'),Module=require('module');
+          const variant=process.env.QA_RENDER_VARIANT;
+          const root=process.env.GAME_WEB_ROOT,player=path.join(root,'js/index.js');
+          const original=fs.readFileSync(player,'utf8'),match=original.match(/JSON\.parse\(\x60([^\x60]+)\x60\)/);
+          if(!match)throw Error('Unknown official player');
+          const config=JSON.parse(match[1]);let changes={};
+          if(variant.includes('no-stencil'))changes.isStencil=false;
+          if(variant==='no-ubo'){changes.enableUniformBufferObject=false;changes.matUseUBO=false;}
+          if(variant.startsWith('webgl1'))changes.useWebGL2=false;
+          Object.assign(config['2D'],changes);
+          fs.writeFileSync(player,original.replace(match[0],'JSON.parse('+String.fromCharCode(96)+JSON.stringify(config)+String.fromCharCode(96)+')'));
+          const filename=path.resolve('tools/browser_full_run.cjs');
+          let source=fs.readFileSync(filename,'utf8').replace('while(Date.now()-began<720000)','while(Date.now()-began<30000)');
+          const setup="await p.evaluate(v=>{if(v==='no-scenery')Laya.stage.getChildByName('battleScenery').visible=false;if(v==='no-hud')Laya.stage.getChildByName('battleHud').visible=false;}, "+JSON.stringify(variant)+");\n";
+          source=source.replace(" await p.evaluate(()=>{window.__fullRunFrames", " "+setup+" await p.evaluate(()=>{window.__fullRunFrames");
+          source=source.replace(" assert(report.renderTiming.withinBudget,", " report.diagnosticOnly=true;report.kind='renderer-diagnostic-only';report.variant="+JSON.stringify(variant)+";report.rendererConfig="+JSON.stringify(changes)+";report.graphics=await p.evaluate(()=>{const c=document.querySelector('canvas'),g=c.getContext('webgl2')||c.getContext('webgl'),d=g.getExtension('WEBGL_debug_renderer_info');return{size:[c.width,c.height],attributes:g.getContextAttributes(),renderer:d?g.getParameter(d.UNMASKED_RENDERER_WEBGL):null};});return;\n assert(report.renderTiming.withinBudget,");
+          source=source.replace("main().catch(e=>", "main().finally(()=>fs.writeFileSync("+JSON.stringify(player)+", "+JSON.stringify(original)+")).catch(e=>");
+          const m=new Module(filename,module);m.filename=filename;m.paths=Module._nodeModulePaths(path.dirname(filename));m._compile(source,filename);
+          
+          PROBE
+          mkdir -p "$RUNNER_TEMP/render-diagnostics"
+          for variant in control no-stencil no-ubo webgl1 webgl1-no-stencil no-scenery no-hud; do
+            NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/render-diagnostics/$variant" QA_RENDER_VARIANT="$variant" node "$RUNNER_TEMP/renderer-probe.cjs"
+          done
+          python3 - <<'PY'
+          import json,os,pathlib
+          root=pathlib.Path(os.environ["RUNNER_TEMP"])/"render-diagnostics"
+          results=[json.loads(p.read_text()) for p in root.glob("*/report.json")]
+          summary=[{k:r.get(k) for k in ["sourceCommit","variant","diagnosticOnly","actualGameSeconds","errors","renderTiming","graphics","rendererConfig"]} for r in results]
+          (root/"summary.json").write_text(json.dumps(summary,indent=2))
+          print(json.dumps(summary,indent=2))
+          PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: official-browser-runtime
-          path: ${{ runner.temp }}/official-browser-runtime.tar.gz
-          retention-days: 1
-          compression-level: 0
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: official-noto-cjk-qa-font
-          path: ${{ runner.temp }}/qa-fonts
-          retention-days: 1
+          name: renderer-diagnostics
+          path: ${{ runner.temp }}/render-diagnostics
+          retention-days: 3
