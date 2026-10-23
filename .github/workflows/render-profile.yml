@@ -226,7 +226,7 @@ jobs:
           source=source.replace("main().catch(e=>", "main().finally(()=>fs.writeFileSync("+JSON.stringify(player)+", "+JSON.stringify(original)+")).catch(e=>");
           const m=new Module(filename,module);m.filename=filename;m.paths=Module._nodeModulePaths(path.dirname(filename));m._compile(source,filename);
           
-                    PROBE
+          PROBE
           mkdir -p "$RUNNER_TEMP/render-diagnostics"
           for variant in control opaque-scenery opaque-scenery-no-stencil; do
             NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/render-diagnostics/$variant" QA_RENDER_VARIANT="$variant" node "$RUNNER_TEMP/renderer-probe.cjs"
