@@ -23,9 +23,21 @@ jobs:
           cp -a "$RUNNER_TEMP/browser-tools/node_modules" "$RUNNER_TEMP/local-qa-runtime/"
           cp -a "$HOME"/.cache/ms-playwright/chromium_headless_shell-* "$RUNNER_TEMP/local-qa-runtime/"
           tar -C "$RUNNER_TEMP/local-qa-runtime" -czf "$RUNNER_TEMP/official-browser-runtime.tar.gz" .
+      - name: Fetch official Noto CJK font for isolated local QA
+        run: |
+          mkdir -p "$RUNNER_TEMP/qa-fonts"
+          curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" -o "$RUNNER_TEMP/qa-fonts/NotoSansCJKsc-Regular.otf"
+          curl --fail --location --retry 2 "https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE" -o "$RUNNER_TEMP/qa-fonts/LICENSE"
+          sha256sum "$RUNNER_TEMP/qa-fonts/NotoSansCJKsc-Regular.otf"
       - uses: actions/upload-artifact@v4
         with:
           name: official-browser-runtime
           path: ${{ runner.temp }}/official-browser-runtime.tar.gz
           retention-days: 1
           compression-level: 0
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-noto-cjk-qa-font
+          path: ${{ runner.temp }}/qa-fonts
+          retention-days: 1
