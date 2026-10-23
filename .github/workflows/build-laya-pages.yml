@@ -45,7 +45,7 @@ jobs:
         with:
           repository: BaiMaGod/dagongrenxingcunzhe
           # V15 dedicated Boss detail, readable action phases and normal-speed browser pacing.
-          ref: e40ba46326835cf3d35126f2849a327260cf5b44
+          ref: daf3f07063057f35fd6922dac406b1eb1954c29a
           path: private-game
           token: ${{ secrets.DAGONGREN_SOURCE_READ_TOKEN }}
           persist-credentials: false
@@ -630,9 +630,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/normal-run-qa" node tools/browser_full_run.cjs
-          cp "$RUNNER_TEMP/normal-run-qa/report.json" "$RUNNER_TEMP/qa/normal-run.json"
-          cp "$RUNNER_TEMP/normal-run-qa/normal-end.png" "$RUNNER_TEMP/qa/normal-run-end.png"
+          NORMAL_RUN_STATUS=0
+          NODE_PATH="$RUNNER_TEMP/browser-tools/node_modules" GAME_WEB_ROOT="$RUNNER_TEMP/game-web" BROWSER_QA_OUT="$RUNNER_TEMP/normal-run-qa" node tools/browser_full_run.cjs || NORMAL_RUN_STATUS=$?
+          if [ -s "$RUNNER_TEMP/normal-run-qa/report.json" ]; then
+            cp "$RUNNER_TEMP/normal-run-qa/report.json" "$RUNNER_TEMP/qa/normal-run.json"
+          else
+            NORMAL_RUN_STATUS=1
+          fi
+          if [ -s "$RUNNER_TEMP/normal-run-qa/normal-end.png" ]; then cp "$RUNNER_TEMP/normal-run-qa/normal-end.png" "$RUNNER_TEMP/qa/normal-run-end.png"; fi
+          exit "$NORMAL_RUN_STATUS"
 
       - name: Upload non-source browser QA screenshots
         if: always()
