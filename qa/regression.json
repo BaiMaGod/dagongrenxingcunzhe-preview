@@ -28,8 +28,8 @@
     },
     {
       "name": "portrait 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 252,
-      "afterStall": 279
+      "beforeStall": 256,
+      "afterStall": 278
     },
     {
       "name": "portrait touch moves and cancellation stops",
@@ -46,7 +46,7 @@
     {
       "name": "portrait high-resolution Boss and complete separate charge warning",
       "tile": 640,
-      "action": "蓄力 1.2秒 · 侧移躲避",
+      "action": "蓄力 1.1秒 · 侧移躲避",
       "fits": true,
       "healthBottom": 22,
       "actionY": 39,
@@ -99,8 +99,8 @@
     },
     {
       "name": "narrow 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 210,
-      "afterStall": 239
+      "beforeStall": 193,
+      "afterStall": 221
     },
     {
       "name": "narrow touch moves and cancellation stops",
@@ -179,7 +179,7 @@
     },
     {
       "name": "landscape room camera drifts relative to spawn",
-      "x": -3.4647031566933,
+      "x": -3.124209315372454,
       "y": 0
     },
     {
@@ -241,8 +241,8 @@
     },
     {
       "name": "desktop 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 253,
-      "afterStall": 280
+      "beforeStall": 271,
+      "afterStall": 297
     },
     {
       "name": "desktop touch moves and cancellation stops",
@@ -250,7 +250,7 @@
     },
     {
       "name": "desktop room camera drifts relative to spawn",
-      "x": -7.036061109037814,
+      "x": -7.641720496629114,
       "y": 0
     },
     {
@@ -302,22 +302,17 @@
     {
       "name": "natural upgrade resumes battle clock",
       "beforeClock": "13/480 秒",
-      "afterClock": "15/480 秒"
+      "afterClock": "14/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "27/480 秒",
-      "afterClock": "28/480 秒"
+      "beforeClock": "28/480 秒",
+      "afterClock": "29/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "43/480 秒",
-      "afterClock": "45/480 秒"
-    },
-    {
-      "name": "natural upgrade resumes battle clock",
-      "beforeClock": "55/480 秒",
-      "afterClock": "57/480 秒"
+      "beforeClock": "42/480 秒",
+      "afterClock": "43/480 秒"
     },
     {
       "name": "natural death settlement returns home"
@@ -331,23 +326,23 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 82,
-    "upgrades": 4,
+    "wallSeconds": 53,
+    "upgrades": 3,
     "texts": [
-      "大学生  Lv.5",
+      "大学生  Lv.4",
       "0/100",
-      "第5天",
-      "73/480 秒",
+      "第3天",
+      "46/480 秒",
       "工资 ¥0",
       "服务压力高发",
       "普通月",
-      "-2  奶茶 · 弹丸",
+      "-3  水果 · 冲撞",
       "课本 Lv.3  ≡",
-      "击退 96",
+      "击退 51",
       "性能",
-      "帧间隔 18.0ms · P95 28.2 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.34ms · P95 1.00\n逻辑 1.1步/帧 · 长帧 0\nEnemy 20 · XP 7/7\nProjectile P/E 1/7\nDelay P/E 0/0",
+      "帧间隔 18.6ms · P95 30.5 · 预算≤33.4\nCPU 逻辑 0.11 / 提交 0.35ms · P95 1.60\n逻辑 1.1步/帧 · 长帧 0\nEnemy 23 · XP 1/1\nProjectile P/E 0/0\nDelay P/E 0/0",
       "本月失败",
-      "体力耗尽 · 本局工资不结转\n\n存活 1分13秒 · 第5天 · Lv.5 · 击退 96\n构筑：课本 Lv.3 / 人体工学椅 Lv.1 / 戒奶茶\n主要受伤：米饭 · 54体力 / 9次\n最后受击：奶茶 · 弹丸 -2\n下局建议：看准亮边弹丸，横向移动避开弹道。",
+      "体力耗尽 · 本局工资不结转\n\n存活 0分46秒 · 第3天 · Lv.4 · 击退 51\n构筑：课本 Lv.3 / 戒奶茶\n主要受伤：米饭 · 60体力 / 10次\n最后受击：水果 · 冲撞 -3\n下局建议：看到冲撞走廊时，向两侧移动。",
       "本月收入：¥0 · 装备支出：¥0\n本月工资剩余：¥0\n实际入账 ¥0 · 局外余额 ¥15000",
       "返回首页",
       "带着经验，准备下一局"
@@ -355,16 +350,16 @@
   },
   "captureVideo": true,
   "fixedSeed": 20261021,
-  "sourceCommit": "daf3f07063057f35fd6922dac406b1eb1954c29a",
+  "sourceCommit": "d7e0fed0670aef2e389a5e9014c9310a73c538d6",
   "renderTiming": {
     "kind": "active-combat-rAF-intervals",
     "environment": "Chromium automated browser; not a physical device or GPU timing",
-    "samples": 3940,
-    "meanMs": 18.544086294415617,
+    "samples": 2477,
+    "meanMs": 18.529753734356163,
     "p95Ms": 33.30000000000291,
     "p99Ms": 50,
     "targetP95Ms": 33.4,
     "withinBudget": true,
-    "cpuDiagnostic": "帧间隔 18.0ms · P95 28.2 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.34ms · P95 1.00\n逻辑 1.1步/帧 · 长帧 0\nEnemy 20 · XP 7/7\nProjectile P/E 1/7\nDelay P/E 0/0"
+    "cpuDiagnostic": "帧间隔 18.6ms · P95 30.5 · 预算≤33.4\nCPU 逻辑 0.11 / 提交 0.35ms · P95 1.60\n逻辑 1.1步/帧 · 长帧 0\nEnemy 23 · XP 1/1\nProjectile P/E 0/0\nDelay P/E 0/0"
   }
 }

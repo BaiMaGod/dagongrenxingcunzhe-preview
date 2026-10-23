@@ -1,9 +1,9 @@
 {
   "normal_speed_browser": "failure",
   "normal_speed_report": "normal-run.json",
-  "generated_at_utc": "2026-10-23T09:24:13.751712+00:00",
-  "source_sha": "daf3f07063057f35fd6922dac406b1eb1954c29a",
-  "workflow_run_id": "39928151553",
+  "generated_at_utc": "2026-10-23T09:48:36.511109+00:00",
+  "source_sha": "d7e0fed0670aef2e389a5e9014c9310a73c538d6",
+  "workflow_run_id": "39932438524",
   "source_tests": "success",
   "laya_build": "success",
   "browser_qa": "success",
