@@ -28,8 +28,8 @@
     },
     {
       "name": "portrait 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 251,
-      "afterStall": 277
+      "beforeStall": 252,
+      "afterStall": 279
     },
     {
       "name": "portrait touch moves and cancellation stops",
@@ -37,7 +37,7 @@
     },
     {
       "name": "portrait room camera drifts relative to spawn",
-      "x": -7.641720496629114,
+      "x": -7.938608640101755,
       "y": 0
     },
     {
@@ -99,8 +99,8 @@
     },
     {
       "name": "narrow 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 212,
-      "afterStall": 237
+      "beforeStall": 210,
+      "afterStall": 239
     },
     {
       "name": "narrow touch moves and cancellation stops",
@@ -170,8 +170,8 @@
     },
     {
       "name": "landscape 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 134,
-      "afterStall": 162
+      "beforeStall": 133,
+      "afterStall": 161
     },
     {
       "name": "landscape touch moves and cancellation stops",
@@ -179,7 +179,7 @@
     },
     {
       "name": "landscape room camera drifts relative to spawn",
-      "x": -3.124209315372454,
+      "x": -3.4647031566933,
       "y": 0
     },
     {
@@ -241,8 +241,8 @@
     },
     {
       "name": "desktop 800ms frame stall recovers without pause or calendar jump",
-      "beforeStall": 271,
-      "afterStall": 296
+      "beforeStall": 253,
+      "afterStall": 280
     },
     {
       "name": "desktop touch moves and cancellation stops",
@@ -250,7 +250,7 @@
     },
     {
       "name": "desktop room camera drifts relative to spawn",
-      "x": -7.340835749452817,
+      "x": -7.036061109037814,
       "y": 0
     },
     {
@@ -311,8 +311,8 @@
     },
     {
       "name": "natural upgrade resumes battle clock",
-      "beforeClock": "42/480 秒",
-      "afterClock": "43/480 秒"
+      "beforeClock": "43/480 秒",
+      "afterClock": "45/480 秒"
     },
     {
       "name": "natural upgrade resumes battle clock",
@@ -331,23 +331,23 @@
   ],
   "errors": [],
   "naturalBattle": {
-    "wallSeconds": 69,
+    "wallSeconds": 82,
     "upgrades": 4,
     "texts": [
       "大学生  Lv.5",
       "0/100",
-      "第4天",
-      "60/480 秒",
+      "第5天",
+      "73/480 秒",
       "工资 ¥0",
       "服务压力高发",
       "普通月",
-      "-4  水果 · 冲撞",
+      "-2  奶茶 · 弹丸",
       "课本 Lv.3  ≡",
-      "击退 73",
+      "击退 96",
       "性能",
-      "帧间隔 18.7ms · P95 31.3 · 预算≤33.4\nCPU 逻辑 0.11 / 提交 0.36ms · P95 1.40\n逻辑 1.1步/帧 · 长帧 0\nEnemy 24 · XP 2/2\nProjectile P/E 1/7\nDelay P/E 0/0",
+      "帧间隔 18.0ms · P95 28.2 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.34ms · P95 1.00\n逻辑 1.1步/帧 · 长帧 0\nEnemy 20 · XP 7/7\nProjectile P/E 1/7\nDelay P/E 0/0",
       "本月失败",
-      "体力耗尽 · 本局工资不结转\n\n存活 1分0秒 · 第4天 · Lv.5 · 击退 73\n构筑：课本 Lv.3 / 人体工学椅 Lv.1 / 戒奶茶\n主要受伤：水果 · 44体力 / 5次\n最后受击：水果 · 冲撞 -4\n下局建议：看到冲撞走廊时，向两侧移动。",
+      "体力耗尽 · 本局工资不结转\n\n存活 1分13秒 · 第5天 · Lv.5 · 击退 96\n构筑：课本 Lv.3 / 人体工学椅 Lv.1 / 戒奶茶\n主要受伤：米饭 · 54体力 / 9次\n最后受击：奶茶 · 弹丸 -2\n下局建议：看准亮边弹丸，横向移动避开弹道。",
       "本月收入：¥0 · 装备支出：¥0\n本月工资剩余：¥0\n实际入账 ¥0 · 局外余额 ¥15000",
       "返回首页",
       "带着经验，准备下一局"
@@ -355,16 +355,16 @@
   },
   "captureVideo": true,
   "fixedSeed": 20261021,
-  "sourceCommit": "e40ba46326835cf3d35126f2849a327260cf5b44",
+  "sourceCommit": "daf3f07063057f35fd6922dac406b1eb1954c29a",
   "renderTiming": {
     "kind": "active-combat-rAF-intervals",
     "environment": "Chromium automated browser; not a physical device or GPU timing",
-    "samples": 3242,
-    "meanMs": 18.526927822331345,
+    "samples": 3940,
+    "meanMs": 18.544086294415617,
     "p95Ms": 33.30000000000291,
     "p99Ms": 50,
     "targetP95Ms": 33.4,
     "withinBudget": true,
-    "cpuDiagnostic": "帧间隔 18.7ms · P95 31.3 · 预算≤33.4\nCPU 逻辑 0.11 / 提交 0.36ms · P95 1.40\n逻辑 1.1步/帧 · 长帧 0\nEnemy 24 · XP 2/2\nProjectile P/E 1/7\nDelay P/E 0/0"
+    "cpuDiagnostic": "帧间隔 18.0ms · P95 28.2 · 预算≤33.4\nCPU 逻辑 0.09 / 提交 0.34ms · P95 1.00\n逻辑 1.1步/帧 · 长帧 0\nEnemy 20 · XP 7/7\nProjectile P/E 1/7\nDelay P/E 0/0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "kind": "normal-speed-real-input-browser-run",
-  "sourceCommit": "0905225e79a33b8aa6f2310039b74fc7a0590827",
+  "sourceCommit": "daf3f07063057f35fd6922dac406b1eb1954c29a",
   "seed": 27183,
   "profession": "student",
   "metaLevel": 1,
@@ -8,51 +8,55 @@
   "timeScale": 1,
   "configModified": false,
   "gameStateMutated": false,
-  "steps": 1743,
+  "steps": 1730,
   "upgrades": [
     {
-      "second": 13,
+      "second": 14,
       "choice": "升级课本"
     },
     {
-      "second": 33,
+      "second": 34,
       "choice": "升级课本"
     },
     {
-      "second": 51,
+      "second": 46,
       "choice": "人体工学椅"
     },
     {
-      "second": 70,
+      "second": 59,
       "choice": "升级课本"
     },
     {
-      "second": 82,
+      "second": 74,
       "choice": "专注阅读"
     },
     {
-      "second": 100,
+      "second": 98,
       "choice": "双肩包"
     },
     {
-      "second": 118,
+      "second": 116,
       "choice": "双肩包 Lv.2"
     },
     {
-      "second": 141,
+      "second": 147,
       "choice": "专注阅读"
     },
     {
-      "second": 173,
+      "second": 184,
       "choice": "专注阅读"
     },
     {
-      "second": 192,
+      "second": 203,
       "choice": "工牌"
     },
     {
-      "second": 216,
+      "second": 224,
       "choice": "雨伞"
+    },
+    {
+      "second": 249,
+      "choice": "翻页技巧"
     }
   ],
   "shops": [
@@ -60,15 +64,15 @@
       "second": 144,
       "texts": [
         "发薪日 +¥3000",
-        "大学生  Lv.9",
-        "78/140",
+        "大学生  Lv.8",
+        "89/140",
         "第10天",
         "144/480 秒",
         "工资 ¥1250",
         "久坐高发 · 新人辅助",
         "普通月",
         "课本 Lv.5  ≡",
-        "击退 199",
+        "击退 203",
         "工资商城 · 余额 ¥1250",
         "课本",
         "已满级",
@@ -103,7 +107,12 @@
         "击退 0",
         "Ⅱ"
       ],
-      "visibleSprites": 7
+      "visibleSprites": 7,
+      "timing": {
+        "samples": 1,
+        "meanMs": 466.6999999999998,
+        "p95Ms": 466.7
+      }
     },
     {
       "second": 30,
@@ -117,33 +126,44 @@
         "普通月",
         "首薪还有 114 秒 · 移动收集绿晶",
         "课本 Lv.2  ≡",
-        "击退 29",
+        "击退 25",
         "Ⅱ"
       ],
-      "visibleSprites": 4
+      "visibleSprites": 12,
+      "timing": {
+        "samples": 739,
+        "meanMs": 42.78119079837618,
+        "p95Ms": 66.7
+      }
     },
     {
       "second": 60,
       "texts": [
-        "大学生  Lv.4",
-        "100/100",
+        "升级课本！",
+        "大学生  Lv.5",
+        "64/100",
         "第4天",
         "60/480 秒",
         "工资 ¥0",
         "久坐高发 · 新人辅助",
         "普通月",
-        "首薪还有 84 秒 · 移动收集绿晶",
-        "课本 Lv.3  ≡",
-        "击退 55",
+        "-5  米饭 · 接触",
+        "课本 Lv.4  ≡",
+        "击退 68",
         "Ⅱ"
       ],
-      "visibleSprites": 4
+      "visibleSprites": 18,
+      "timing": {
+        "samples": 747,
+        "meanMs": 40.58286479250334,
+        "p95Ms": 50.1
+      }
     },
     {
       "second": 90,
       "texts": [
         "大学生  Lv.6",
-        "59/100",
+        "64/100",
         "第6天",
         "90/480 秒",
         "工资 ¥0",
@@ -151,16 +171,21 @@
         "普通月",
         "首薪还有 54 秒 · 移动收集绿晶",
         "课本 Lv.4  ≡",
-        "击退 111",
+        "击退 114",
         "Ⅱ"
       ],
-      "visibleSprites": 24
+      "visibleSprites": 17,
+      "timing": {
+        "samples": 769,
+        "meanMs": 39.508452535760725,
+        "p95Ms": 50.1
+      }
     },
     {
       "second": 120,
       "texts": [
         "大学生  Lv.8",
-        "69/125",
+        "74/125",
         "第8天",
         "120/480 秒",
         "工资 ¥0",
@@ -168,16 +193,21 @@
         "普通月",
         "首薪还有 24 秒 · 移动收集绿晶",
         "课本 Lv.4  ≡",
-        "击退 163",
+        "击退 162",
         "Ⅱ"
       ],
-      "visibleSprites": 13
+      "visibleSprites": 15,
+      "timing": {
+        "samples": 757,
+        "meanMs": 39.93685601056805,
+        "p95Ms": 50.1
+      }
     },
     {
       "second": 150,
       "texts": [
         "大学生  Lv.9",
-        "72/140",
+        "89/140",
         "第10天",
         "150/480 秒",
         "工资 ¥1250",
@@ -185,16 +215,21 @@
         "普通月",
         "第20天补给 · 还有 154 秒",
         "课本 Lv.5  ≡",
-        "击退 210",
+        "击退 213",
         "Ⅱ"
       ],
-      "visibleSprites": 17
+      "visibleSprites": 16,
+      "timing": {
+        "samples": 707,
+        "meanMs": 45.42503536067895,
+        "p95Ms": 83.3
+      }
     },
     {
       "second": 180,
       "texts": [
-        "大学生  Lv.10",
-        "51/140",
+        "大学生  Lv.9",
+        "83/140",
         "第12天",
         "180/480 秒",
         "工资 ¥1250",
@@ -202,16 +237,21 @@
         "普通月",
         "第20天补给 · 还有 124 秒",
         "课本 Lv.5  ≡",
-        "击退 281",
+        "击退 268",
         "Ⅱ"
       ],
-      "visibleSprites": 19
+      "visibleSprites": 25,
+      "timing": {
+        "samples": 781,
+        "meanMs": 38.83764404609473,
+        "p95Ms": 50.1
+      }
     },
     {
       "second": 210,
       "texts": [
         "大学生  Lv.11",
-        "19/140",
+        "30/140",
         "第14天",
         "210/480 秒",
         "工资 ¥1250",
@@ -219,43 +259,69 @@
         "普通月",
         "第20天补给 · 还有 94 秒",
         "课本 Lv.5  ≡",
-        "击退 355",
+        "击退 362",
         "Ⅱ"
       ],
-      "visibleSprites": 20
+      "visibleSprites": 34,
+      "timing": {
+        "samples": 714,
+        "meanMs": 42.435154061624665,
+        "p95Ms": 50.1
+      }
+    },
+    {
+      "second": 240,
+      "texts": [
+        "大学生  Lv.12",
+        "26/140",
+        "第16天",
+        "240/480 秒",
+        "工资 ¥1250",
+        "久坐高发 · 新人辅助",
+        "普通月",
+        "第20天补给 · 还有 64 秒",
+        "课本 Lv.5  ≡",
+        "击退 450",
+        "Ⅱ"
+      ],
+      "visibleSprites": 17,
+      "timing": {
+        "samples": 734,
+        "meanMs": 41.642370572207085,
+        "p95Ms": 50.1
+      }
     }
   ],
   "errors": [],
   "outcome": "dead",
-  "actualGameSeconds": 237,
+  "actualGameSeconds": 268,
   "notes": "Automated visual heuristic, not human play, physical-device performance or player win rates.",
   "endTexts": [
-    "大学生  Lv.12",
+    "大学生  Lv.13",
     "0/140",
-    "第15天",
-    "237/480 秒",
+    "第17天",
+    "268/480 秒",
     "工资 ¥1250",
     "久坐高发 · 新人辅助",
     "普通月",
-    "-3  零食 · 接触",
+    "-6  客诉 · 弹丸",
     "课本 Lv.5  ≡",
-    "击退 422",
+    "击退 530",
     "本月失败",
-    "体力耗尽 · 本局工资不结转\n\n存活 3分57秒 · 第15天 · Lv.12 · 击退 422\n构筑：课本 Lv.5 / 工牌 Lv.1 / 雨伞 Lv.1 / 双肩包 Lv.3 / 护膝 Lv.1 等\n主要受伤：奶茶 · 67体力 / 11次\n最后受击：零食 · 接触 -3\n下局建议：持续移动绕开包围，靠近绿晶升级。",
+    "体力耗尽 · 本局工资不结转\n\n存活 4分28秒 · 第17天 · Lv.13 · 击退 530\n构筑：课本 Lv.5 / 工牌 Lv.1 / 雨伞 Lv.1 / 双肩包 Lv.3 / 护膝 Lv.1 等\n主要受伤：奶茶 · 51体力 / 8次\n最后受击：客诉 · 弹丸 -6\n下局建议：看准亮边弹丸，横向移动避开弹道。",
     "本月收入：¥3000 · 装备支出：¥1750\n本月工资剩余：¥1250\n实际入账 ¥0 · 局外余额 ¥0",
     "返回首页",
     "带着经验，准备下一局"
   ],
-  "wallSeconds": 246,
+  "wallSeconds": 284,
   "reachedMonthEnd": false,
   "renderTiming": {
-    "samples": 10343,
-    "meanMs": 23.135492603692306,
-    "rawP95Ms": 33.400000000001455,
-    "p95Ms": 33.4,
+    "samples": 6650,
+    "meanMs": 41.35924812030069,
+    "rawP95Ms": 50.10000000000582,
+    "p95Ms": 50.1,
     "precisionMs": 0.001,
     "targetP95Ms": 33.4,
-    "withinBudget": true
-  },
-  "returnedHome": true
+    "withinBudget": false
+  }
 }
